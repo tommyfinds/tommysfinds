@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Videos – Tommy's Finds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #080808; --surface: #0f0f0f; --surface2: #151515;
+    --border: #1f1f1f; --border2: #2a2a2a;
+    --text: #f0f0f0; --muted: #555; --muted2: #333;
+  }
+  body { font-family: 'Archivo Narrow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 56px;
+    background: rgba(8,8,8,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.1em; color: #fff; text-decoration: none; }
+  .logo span { color: var(--muted); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: #fff; }
+  .nav-icons { display: flex; align-items: center; gap: 10px; }
+
+  .hero { padding: 3rem 2rem 2rem; border-bottom: 1px solid var(--border); }
+  .hero p { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(42px, 7vw, 72px); letter-spacing: 0.04em; line-height: 0.9; color: #fff; }
+
+  .section { padding: 2.5rem 2rem 0; }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.2rem; padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border2);
+  }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 0.06em; color: #fff;
+  }
+  .platform-icon { display: flex; align-items: center; }
+  .subscribe-btn {
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 14px;
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    transition: border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .subscribe-btn:hover { border-color: #fff; color: #fff; }
+  .subscribe-btn.yt { border-color: rgba(255,0,0,0.4); color: #ff4444; }
+  .subscribe-btn.yt:hover { border-color: #ff0000; color: #ff0000; }
+  .subscribe-btn.tt { border-color: rgba(105,201,208,0.4); color: #69c9d0; }
+  .subscribe-btn.tt:hover { border-color: #69c9d0; color: #69c9d0; }
+
+  .scroll-row {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border2) transparent;
+    flex-direction: row-reverse;
+  }
+  .scroll-row::-webkit-scrollbar { height: 4px; }
+  .scroll-row::-webkit-scrollbar-track { background: transparent; }
+  .scroll-row::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+  .video-card {
+    flex-shrink: 0;
+    width: 240px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: opacity 0.2s;
+  }
+  .video-card:hover { opacity: 0.8; }
+  .video-card.short { width: 145px; }
+
+  .thumb-wrap {
+    position: relative;
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .video-card .thumb-wrap { aspect-ratio: 16/9; }
+  .video-card.short .thumb-wrap { aspect-ratio: 9/16; }
+  .video-card.tiktok .thumb-wrap { aspect-ratio: 9/16; }
+
+  .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb-play {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.25);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .video-card:hover .thumb-play { opacity: 1; }
+  .thumb-play svg { width: 36px; height: 36px; }
+
+  .video-date {
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted2); margin-bottom: 4px;
+  }
+  .video-title {
+    font-size: 13px; font-weight: 500; color: #ccc;
+    line-height: 1.35; display: -webkit-box;
+    -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+
+  .section-spacer { height: 2.5rem; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem; margin-top: 3rem;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: #fff; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .section { padding: 2rem 1rem 0; }
+    .nav-links { display: none; }
+    .video-card { width: 200px; }
+    .video-card.short, .video-card.tiktok { width: 130px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">TOMMY<span>'S FINDS</span></a>
+  <div class="nav-links">
+    <a href="index.html">Finds</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="videos.html" class="active">Videos</a>
+    <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Superbuy</a>
+  </div>
+  <div class="nav-icons">
+    <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#FF0000'" onmouseout="this.style.fill='#aaa'"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+    <a href="https://www.reddit.com/user/parisuserr/" target="_blank" rel="noopener" style="display:flex;align-items:center;">
+      <img src="https://i.imgur.com/J1AZGv2.png" alt="Reddit" style="width:36px;height:36px;object-fit:contain;" />
+    </a>
+  </div>
+</nav>
+
+<div class="hero">
+  <p>Tommy's Finds</p>
+  <h1>Videos</h1>
+</div>
+
+<!-- ── YOUTUBE ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">
+      <div class="platform-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </div>
+      <h2>YouTube</h2>
+    </div>
+    <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" class="subscribe-btn yt">Subscribe</a>
+  </div>
+  <div class="scroll-row" id="yt-row">
+    <a href="https://www.youtube.com/watch?v=a2tKYnmaTIs&t" target="_blank" rel="noopener" class="video-card">
+      <div class="thumb-wrap">
+        <img src="https://img.youtube.com/vi/a2tKYnmaTIs/hqdefault.jpg" alt="Video thumbnail" loading="lazy" />
+        <div class="thumb-play">
+          <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <div class="video-date">Dec 6, 2025</div>
+      <div class="video-title">Tommy's Finds — Latest Picks</div>
+    </a>
+  </div>
+</div>
+
+<!-- ── TIKTOK ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">
+      <div class="platform-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#69c9d0"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+      </div>
+      <h2>TikTok</h2>
+    </div>
+    <a href="https://www.tiktok.com/@tommy_flnds" target="_blank" rel="noopener" class="subscribe-btn tt">Follow</a>
+  </div>
+  <div class="scroll-row" id="tt-row">
+    <div style="display:flex;align-items:center;padding:2rem 0;color:var(--muted);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">No TikTok videos yet — add them below</div>
+  </div>
+</div>
+
+<!-- ── YOUTUBE SHORTS ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">
+      <div class="platform-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </div>
+      <h2>YouTube Shorts</h2>
+    </div>
+    <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" class="subscribe-btn yt">Subscribe</a>
+  </div>
+  <div class="scroll-row" id="shorts-row">
+    <div style="display:flex;align-items:center;padding:2rem 0;color:var(--muted);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">No Shorts yet — add them below</div>
+  </div>
+</div>
+
+<div class="section-spacer"></div>
+
+<footer>
+  <p>© 2025 Tommy's Finds</p>
+  <p><a href="index.html">← Back to finds</a></p>
+</footer>
+
+<!--
+  ═══════════════════════════════════════════════════
+  TO ADD MORE VIDEOS — copy one of these blocks:
+
+  YOUTUBE VIDEO:
+  <a href="YOUR_YOUTUBE_LINK" target="_blank" rel="noopener" class="video-card">
+    <div class="thumb-wrap">
+      <img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/hqdefault.jpg" alt="Video thumbnail" loading="lazy" />
+      <div class="thumb-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="video-date">Jan 1, 2026</div>
+    <div class="video-title">Your video title here</div>
+  </a>
+
+  TIKTOK VIDEO:
+  <a href="YOUR_TIKTOK_LINK" target="_blank" rel="noopener" class="video-card tiktok">
+    <div class="thumb-wrap">
+      <img src="YOUR_THUMBNAIL_IMAGE_URL" alt="TikTok thumbnail" loading="lazy" />
+      <div class="thumb-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="video-date">Jan 1, 2026</div>
+    <div class="video-title">Your TikTok title here</div>
+  </a>
+
+  YOUTUBE SHORT:
+  <a href="YOUR_SHORTS_LINK" target="_blank" rel="noopener" class="video-card short">
+    <div class="thumb-wrap">
+      <img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/hqdefault.jpg" alt="Short thumbnail" loading="lazy" />
+      <div class="thumb-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+    </div>
+    <div class="video-date">Jan 1, 2026</div>
+    <div class="video-title">Your Short title here</div>
+  </a>
+
+  Paste YouTube videos inside <div id="yt-row">
+  Paste TikTok videos inside <div id="tt-row">  (remove the placeholder text first)
+  Paste Shorts inside <div id="shorts-row">  (remove the placeholder text first)
+  ═══════════════════════════════════════════════════
+-->
+</body>
+</html>
