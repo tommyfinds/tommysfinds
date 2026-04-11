@@ -205,15 +205,16 @@
   .sub-btn:hover { color: #aaa; }
   .sub-btn.active { color: #ddd; border-bottom-color: #666; }
 
-  .color-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+  .color-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 0; }
   .color-tag {
     font-size: 9px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 2px 7px;
+    padding: 3px 8px;
     border: 1px solid var(--border2);
     color: var(--muted);
     background: var(--tag-bg);
+    border-radius: 3px;
   }
 
   .search-bar {
@@ -241,6 +242,36 @@
   .search-bar select:focus { border-color: #444; }
   .search-bar select { cursor: pointer; }
   .search-bar select option { background: var(--select-bg); }
+
+  .custom-color-select { position: relative; flex-shrink: 0; }
+  .ccs-trigger {
+    display: flex; align-items: center; gap: 7px;
+    background: var(--surface2); border: 1px solid var(--border2);
+    color: #ccc; font-family: 'Archivo Narrow', sans-serif;
+    font-size: 13px; padding: 8px 12px; cursor: pointer;
+    user-select: none; white-space: nowrap; min-width: 130px;
+  }
+  .ccs-trigger:hover { border-color: #444; }
+  .ccs-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; display: inline-block;
+  }
+  .ccs-arrow { margin-left: auto; font-size: 10px; color: var(--muted); }
+  .ccs-dropdown {
+    display: none; position: absolute; top: calc(100% + 4px); left: 0;
+    background: #111; border: 1px solid var(--border2);
+    min-width: 160px; z-index: 200; max-height: 260px; overflow-y: auto;
+    scrollbar-width: thin; scrollbar-color: var(--border2) transparent;
+  }
+  .ccs-dropdown.open { display: block; }
+  .ccs-option {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 12px; cursor: pointer; font-size: 13px;
+    font-family: 'Archivo Narrow', sans-serif; color: #fff;
+    transition: background 0.1s;
+  }
+  .ccs-option:hover { background: var(--surface2); }
+  .ccs-option.selected { background: var(--surface2); }
+  .ccs-option-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
   /* ── GRID ── */
   .grid-info {
@@ -334,11 +365,14 @@
   }
   .card-footer {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
   }
-  .card-price { font-size: 14px; color: var(--card-price); font-weight: 600; }
+  .card-price { font-size: 15px; color: var(--card-price); font-weight: 600; }
   .card-color {
     font-size: 10px;
     letter-spacing: 0.06em;
@@ -569,9 +603,14 @@
     <select id="brand-filter">
       <option value="">All brands</option>
     </select>
-    <select id="color-filter">
-      <option value="">All colors</option>
-    </select>
+    <div class="custom-color-select" id="color-select-wrap">
+      <div class="ccs-trigger" id="ccs-trigger">
+        <span class="ccs-dot" id="ccs-dot" style="background:transparent;border:1px solid #444;"></span>
+        <span class="ccs-label" id="ccs-label">All colors</span>
+        <span class="ccs-arrow">▾</span>
+      </div>
+      <div class="ccs-dropdown" id="ccs-dropdown"></div>
+    </div>
     <select id="sort">
       <option value="newest">Newest</option>
       <option value="price_asc">Price: Low → High</option>
@@ -805,6 +844,7 @@ const subCategories = {
 
 let activeMain = 'all';
 let activeSub  = 'all';
+let selectedColor = '';
 
 function populateFilters() {
   const brands = [...new Set(products.map(p => p.brand))].sort();
@@ -813,21 +853,54 @@ function populateFilters() {
   const cs = document.getElementById('color-filter');
   brands.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; bs.appendChild(o); });
   const colorMap = {
-    'black': '#111111', 'white': '#ffffff', 'grey': '#888888', 'gray': '#888888',
+    'black': '#1a1a1a', 'white': '#ffffff', 'grey': '#888888', 'gray': '#888888',
     'navy': '#1a2744', 'blue': '#2563eb', 'red': '#dc2626', 'green': '#16a34a',
     'orange': '#ea580c', 'yellow': '#eab308', 'purple': '#9333ea', 'pink': '#ec4899',
     'beige': '#d4b896', 'brown': '#7c4f2a', 'gold': '#d4af37', 'silver': '#a8a8a8',
-    'light grey': '#c5c5c5', 'dark grey': '#444444', 'wine red': '#6b1a2a',
-    'light gray': '#c5c5c5', 'dark gray': '#444444'
+    'light grey': '#c5c5c5', 'dark grey': '#4a4a4a', 'wine red': '#6b1a2a',
+    'light gray': '#c5c5c5', 'dark gray': '#4a4a4a'
   };
+
+  const dropdown = document.getElementById('ccs-dropdown');
+  const trigger  = document.getElementById('ccs-trigger');
+  const dotEl    = document.getElementById('ccs-dot');
+  const labelEl  = document.getElementById('ccs-label');
+
+  function addColorOption(val, label, hex) {
+    const div = document.createElement('div');
+    div.className = 'ccs-option' + (val === selectedColor ? ' selected' : '');
+    div.dataset.val = val;
+    const dot = document.createElement('span');
+    dot.className = 'ccs-option-dot';
+    dot.style.background = hex || 'transparent';
+    dot.style.border = hex ? 'none' : '1px solid #555';
+    const txt = document.createElement('span');
+    txt.textContent = label;
+    div.appendChild(dot); div.appendChild(txt);
+    div.addEventListener('click', () => {
+      selectedColor = val;
+      dotEl.style.background = hex || 'transparent';
+      dotEl.style.border = hex ? 'none' : '1px solid #444';
+      labelEl.textContent = label;
+      dropdown.classList.remove('open');
+      document.querySelectorAll('.ccs-option').forEach(o => o.classList.remove('selected'));
+      div.classList.add('selected');
+      render();
+    });
+    dropdown.appendChild(div);
+  }
+
+  addColorOption('', 'All colors', '');
   colors.forEach(c => {
-    const o = document.createElement('option');
-    o.value = c;
-    o.textContent = '⬤ ' + c;
-    o.style.color = '#ffffff';
-    cs.appendChild(o);
+    const hex = colorMap[c.toLowerCase()] || '#888888';
+    addColorOption(c, c, hex);
   });
-  cs.style.color = '#ffffff';
+
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', () => dropdown.classList.remove('open'));
 }
 
 function setMainCat(cat) {
@@ -876,7 +949,7 @@ function formatPrice(usdPrice) {
 function render() {
   const q = document.getElementById('search').value.toLowerCase();
   const brand = document.getElementById('brand-filter').value;
-  const color = document.getElementById('color-filter').value;
+  const color = selectedColor;
   const sort = document.getElementById('sort').value;
 
   let list = products.filter(p => {
@@ -948,7 +1021,7 @@ document.getElementById('cat-bar').addEventListener('click', e => {
 
 document.getElementById('search').addEventListener('input', render);
 document.getElementById('brand-filter').addEventListener('change', render);
-document.getElementById('color-filter').addEventListener('change', render);
+
 document.getElementById('sort').addEventListener('change', render);
 
 populateFilters();
