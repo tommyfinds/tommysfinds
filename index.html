@@ -151,6 +151,45 @@
   .cat-btn:hover { color: #ccc; }
   .cat-btn.active { color: #fff; border-bottom-color: #fff; }
 
+  .sub-bar {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-top: 1px solid var(--border);
+    background: #0a0a0a;
+  }
+  .sub-bar::-webkit-scrollbar { display: none; }
+
+  .sub-btn {
+    flex-shrink: 0;
+    padding: 10px 16px;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .sub-btn:hover { color: #aaa; }
+  .sub-btn.active { color: #ddd; border-bottom-color: #666; }
+
+  .color-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+  .color-tag {
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    background: var(--tag-bg);
+  }
+
   .search-bar {
     display: flex;
     gap: 8px;
@@ -355,12 +394,12 @@
     <a href="#how">How it works</a>
     <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Superbuy</a>
   </div>
-  <button class="nav-badge" onclick="document.getElementById('finds').scrollIntoView({behavior:'smooth'})">Browse</button>
+  <a href="https://www.reddit.com/user/parisuserr/" target="_blank" rel="noopener" style="display:flex;align-items:center;"><img src="https://i.imgur.com/J1AZGv2.png" alt="Reddit" style="width:28px;height:28px;border-radius:50%;" /></a>
 </nav>
 
 <section class="hero">
   <div class="hero-title">
-    <span>Curated fashion</span>
+    <span>The Best Finds</span>
     Tommy's<br>Finds
   </div>
   <div class="hero-meta">
@@ -372,12 +411,15 @@
 
 <div class="filters-wrap" id="finds">
   <div class="cat-bar" id="cat-bar">
-    <button class="cat-btn active" data-cat="all">All</button>
-    <button class="cat-btn" data-cat="tees">Tees</button>
-    <button class="cat-btn" data-cat="hoodies">Hoodies</button>
-    <button class="cat-btn" data-cat="pants">Pants</button>
-    <button class="cat-btn" data-cat="shoes">Shoes</button>
-    <button class="cat-btn" data-cat="accessories">Accessories</button>
+    <button class="cat-btn active" data-main="all">All</button>
+    <button class="cat-btn" data-main="tops">Tops</button>
+    <button class="cat-btn" data-main="bottoms">Bottoms</button>
+    <button class="cat-btn" data-main="footwear">Footwear</button>
+    <button class="cat-btn" data-main="accessories">Accessories</button>
+    <button class="cat-btn" data-main="others">Others</button>
+  </div>
+  <div class="sub-bar" id="sub-bar" style="display:none;">
+    <button class="sub-btn active" data-sub="all">All</button>
   </div>
   <div class="search-bar">
     <input type="text" id="search" placeholder="Search brand or name..." />
@@ -449,7 +491,8 @@ const products = [
     name: "Supreme Spider-Man SS26 T-Shirt",
     brand: "Supreme",
     category: "tees",
-    color: "Black / White",
+    mainCat: "tops",
+    colors: ["Black", "White"],
     price: 7.93,
     badge: "new",
     addedDate: new Date().toISOString(),
@@ -468,15 +511,51 @@ const placeholderSvgs = {
   accessories: `<svg width="64" height="64" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 32 Q15 14 30 14 Q45 14 45 32 Z" stroke="#888" stroke-width="1.5" fill="none"/><path d="M10 34 L45 34 Q46 38 42 38 L15 38 Z" stroke="#888" stroke-width="1" fill="none"/></svg>`
 };
 
-let activeCat = 'all';
+
+
+const subCategories = {
+  tops:        ['Tees','Long Sleeves','Jerseys','Hoodies','Sweaters','Knits','Coats','Tracksuits'],
+  bottoms:     ['Pants','Jeans','Sweatpants','Shorts','Tracksuits'],
+  footwear:    ['Sneakers','Slippers','Boots'],
+  accessories: ['Jewelry','Glasses','Belts','Bags','Wallets','Scarves','Headwear'],
+  others:      ['Lego','Room Decor','Electronics','Miscellaneous']
+};
+
+let activeMain = 'all';
+let activeSub  = 'all';
 
 function populateFilters() {
   const brands = [...new Set(products.map(p => p.brand))].sort();
-  const colors = [...new Set(products.map(p => p.color))].sort();
+  const colors = [...new Set(products.flatMap(p => p.colors || [p.color]))].sort();
   const bs = document.getElementById('brand-filter');
   const cs = document.getElementById('color-filter');
   brands.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; bs.appendChild(o); });
   colors.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; cs.appendChild(o); });
+}
+
+function setMainCat(cat) {
+  activeMain = cat;
+  activeSub = 'all';
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.cat-btn[data-main="${cat}"]`).classList.add('active');
+
+  const subBar = document.getElementById('sub-bar');
+  if (cat === 'all' || !subCategories[cat]) {
+    subBar.style.display = 'none';
+  } else {
+    subBar.style.display = 'flex';
+    subBar.innerHTML = `<button class="sub-btn active" data-sub="all">All</button>` +
+      subCategories[cat].map(s => `<button class="sub-btn" data-sub="${s.toLowerCase()}">${s}</button>`).join('');
+    subBar.querySelectorAll('.sub-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        subBar.querySelectorAll('.sub-btn').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        activeSub = b.dataset.sub;
+        render();
+      });
+    });
+  }
+  render();
 }
 
 const rates = { USD: 1, CAD: 1.36, CNY: 7.24, EUR: 0.92, GBP: 0.79, AUD: 1.53 };
@@ -504,9 +583,13 @@ function render() {
   const sort = document.getElementById('sort').value;
 
   let list = products.filter(p => {
-    if (activeCat !== 'all' && p.category !== activeCat) return false;
+    const pColors = p.colors || [p.color];
+    const pMain = p.mainCat || p.category;
+    const pSub = p.category;
+    if (activeMain !== 'all' && pMain !== activeMain) return false;
+    if (activeSub !== 'all' && pSub !== activeSub) return false;
     if (brand && p.brand !== brand) return false;
-    if (color && p.color !== color) return false;
+    if (color && !pColors.includes(color)) return false;
     if (q && !p.name.toLowerCase().includes(q) && !p.brand.toLowerCase().includes(q)) return false;
     return true;
   });
@@ -552,7 +635,7 @@ function render() {
           ${p.notes ? `<div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;">${p.notes}</div>` : ''}
           <div class="card-footer">
             <div class="card-price">${formatPrice(p.price)}</div>
-            <div class="card-color">${p.color}</div>
+            <div class="color-tags">${(p.colors || [p.color]).map(c => `<span class="color-tag">${c}</span>`).join("")}</div>
           </div>
         </div>
         ${buyHtml}
@@ -563,10 +646,7 @@ function render() {
 document.getElementById('cat-bar').addEventListener('click', e => {
   const btn = e.target.closest('.cat-btn');
   if (!btn) return;
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  activeCat = btn.dataset.cat;
-  render();
+  setMainCat(btn.dataset.main);
 });
 
 document.getElementById('search').addEventListener('input', render);
