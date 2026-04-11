@@ -797,11 +797,26 @@ function populateFilters() {
   const bs = document.getElementById('brand-filter');
   const cs = document.getElementById('color-filter');
   brands.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; bs.appendChild(o); });
+  const colorMap = {
+    'black': '#111111', 'white': '#ffffff', 'grey': '#888888', 'gray': '#888888',
+    'navy': '#1a2744', 'blue': '#2563eb', 'red': '#dc2626', 'green': '#16a34a',
+    'orange': '#ea580c', 'yellow': '#eab308', 'purple': '#9333ea', 'pink': '#ec4899',
+    'beige': '#d4b896', 'brown': '#7c4f2a', 'gold': '#d4af37', 'silver': '#a8a8a8',
+    'light grey': '#c5c5c5', 'dark grey': '#444444', 'wine red': '#6b1a2a',
+    'light gray': '#c5c5c5', 'dark gray': '#444444'
+  };
   colors.forEach(c => {
     const o = document.createElement('option');
     o.value = c;
+    const hex = colorMap[c.toLowerCase()] || '#888888';
     o.textContent = '⬤ ' + c;
+    o.style.color = hex;
     cs.appendChild(o);
+  });
+  cs.addEventListener('change', function() {
+    const selected = this.value;
+    const hex = colorMap[selected.toLowerCase()] || '';
+    this.style.color = hex && selected ? hex : '';
   });
 }
 
