@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How It Works – Tommy's Finds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #080808; --surface: #0f0f0f; --surface2: #151515;
+    --border: #1f1f1f; --border2: #2a2a2a;
+    --text: #f0f0f0; --muted: #555;
+  }
+  body { font-family: 'Archivo Narrow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 56px;
+    background: rgba(8,8,8,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.1em; color: #fff; text-decoration: none; }
+  .logo span { color: var(--muted); }
+  .back { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .back:hover { color: #fff; }
+  .hero { padding: 4rem 2rem 3rem; border-bottom: 1px solid var(--border); }
+  .hero p { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 80px); letter-spacing: 0.04em; line-height: 0.9; color: #fff; }
+  .steps { padding: 3rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 900px; }
+  .step { border-top: 1px solid var(--border2); padding-top: 1.5rem; }
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--border2); line-height: 1; margin-bottom: 0.8rem; }
+  .step h2 { font-size: 15px; font-weight: 500; color: #ccc; margin-bottom: 8px; letter-spacing: 0.04em; }
+  .step p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .cta { padding: 0 2rem 4rem; }
+  .cta a {
+    display: inline-block; padding: 12px 28px;
+    background: #fff; color: #000;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .cta a:hover { background: #ddd; }
+  footer { border-top: 1px solid var(--border); padding: 2rem; }
+  footer p { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">TOMMY<span>'S FINDS</span></a>
+  <a class="back" href="index.html">← Back to finds</a>
+</nav>
+
+<div class="hero">
+  <p>Tommy's Finds</p>
+  <h1>How It<br>Works</h1>
+</div>
+
+<div class="steps">
+  <div class="step">
+    <div class="step-num">01</div>
+    <h2>Browse the finds</h2>
+    <p>Use the category tabs and filters to browse finds by brand, color, or type. Every item is hand-picked and QC checked before being listed.</p>
+  </div>
+  <div class="step">
+    <div class="step-num">02</div>
+    <h2>Open on Superbuy</h2>
+    <p>Click the buy button on any item to open it directly on Superbuy. Use the referral link to get a coupon pack on sign-up.</p>
+  </div>
+  <div class="step">
+    <div class="step-num">03</div>
+    <h2>Place your order</h2>
+    <p>Superbuy purchases the item from the seller, receives it in their warehouse, provides QC photos, then ships it internationally to your door.</p>
+  </div>
+  <div class="step">
+    <div class="step-num">04</div>
+    <h2>Track & receive</h2>
+    <p>Once shipped, track your parcel directly through Superbuy. Most orders arrive within 7–20 days depending on your shipping method.</p>
+  </div>
+</div>
+
+<div class="cta">
+  <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Sign up to Superbuy →</a>
+</div>
+
+<footer>
+  <p>© 2025 Tommy's Finds · <a href="index.html" style="color:var(--muted);text-decoration:none;">Back to finds</a></p>
+</footer>
+</body>
+</html>
