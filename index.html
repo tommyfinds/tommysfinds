@@ -20,6 +20,32 @@
     --muted2: #333;
     --accent: #ffffff;
     --tag-bg: #1a1a1a;
+    --nav-bg: rgba(8,8,8,0.92);
+    --filter-bg: rgba(8,8,8,0.95);
+    --sub-bg: #0a0a0a;
+    --card-name: #ddd;
+    --card-price: #fff;
+    --logo-muted: var(--muted);
+    --select-bg: #111;
+  }
+  :root.light {
+    --bg: #f5f5f3;
+    --surface: #ffffff;
+    --surface2: #f0f0ee;
+    --border: #e0e0de;
+    --border2: #d0d0ce;
+    --text: #111111;
+    --muted: #888;
+    --muted2: #bbb;
+    --accent: #000000;
+    --tag-bg: #ebebeb;
+    --nav-bg: rgba(245,245,243,0.95);
+    --filter-bg: rgba(245,245,243,0.98);
+    --sub-bg: #efefed;
+    --card-name: #222;
+    --card-price: #000;
+    --logo-muted: #aaa;
+    --select-bg: #fff;
   }
 
   html { scroll-behavior: smooth; }
@@ -37,7 +63,7 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 2rem;
     height: 56px;
-    background: rgba(8,8,8,0.92);
+    background: var(--nav-bg);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
@@ -49,7 +75,7 @@
     color: #fff;
     text-decoration: none;
   }
-  .logo span { color: var(--muted); }
+  .logo span { color: var(--logo-muted); }
 
   .nav-links { display: flex; gap: 2rem; }
   .nav-links a {
@@ -120,7 +146,7 @@
   /* ── FILTERS ── */
   .filters-wrap {
     position: sticky; top: 56px; z-index: 90;
-    background: rgba(8,8,8,0.95);
+    background: var(--filter-bg);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
   }
@@ -157,7 +183,7 @@
     overflow-x: auto;
     scrollbar-width: none;
     border-top: 1px solid var(--border);
-    background: #0a0a0a;
+    background: var(--sub-bg);
   }
   .sub-bar::-webkit-scrollbar { display: none; }
 
@@ -214,7 +240,7 @@
   .search-bar input:focus,
   .search-bar select:focus { border-color: #444; }
   .search-bar select { cursor: pointer; }
-  .search-bar select option { background: #111; }
+  .search-bar select option { background: var(--select-bg); }
 
   /* ── GRID ── */
   .grid-info {
@@ -233,10 +259,10 @@
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    margin: 0.5rem 2rem 2rem;
-    border: 1px solid var(--border);
+    gap: 12px;
+    background: var(--bg);
+    margin: 1rem 2rem 2rem;
+    border: none;
   }
 
   .card {
@@ -284,7 +310,7 @@
     padding: 4px 9px;
     font-weight: 600;
   }
-  .badge-hot { background: #fff; color: #000; }
+  .badge-hot { background: var(--card-price); color: var(--bg); }
   .badge-new { background: var(--tag-bg); color: var(--muted); border: 1px solid var(--border2); }
 
   .card-body {
@@ -303,7 +329,7 @@
   .card-name {
     font-size: 14px;
     font-weight: 500;
-    color: #ddd;
+    color: var(--card-name);
     line-height: 1.3;
   }
   .card-footer {
@@ -312,7 +338,7 @@
     justify-content: space-between;
     margin-top: 8px;
   }
-  .card-price { font-size: 14px; color: #fff; font-weight: 600; }
+  .card-price { font-size: 14px; color: var(--card-price); font-weight: 600; }
   .card-color {
     font-size: 10px;
     letter-spacing: 0.06em;
@@ -329,14 +355,14 @@
     text-transform: uppercase;
     font-weight: 600;
     font-family: 'Archivo Narrow', sans-serif;
-    color: #000;
-    background: #fff;
+    color: var(--bg);
+    background: var(--card-price);
     border: none;
     cursor: pointer;
     text-decoration: none;
     transition: background 0.15s, color 0.15s;
   }
-  .card-buy:hover { background: #ddd; }
+  .card-buy:hover { background: var(--muted2); }
   .card-buy.no-link {
     background: var(--surface2);
     color: var(--muted);
@@ -373,6 +399,105 @@
   footer a { color: var(--muted); text-decoration: none; }
   footer a:hover { color: #fff; }
 
+  /* ── DARK/LIGHT TOGGLE ── */
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    cursor: pointer;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    transition: border-color 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .theme-toggle:hover { border-color: var(--muted); color: var(--text); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.7);
+    align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%; max-width: 480px;
+    position: relative;
+  }
+  .modal h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+  }
+  .modal input, .modal textarea {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 14px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    outline: none;
+    transition: border-color 0.15s;
+    display: block;
+  }
+  .modal input:focus, .modal textarea:focus { border-color: var(--muted); }
+  .modal textarea { min-height: 110px; resize: vertical; }
+  .modal input::placeholder, .modal textarea::placeholder { color: var(--muted); }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none;
+    color: var(--muted); font-size: 20px; cursor: pointer;
+    line-height: 1;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal-submit {
+    width: 100%;
+    padding: 12px;
+    background: #7c6fcd;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 4px;
+  }
+  .modal-submit:hover { background: #6a5eb8; }
+  .modal-success {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .modal-success.show { display: flex; }
+  .modal-success-icon {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #22c55e;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 14px; flex-shrink: 0;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
     nav { padding: 0 1rem; }
@@ -391,10 +516,13 @@
   <a class="logo" href="#">TOMMY<span>'S FINDS</span></a>
   <div class="nav-links">
     <a href="#finds">Finds</a>
-    <a href="#how">How it works</a>
+    <a href="how-it-works.html">How it works</a>
     <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Superbuy</a>
   </div>
-  <a href="https://www.reddit.com/user/parisuserr/" target="_blank" rel="noopener" style="display:flex;align-items:center;"><img src="https://i.imgur.com/J1AZGv2.png" alt="Reddit" style="width:32px;height:32px;object-fit:contain;" /></a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">🌙</button>
+    <a href="https://www.reddit.com/user/parisuserr/" target="_blank" rel="noopener" style="display:flex;align-items:center;"><img src="https://i.imgur.com/J1AZGv2.png" alt="Reddit" style="width:32px;height:32px;object-fit:contain;" /></a>
+  </div>
 </nav>
 
 <section class="hero">
@@ -472,9 +600,36 @@
   </div>
 </section>
 
+<div id="modal-feedback" class="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-feedback')">×</button>
+    <h2>Send Feedback</h2>
+    <div class="modal-success" id="feedback-success"><div class="modal-success-icon">✓</div><span>Sent successfully!</span></div>
+    <input type="text" id="feedback-name" placeholder="Your Name (Optional)" />
+    <textarea id="feedback-msg" placeholder="Your feedback..."></textarea>
+    <button class="modal-submit" onclick="submitForm('feedback')">Send Feedback</button>
+  </div>
+</div>
+
+<div id="modal-suggest" class="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-suggest')">×</button>
+    <h2>Suggest New Products</h2>
+    <div class="modal-success" id="suggest-success"><div class="modal-success-icon">✓</div><span>Suggestion sent!</span></div>
+    <input type="text" id="suggest-name" placeholder="Product Name" />
+    <input type="text" id="suggest-link" placeholder="Reference Link" />
+    <textarea id="suggest-msg" placeholder="Message (Optional)"></textarea>
+    <button class="modal-submit" onclick="submitForm('suggest')">Submit Suggestion</button>
+  </div>
+</div>
+
 <footer>
   <p>© 2025 Tommy's Finds</p>
-  <p>Updated weekly · <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Sign up to Superbuy</a></p>
+  <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;">
+    <p>Updated weekly · <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Sign up to Superbuy</a></p>
+    <a href="#" onclick="openModal('modal-feedback');return false;" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Send Feedback</a>
+    <a href="#" onclick="openModal('modal-suggest');return false;" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Suggest New Products</a>
+  </div>
 </footer>
 
 <script>
@@ -642,7 +797,12 @@ function populateFilters() {
   const bs = document.getElementById('brand-filter');
   const cs = document.getElementById('color-filter');
   brands.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; bs.appendChild(o); });
-  colors.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; cs.appendChild(o); });
+  colors.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c;
+    o.textContent = '⬤ ' + c;
+    cs.appendChild(o);
+  });
 }
 
 function setMainCat(cat) {
@@ -768,6 +928,55 @@ document.getElementById('sort').addEventListener('change', render);
 
 populateFilters();
 render();
+
+// ── THEME TOGGLE ──
+const root = document.documentElement;
+const toggleBtn = document.getElementById('theme-toggle');
+let isLight = false;
+toggleBtn.addEventListener('click', () => {
+  isLight = !isLight;
+  root.classList.toggle('light', isLight);
+  toggleBtn.textContent = isLight ? '🌑' : '🌙';
+});
+
+// ── MODALS ──
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+
+function submitForm(type) {
+  let subject, body;
+  if (type === 'feedback') {
+    const name = document.getElementById('feedback-name').value.trim();
+    const msg  = document.getElementById('feedback-msg').value.trim();
+    if (!msg) return;
+    subject = encodeURIComponent("Tommy's Finds - Feedback");
+    body    = encodeURIComponent((name ? "From: " + name + "\n\n" : "") + msg);
+    document.getElementById('feedback-name').value = '';
+    document.getElementById('feedback-msg').value = '';
+    document.getElementById('feedback-success').classList.add('show');
+    setTimeout(() => document.getElementById('feedback-success').classList.remove('show'), 3000);
+  } else {
+    const name = document.getElementById('suggest-name').value.trim();
+    const link = document.getElementById('suggest-link').value.trim();
+    const msg  = document.getElementById('suggest-msg').value.trim();
+    if (!name) return;
+    subject = encodeURIComponent("Tommy's Finds - Product Suggestion");
+    body    = encodeURIComponent("Product: " + name + (link ? "\nLink: " + link : "") + (msg ? "\n\n" + msg : ""));
+    document.getElementById('suggest-name').value = '';
+    document.getElementById('suggest-link').value = '';
+    document.getElementById('suggest-msg').value = '';
+    document.getElementById('suggest-success').classList.add('show');
+    setTimeout(() => document.getElementById('suggest-success').classList.remove('show'), 3000);
+  }
+  window.open('mailto:isongsearch@gmail.com?subject=' + subject + '&body=' + body);
+}
 </script>
 </body>
 </html>
