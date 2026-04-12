@@ -7,111 +7,67 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #080808; --surface: #0f0f0f; --surface2: #151515;
-    --border: #1f1f1f; --border2: #2a2a2a;
-    --text: #f0f0f0; --muted: #555; --muted2: #333;
-    --nav-bg: rgba(8,8,8,0.95);
-  }
-  :root.light {
-    --bg: #f5f5f3; --surface: #fff; --surface2: #f0f0ee;
-    --border: #e0e0de; --border2: #d0d0ce;
-    --text: #111; --muted: #888; --muted2: #bbb;
-    --nav-bg: rgba(245,245,243,0.95);
-  }
-  body { font-family: 'Archivo Narrow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; scrollbar-gutter: stable; }
-  html { overflow-y: scroll; }
-
-  nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2rem; height: 56px;
-    background: var(--nav-bg); backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; z-index: 100;
-  }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.1em; color: var(--text); text-decoration: none; }
-  .logo span { color: var(--muted); }
-  .nav-links { display: flex; gap: 2rem; }
-  .nav-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--text); }
-  .theme-toggle {
-    background: none; border: 1px solid var(--border2); color: var(--muted);
-    cursor: pointer; width: 36px; height: 36px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-size: 16px;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .theme-toggle:hover { border-color: var(--muted); color: var(--text); }
-
-  .hero { padding: 3rem 2rem 2rem; border-bottom: 1px solid var(--border); }
-  .hero p { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
-  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(42px, 7vw, 72px); letter-spacing: 0.04em; line-height: 0.9; color: var(--text); }
-
-  .search-bar { padding: 1rem 2rem; border-bottom: 1px solid var(--border); }
-  .search-bar input {
-    width: 100%; max-width: 400px;
-    background: var(--surface2); border: 1px solid var(--border2);
-    color: var(--text); font-family: 'Archivo Narrow', sans-serif;
-    font-size: 13px; padding: 8px 12px; outline: none;
-  }
-  .search-bar input::placeholder { color: var(--muted); }
-
-  .brands-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1px; background: var(--border);
-    margin: 1rem 2rem 4rem;
-    border: 1px solid var(--border);
-  }
-  .brand-card {
-    background: var(--surface);
-    padding: 1.5rem 1rem;
-    cursor: pointer;
-    text-decoration: none;
-    display: flex; flex-direction: column; align-items: center;
-    gap: 10px; text-align: center;
-    transition: background 0.15s;
-    animation: fadeUp 0.3s ease both;
-  }
-  .brand-card:hover { background: var(--surface2); }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  .brand-initial {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: var(--surface2); border: 1px solid var(--border2);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--text);
-    letter-spacing: 0.04em;
-  }
-  .brand-name { font-size: 13px; font-weight: 500; color: var(--text); letter-spacing: 0.04em; }
-  .brand-count { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-  .empty { grid-column: 1/-1; padding: 4rem; text-align: center; color: var(--muted); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
-
-  footer { border-top: 1px solid var(--border); padding: 2rem; }
-  footer p { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--text); }
-
-  .mobile-nav {
-    display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-    background: rgba(8,8,8,0.97); backdrop-filter: blur(12px);
-    border-top: 1px solid var(--border2);
-    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
-    grid-template-columns: repeat(5, 1fr);
-  }
-  @media (max-width: 768px) { .mobile-nav { display: grid; } body { padding-bottom: 64px; } .nav-links { display: none; } }
-  .mobile-nav-btn {
-    display: flex; flex-direction: column; align-items: center; gap: 3px;
-    background: none; border: none; color: var(--muted); cursor: pointer;
-    font-family: 'Archivo Narrow', sans-serif; font-size: 9px;
-    letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
-    padding: 4px 0; transition: color 0.2s;
-  }
-  .mobile-nav-btn:hover, .mobile-nav-btn.active { color: var(--text); }
-  .mobile-nav-btn svg { width: 20px; height: 20px; }
-  @media (max-width: 600px) { nav { padding: 0 1rem; } .brands-grid { margin: 1rem 1rem 3rem; } }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{--bg:#080808;--surface:#0f0f0f;--surface2:#151515;--border:#1f1f1f;--border2:#2a2a2a;--text:#f0f0f0;--muted:#555;--nav-bg:rgba(8,8,8,0.92);}
+  :root.light{--bg:#f5f5f3;--surface:#fff;--surface2:#f0f0ee;--border:#e0e0de;--border2:#d0d0ce;--text:#111;--muted:#888;--nav-bg:rgba(245,245,243,0.95);}
+  html{overflow-y:scroll;}
+  body{font-family:'Archivo Narrow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+  #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
+  :root.light #bg-canvas{opacity:0.18;}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.1em;color:var(--text);text-decoration:none;}
+  .logo span{color:var(--muted);}
+  .nav-links{display:flex;gap:2rem;}
+  .nav-links a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .theme-toggle{background:none;border:1px solid var(--border2);color:var(--muted);cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;transition:border-color 0.2s,color 0.2s;}
+  .hero{padding:3rem 2rem 2rem;border-bottom:1px solid var(--border);}
+  .hero p{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
+  .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,7vw,72px);letter-spacing:0.04em;line-height:0.9;color:var(--text);}
+  .search-bar{padding:1rem 2rem;border-bottom:1px solid var(--border);}
+  .search-bar input{width:100%;max-width:400px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:'Archivo Narrow',sans-serif;font-size:13px;padding:8px 12px;outline:none;}
+  .search-bar input::placeholder{color:var(--muted);}
+  .brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:1.5rem 2rem 4rem;}
+  .brand-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem 1rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;transition:background 0.15s,border-color 0.15s;border-radius:8px;animation:fadeUp 0.3s ease both;}
+  .brand-card:hover{background:var(--surface2);border-color:var(--border2);}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .brand-logo-wrap{width:64px;height:64px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border2);}
+  .brand-logo-wrap img{width:44px;height:44px;object-fit:contain;}
+  .brand-initial{width:64px;height:64px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--text);}
+  .brand-name{font-size:13px;font-weight:500;color:var(--text);}
+  .brand-count{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
+  .empty{grid-column:1/-1;padding:4rem;text-align:center;color:var(--muted);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;}
+  /* BRAND POPUP */
+  .brand-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+  .brand-overlay.open{display:flex;}
+  .brand-modal{background:var(--surface);border:1px solid var(--border2);border-radius:12px;width:90%;max-width:700px;max-height:85vh;overflow-y:auto;position:relative;padding:1.5rem;}
+  .brand-modal-header{display:flex;align-items:center;gap:14px;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+  .brand-modal-logo{width:48px;height:48px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid var(--border2);overflow:hidden;flex-shrink:0;}
+  .brand-modal-logo img{width:34px;height:34px;object-fit:contain;}
+  .brand-modal-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.06em;color:var(--text);}
+  .brand-modal-count{font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+  .brand-modal-close{position:absolute;top:12px;right:12px;background:var(--surface2);border:1px solid var(--border2);color:var(--muted);border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
+  .brand-items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+  .brand-item-card{background:var(--surface2);border:1px solid var(--border);border-radius:6px;overflow:hidden;cursor:pointer;transition:border-color 0.15s;}
+  .brand-item-card:hover{border-color:var(--border2);}
+  .brand-item-card img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#fff;display:block;}
+  .brand-item-info{padding:8px 10px;}
+  .brand-item-name{font-size:12px;font-weight:500;color:var(--text);}
+  .brand-item-price{font-size:11px;color:var(--muted);margin-top:2px;}
+  footer{border-top:1px solid var(--border);padding:2rem;}
+  footer p{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
+  footer a{color:var(--muted);text-decoration:none;}
+  footer a:hover{color:var(--text);}
+  .mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(8,8,8,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--border2);padding:8px 0 max(8px,env(safe-area-inset-bottom));grid-template-columns:repeat(5,1fr);}
+  @media(max-width:768px){.mobile-nav{display:grid;}body{padding-bottom:64px;}.nav-links{display:none;}nav{padding:0 1rem;}.brands-grid{margin:1rem 1rem 3rem;}}
+  .mobile-nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;color:var(--muted);cursor:pointer;font-family:'Archivo Narrow',sans-serif;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;padding:4px 0;transition:color 0.2s;}
+  .mobile-nav-btn:hover,.mobile-nav-btn.active{color:var(--text);}
+  .mobile-nav-btn svg{width:20px;height:20px;}
 </style>
 </head>
 <body>
+<canvas id="bg-canvas"></canvas>
+
 <nav>
   <a class="logo" href="index.html">TOMMY<span>'S FINDS</span></a>
   <div class="nav-links">
@@ -123,12 +79,13 @@
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
     <button class="theme-toggle" id="theme-toggle">🌙</button>
+    <a href="https://discord.gg/fbDwNdvs" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#5865F2'" onmouseout="this.style.fill='#aaa'"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+    </a>
     <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#FF0000'" onmouseout="this.style.fill='#aaa'"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     </a>
-    <a href="https://www.reddit.com/user/parisuserr/" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;">
-      <img src="https://i.imgur.com/J1AZGv2.png" alt="Reddit" style="width:40px;height:40px;object-fit:contain;filter:grayscale(100%) brightness(0.7);transition:filter 0.2s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(100%) brightness(0.7)'" />
-    </a>
+    <a href="https://www.reddit.com/user/parisuserr/" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;"><img src="https://i.imgur.com/J1AZGv2.png" alt="Reddit" style="width:40px;height:40px;object-fit:contain;filter:grayscale(100%) brightness(0.7);transition:filter 0.2s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(100%) brightness(0.7)'" /></a>
   </div>
 </nav>
 
@@ -143,75 +100,95 @@
 
 <div class="brands-grid" id="brands-grid"></div>
 
+<div id="brand-overlay" class="brand-overlay">
+  <div class="brand-modal">
+    <button class="brand-modal-close" onclick="closeBrandModal()">×</button>
+    <div class="brand-modal-header">
+      <div class="brand-modal-logo" id="bm-logo"></div>
+      <div>
+        <div class="brand-modal-title" id="bm-title"></div>
+        <div class="brand-modal-count" id="bm-count"></div>
+      </div>
+    </div>
+    <div class="brand-items-grid" id="bm-items"></div>
+  </div>
+</div>
+
 <footer>
   <p>© 2025 Tommy's Finds · <a href="index.html">← Back to finds</a></p>
 </footer>
 
 <nav class="mobile-nav">
-  <a href="index.html" class="mobile-nav-btn">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-    Finds
-  </a>
-  <a href="brands.html" class="mobile-nav-btn active">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-    Brands
-  </a>
-  <a href="index.html#finds" class="mobile-nav-btn">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-    Wishlist
-  </a>
-  <a href="videos.html" class="mobile-nav-btn">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-    Videos
-  </a>
-  <a href="https://discord.gg/fbDwNdvs" target="_blank" class="mobile-nav-btn">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-    Discord
-  </a>
+  <a href="index.html" class="mobile-nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Finds</a>
+  <a href="brands.html" class="mobile-nav-btn active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Brands</a>
+  <a href="index.html" class="mobile-nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Wishlist</a>
+  <a href="videos.html" class="mobile-nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Videos</a>
+  <a href="https://discord.gg/fbDwNdvs" target="_blank" class="mobile-nav-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>Discord</a>
 </nav>
 
 <script>
 const products = [
-  { id:1, brand:"Supreme", name:"Supreme Spider-Man SS26 T-Shirt", category:"tees", mainCat:"tops" },
-  { id:2, brand:"Apple", name:"AirPods Max 2", category:"electronics", mainCat:"others" },
-  { id:3, brand:"Lego", name:"One Piece Going Merry (Set 75639)", category:"lego", mainCat:"others" },
-  { id:4, brand:"Artiemaster", name:"Artiemaster 370gsm Boxy Blank", category:"zippers", mainCat:"tops" },
-  { id:5, brand:"Rimowa", name:"Rimowa Backpack", category:"bags", mainCat:"accessories" },
-  { id:6, brand:"Louis Vuitton", name:"Louis Vuitton Wallets", category:"wallets", mainCat:"accessories" },
-  { id:7, brand:"Stussy", name:"Stussy Thermal", category:"long sleeves", mainCat:"tops" },
-  { id:8, brand:"Nike", name:"Nike Mind 002", category:"slippers", mainCat:"footwear" },
-  { id:9, brand:"Lululemon", name:"Lululemon Yoga Woman", category:"tracksuits", mainCat:"bottoms" }
+  {id:1,brand:"Supreme",name:"Supreme Spider-Man SS26 T-Shirt",price:7.93,image:"https://i.imgur.com/NVwXUaw.png",buyLink:"https://s.spblk.com/dae0"},
+  {id:2,brand:"Apple",name:"AirPods Max 2",price:37.24,image:"https://i.imgur.com/TOTUWH4.png",buyLink:"https://s.spblk.com/dhtg"},
+  {id:3,brand:"Lego",name:"One Piece Going Merry (Set 75639)",price:11.09,image:"https://i.imgur.com/amle350.png",buyLink:"https://s.spblk.com/deuo"},
+  {id:4,brand:"Artiemaster",name:"Artiemaster 370gsm Boxy Blank",price:13.47,image:"https://i.imgur.com/LliFjbe.png",buyLink:"https://s.spblk.com/digl"},
+  {id:5,brand:"Rimowa",name:"Rimowa Backpack",price:56.25,image:"https://i.imgur.com/nGasrgN.jpeg",buyLink:"https://s.spblk.com/ccr3"},
+  {id:6,brand:"Louis Vuitton",name:"Louis Vuitton Wallets",price:6.33,image:"https://i.imgur.com/xOHpwIg.png",buyLink:"https://s.spblk.com/digo"},
+  {id:7,brand:"Stussy",name:"Stussy Thermal",price:17.43,image:"https://i.imgur.com/yVS3xoo.png",buyLink:"https://s.spblk.com/digv"},
+  {id:8,brand:"Nike",name:"Nike Mind 002",price:19.81,image:"https://i.imgur.com/NtZfiNz.png",buyLink:"https://s.spblk.com/dh6v"},
+  {id:9,brand:"Lululemon",name:"Lululemon Yoga Woman",price:29.79,image:"https://i.imgur.com/ECNjKqe.png",buyLink:"https://s.spblk.com/dih5"}
 ];
 
-const brandColors = {
-  'Supreme': '#e8272a', 'Apple': '#555', 'Lego': '#e3000b',
-  'Nike': '#111', 'Louis Vuitton': '#8b6914', 'Stussy': '#111',
-  'Rimowa': '#b0b0b0', 'Artiemaster': '#333', 'Lululemon': '#000'
+const brandLogos = {
+  'Supreme':'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Supreme_logo.svg/200px-Supreme_logo.svg.png',
+  'Apple':'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg',
+  'Lego':'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/200px-LEGO_logo.svg.png',
+  'Rimowa':'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Rimowa_logo.svg/200px-Rimowa_logo.svg.png',
+  'Louis Vuitton':'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Louis_Vuitton_logo_and_wordmark.svg/200px-Louis_Vuitton_logo_and_wordmark.svg.png',
+  'Stussy':'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Stussy_logo.svg/200px-Stussy_logo.svg.png',
+  'Nike':'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/200px-Logo_NIKE.svg.png',
+  'Lululemon':'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Lululemon_Athletica_logo.svg/200px-Lululemon_Athletica_logo.svg.png',
 };
+
+function logoHtml(brand, size=44) {
+  const url = brandLogos[brand];
+  if (url) return `<img src="${url}" style="width:${size}px;height:${size}px;object-fit:contain;" onerror="this.style.display='none';this.nextSibling.style.display='flex'" /><span style="display:none;font-family:'Bebas Neue',sans-serif;font-size:${Math.round(size*0.45)}px;color:#333;">${brand.slice(0,2).toUpperCase()}</span>`;
+  return `<span style="font-family:'Bebas Neue',sans-serif;font-size:${Math.round(size*0.45)}px;color:var(--text);">${brand.slice(0,2).toUpperCase()}</span>`;
+}
 
 function renderBrands() {
   const q = document.getElementById('brand-search').value.toLowerCase();
   const brandMap = {};
-  products.forEach(p => {
-    if (!brandMap[p.brand]) brandMap[p.brand] = 0;
-    brandMap[p.brand]++;
-  });
-  const brands = Object.entries(brandMap)
-    .filter(([b]) => b.toLowerCase().includes(q))
-    .sort((a,b) => b[1] - a[1]);
-
+  products.forEach(p => { if (!brandMap[p.brand]) brandMap[p.brand]=0; brandMap[p.brand]++; });
+  const brands = Object.entries(brandMap).filter(([b])=>b.toLowerCase().includes(q)).sort((a,b)=>b[1]-a[1]);
   const grid = document.getElementById('brands-grid');
-  if (!brands.length) { grid.innerHTML = '<div class="empty">No brands found</div>'; return; }
-  grid.innerHTML = brands.map(([brand, count], i) => {
-    const initials = brand.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
-    const color = brandColors[brand] || '#444';
-    return `<a href="index.html?brand=${encodeURIComponent(brand)}" class="brand-card" style="animation-delay:${i*0.04}s">
-      <div class="brand-initial" style="border-color:${color};color:${color};">${initials}</div>
+  if (!brands.length) { grid.innerHTML='<div class="empty">No brands found</div>'; return; }
+  grid.innerHTML = brands.map(([brand,count],i) => `
+    <div class="brand-card" style="animation-delay:${i*0.04}s" onclick="openBrandModal('${brand.replace(/'/g,"\\'")}')"
+      <div class="brand-logo-wrap">${logoHtml(brand)}</div>
       <div class="brand-name">${brand}</div>
-      <div class="brand-count">${count} find${count !== 1 ? 's' : ''}</div>
-    </a>`;
-  }).join('');
+      <div class="brand-count">${count} find${count!==1?'s':''}</div>
+    </div>`).join('');
 }
+
+function openBrandModal(brand) {
+  const items = products.filter(p => p.brand === brand);
+  document.getElementById('bm-logo').innerHTML = `<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">${logoHtml(brand,34)}</div>`;
+  document.getElementById('bm-title').textContent = brand;
+  document.getElementById('bm-count').textContent = items.length + ' find' + (items.length!==1?'s':'');
+  document.getElementById('bm-items').innerHTML = items.map(p => `
+    <div class="brand-item-card" onclick="window.open('${p.buyLink}','_blank')">
+      <img src="${p.image}" alt="${p.name}" />
+      <div class="brand-item-info">
+        <div class="brand-item-name">${p.name}</div>
+        <div class="brand-item-price">$${p.price.toFixed(2)}</div>
+      </div>
+    </div>`).join('');
+  document.getElementById('brand-overlay').classList.add('open');
+}
+
+function closeBrandModal() { document.getElementById('brand-overlay').classList.remove('open'); }
+document.getElementById('brand-overlay').addEventListener('click', e => { if(e.target===document.getElementById('brand-overlay')) closeBrandModal(); });
 
 renderBrands();
 
@@ -219,6 +196,38 @@ document.getElementById('theme-toggle').addEventListener('click', function() {
   document.documentElement.classList.toggle('light');
   this.textContent = document.documentElement.classList.contains('light') ? '🌑' : '🌙';
 });
+
+// ── ANIMATED BACKGROUND ──
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  function rnd(a,b) { return a + Math.random()*(b-a); }
+  function initParticles() {
+    const count = Math.floor((W*H)/22000);
+    particles = Array.from({length:count}, () => ({x:rnd(0,W),y:rnd(0,H),vx:rnd(-0.12,0.12),vy:rnd(-0.12,0.12),r:rnd(1,2.2),alpha:rnd(0.15,0.45)}));
+  }
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    for (let p of particles) {
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(160,160,160,${p.alpha})`; ctx.fill();
+    }
+    const maxDist=130;
+    for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++) {
+      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<maxDist){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(140,140,140,${(1-dist/maxDist)*0.12})`;ctx.lineWidth=0.6;ctx.stroke();}
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{resize();initParticles();});
+  resize(); initParticles(); draw();
+})();
 </script>
 </body>
 </html>
