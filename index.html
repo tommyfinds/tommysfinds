@@ -561,7 +561,7 @@
   }
   @media (max-width: 600px) { .qv-modal { grid-template-columns: 1fr; } }
   .qv-img { background: #fff; border-radius: 12px 0 0 12px; overflow: hidden; }
-  .qv-img img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+  .qv-img img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
   .qv-info { padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; }
   .qv-close {
     position: absolute; top: 12px; right: 12px;
@@ -693,7 +693,7 @@
 <body>
 <canvas id="bg-canvas"></canvas>
 
-<div id="announcement-banner" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;position:sticky;top:0;z-index:101;">
+<div id="announcement-banner" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
   <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New Supreme Spider-Man SS26 T-Shirt just dropped — <a href="#finds" style="color:#fff;text-decoration:underline;" onclick="document.getElementById('announcement-banner').style.display='none'">Check it out</a></p>
   <button onclick="document.getElementById('announcement-banner').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
 </div>
@@ -708,10 +708,10 @@
     <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Superbuy</a>
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
+    <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">🌙</button>
     <a href="https://discord.gg/fbDwNdvs" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;" title="Join Discord">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#5865F2'" onmouseout="this.style.fill='#aaa'"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
     </a>
-    <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">🌙</button>
     <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#FF0000'" onmouseout="this.style.fill='#aaa'"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     </a>
@@ -732,13 +732,20 @@
 </section>
 
 <div class="filters-wrap" id="finds">
-  <div class="cat-bar" id="cat-bar">
-    <button class="cat-btn active" data-main="all">All</button>
-    <button class="cat-btn" data-main="tops">Tops</button>
-    <button class="cat-btn" data-main="bottoms">Bottoms</button>
-    <button class="cat-btn" data-main="footwear">Footwear</button>
-    <button class="cat-btn" data-main="accessories">Accessories</button>
-    <button class="cat-btn" data-main="others">Others</button>
+  <div class="cat-bar" id="cat-bar" style="justify-content:space-between;">
+    <div style="display:flex;">
+      <button class="cat-btn active" data-main="all">All</button>
+      <button class="cat-btn" data-main="tops">Tops</button>
+      <button class="cat-btn" data-main="bottoms">Bottoms</button>
+      <button class="cat-btn" data-main="footwear">Footwear</button>
+      <button class="cat-btn" data-main="accessories">Accessories</button>
+      <button class="cat-btn" data-main="others">Others</button>
+    </div>
+    <button onclick="openModal('modal-wishlist')" style="display:flex;align-items:center;gap:6px;padding:0 16px;background:none;border:none;border-left:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:'Archivo Narrow',sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;position:relative;transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Wishlist
+      <span class="wishlist-count" id="wl-cat-count"></span>
+    </button>
   </div>
   <div class="sub-bar" id="sub-bar" style="display:none;">
     <button class="sub-btn active" data-sub="all">All</button>
@@ -900,6 +907,7 @@
 const products = [
   {
     id: 1,
+    addedDate: "2025-12-06T00:00:00.000Z",
     name: "Supreme Spider-Man SS26 T-Shirt",
     brand: "Supreme",
     category: "tees",
@@ -907,13 +915,13 @@ const products = [
     colors: ["Black", "White"],
     price: 7.93,
     badge: "new",
-    addedDate: new Date().toISOString(),
     image: "https://i.imgur.com/NVwXUaw.png",
     buyLink: "https://s.spblk.com/dae0",
     notes: ""
   },
   {
     id: 2,
+    addedDate: "2025-12-10T00:00:00.000Z",
     name: "AirPods Max 2",
     brand: "Apple",
     category: "electronics",
@@ -921,13 +929,13 @@ const products = [
     colors: ["Black", "Blue", "Orange", "Purple", "Gold"],
     price: 37.24,
     badge: "new",
-    addedDate: new Date().toISOString(),
     image: "https://i.imgur.com/TOTUWH4.png",
     buyLink: "https://s.spblk.com/dhtg",
     notes: ""
   },
   {
     id: 3,
+    addedDate: "2025-12-12T00:00:00.000Z",
     name: "One Piece Going Merry (Set 75639)",
     brand: "Lego",
     category: "lego",
@@ -935,13 +943,13 @@ const products = [
     colors: ["Brown", "Beige", "Red"],
     price: 11.09,
     badge: "new",
-    addedDate: new Date().toISOString(),
     image: "https://i.imgur.com/amle350.png",
     buyLink: "https://s.spblk.com/deuo",
     notes: ""
   },
   {
     id: 4,
+    addedDate: "2025-12-14T00:00:00.000Z",
     name: "Artiemaster 370gsm Boxy Blank",
     brand: "Artiemaster",
     category: "zippers",
@@ -949,13 +957,13 @@ const products = [
     colors: ["Black", "Dark Grey", "Brown", "Light Grey", "Blue", "Green"],
     price: 13.47,
     badge: "new",
-    addedDate: new Date().toISOString(),
     image: "https://i.imgur.com/LliFjbe.png",
     buyLink: "https://s.spblk.com/digl",
     notes: ""
   },
   {
     id: 5,
+    addedDate: "2025-12-16T00:00:00.000Z",
     name: "Rimowa Backpack",
     brand: "Rimowa",
     category: "bags",
@@ -963,13 +971,13 @@ const products = [
     colors: ["Black", "Green"],
     price: 56.25,
     badge: "new",
-    addedDate: new Date().toISOString(),
     image: "https://i.imgur.com/nGasrgN.jpeg",
     buyLink: "https://s.spblk.com/ccr3",
     notes: ""
   },
   {
     id: 6,
+    addedDate: "2025-12-18T00:00:00.000Z",
     name: "Louis Vuitton Wallets",
     brand: "Louis Vuitton",
     category: "wallets",
@@ -977,13 +985,13 @@ const products = [
     colors: ["Black", "Brown"],
     price: 6.33,
     badge: "new",
-    addedDate: new Date().toISOString(),
     image: "https://i.imgur.com/xOHpwIg.png",
     buyLink: "https://s.spblk.com/digo",
     notes: ""
   },
   {
     id: 7,
+    addedDate: "2025-12-20T00:00:00.000Z",
     name: "Stussy Thermal",
     brand: "Stussy",
     category: "long sleeves",
@@ -991,13 +999,13 @@ const products = [
     colors: ["Black", "Green", "White", "Yellow", "Blue", "Light Grey", "Dark Grey", "Wine Red"],
     price: 17.43,
     badge: "new",
-    addedDate: new Date().toISOString(),
     image: "https://i.imgur.com/yVS3xoo.png",
     buyLink: "https://s.spblk.com/digv",
     notes: ""
   },
   {
     id: 8,
+    addedDate: "2025-12-22T00:00:00.000Z",
     name: "Nike Mind 002",
     brand: "Nike",
     category: "slippers",
@@ -1005,13 +1013,13 @@ const products = [
     colors: ["Black", "White", "Pink", "Beige", "Light Grey"],
     price: 19.81,
     badge: "new",
-    addedDate: new Date().toISOString(),
     image: "https://i.imgur.com/NtZfiNz.png",
     buyLink: "https://s.spblk.com/dh6v",
     notes: ""
   },
   {
     id: 9,
+    addedDate: "2025-12-24T00:00:00.000Z",
     name: "Lululemon Yoga Woman",
     brand: "Lululemon",
     category: "tracksuits",
@@ -1019,7 +1027,6 @@ const products = [
     colors: ["Black", "White", "Pink", "Beige", "Light Grey", "Purple", "Yellow", "Green", "Wine Red", "Orange", "Blue"],
     price: 29.79,
     badge: "new",
-    addedDate: new Date().toISOString(),
     image: "https://i.imgur.com/ECNjKqe.png",
     buyLink: "https://s.spblk.com/dih5",
     notes: ""
@@ -1221,6 +1228,11 @@ document.getElementById('cat-bar').addEventListener('click', e => {
   if (!btn) return;
   setMainCat(btn.dataset.main);
 });
+// sync wishlist count badge in catbar
+function syncWLCatCount() {
+  const el = document.getElementById('wl-cat-count');
+  if (el) { el.textContent = wishlist.length; el.classList.toggle('show', wishlist.length > 0); }
+}
 
 // ── PRICE FILTER ──
 let maxPriceFilter = 0;
@@ -1253,6 +1265,7 @@ function updateWishlistUI() {
     c.classList.toggle('show', count > 0);
   });
   renderWishlistModal();
+  syncWLCatCount();
 }
 function renderWishlistModal() {
   const items = products.filter(p => wishlist.includes(p.id));
@@ -1280,7 +1293,7 @@ function openQV(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
   const overlay = document.getElementById('qv-overlay');
-  document.getElementById('qv-img').innerHTML = `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;" />`;
+  document.getElementById('qv-img').innerHTML = `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;background:#fff;" />`;
   // Related: prioritize same brand, fill with same category, exactly 3
   const sameBrand = products.filter(x => x.id !== p.id && x.brand === p.brand);
   const sameCat   = products.filter(x => x.id !== p.id && x.brand !== p.brand && x.mainCat === p.mainCat);
