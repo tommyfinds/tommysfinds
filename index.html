@@ -532,6 +532,142 @@
     color: #fff; font-size: 14px; flex-shrink: 0;
   }
 
+  /* ── WISHLIST ── */
+  .wishlist-btn {
+    position: absolute; top: 10px; right: 10px; z-index: 2;
+    background: rgba(0,0,0,0.5); border: none; border-radius: 50%;
+    width: 30px; height: 30px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; transition: background 0.2s; backdrop-filter: blur(4px);
+  }
+  .wishlist-btn:hover { background: rgba(0,0,0,0.8); }
+  .wishlist-btn.active { color: #ff4444; }
+
+  /* ── QUICK VIEW MODAL ── */
+  .qv-overlay {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.8); align-items: center; justify-content: center;
+    backdrop-filter: blur(6px);
+  }
+  .qv-overlay.open { display: flex; }
+  .qv-modal {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    width: 90%; max-width: 760px;
+    max-height: 90vh; overflow-y: auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative;
+  }
+  @media (max-width: 600px) { .qv-modal { grid-template-columns: 1fr; } }
+  .qv-img { background: #fff; border-radius: 12px 0 0 12px; overflow: hidden; }
+  .qv-img img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+  .qv-info { padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; }
+  .qv-close {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--surface2); border: 1px solid var(--border2);
+    color: var(--muted); border-radius: 50%; width: 28px; height: 28px;
+    cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
+  }
+  .qv-brand { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .qv-name { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.04em; color: var(--text); line-height: 1.1; }
+  .qv-price { font-size: 20px; font-weight: 600; color: var(--card-price); }
+  .qv-buy {
+    display: block; padding: 12px; text-align: center;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; font-family: 'Archivo Narrow', sans-serif;
+    color: var(--bg); background: var(--card-price);
+    text-decoration: none; border: none; cursor: pointer;
+    transition: opacity 0.15s; margin-top: auto;
+  }
+  .qv-buy:hover { opacity: 0.85; }
+  .qv-related { padding: 1rem 2rem 1.5rem; border-top: 1px solid var(--border); }
+  .qv-related h3 { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+  .qv-related-grid { display: flex; gap: 10px; overflow-x: auto; }
+  .qv-related-card { flex-shrink: 0; width: 110px; cursor: pointer; }
+  .qv-related-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; background: #fff; border-radius: 4px; mix-blend-mode: multiply; }
+  .qv-related-card p { font-size: 11px; color: var(--muted); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ── SKELETON ── */
+  .skeleton { animation: shimmer 1.4s infinite; background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%); background-size: 200% 100%; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  .skeleton-card { background: var(--surface); }
+  .skeleton-img { aspect-ratio: 3/4; }
+  .skeleton-body { padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .skeleton-line { border-radius: 3px; height: 10px; }
+
+  /* ── SEARCH SUGGESTIONS ── */
+  .search-suggestions {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: #111; border: 1px solid var(--border2);
+    z-index: 300; max-height: 220px; overflow-y: auto;
+    display: none;
+  }
+  .search-suggestions.open { display: block; }
+  .suggestion-item {
+    padding: 9px 14px; font-size: 13px; cursor: pointer;
+    color: #ccc; display: flex; align-items: center; gap: 8px;
+    transition: background 0.1s;
+  }
+  .suggestion-item:hover { background: var(--surface2); }
+  .suggestion-brand { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-left: auto; }
+  .search-wrap { position: relative; flex: 1; min-width: 180px; }
+  .search-wrap input { width: 100%; }
+
+  /* ── RECENTLY ADDED ── */
+  .recent-section { padding: 1.5rem 2rem 0; }
+  .recent-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .recent-header h2 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .recent-row { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: none; }
+  .recent-row::-webkit-scrollbar { display: none; }
+  .recent-card { flex-shrink: 0; width: 140px; cursor: pointer; }
+  .recent-card-img { aspect-ratio: 3/4; background: #fff; border-radius: 4px; overflow: hidden; position: relative; }
+  .recent-card-img img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; transition: transform 0.3s; }
+  .recent-card:hover .recent-card-img img { transform: scale(1.04); }
+  .recent-card p { font-size: 11px; color: var(--muted); margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .recent-card strong { font-size: 12px; color: var(--card-name); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ── UNDER $X FILTERS ── */
+  .price-filters { display: flex; gap: 6px; padding: 0.8rem 2rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+  .price-pill {
+    font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 5px 12px; border: 1px solid var(--border2); color: var(--muted);
+    background: transparent; cursor: pointer; border-radius: 999px;
+    font-family: 'Archivo Narrow', sans-serif; transition: all 0.15s;
+  }
+  .price-pill:hover, .price-pill.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+  /* ── MOBILE BOTTOM NAV ── */
+  .mobile-nav {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(8,8,8,0.97); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border2);
+    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+    grid-template-columns: repeat(5, 1fr);
+  }
+  @media (max-width: 768px) { .mobile-nav { display: grid; } body { padding-bottom: 64px; } }
+  .mobile-nav-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    font-family: 'Archivo Narrow', sans-serif; font-size: 9px;
+    letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+    padding: 4px 0; transition: color 0.2s;
+  }
+  .mobile-nav-btn:hover, .mobile-nav-btn.active { color: var(--text); }
+  .mobile-nav-btn svg { width: 20px; height: 20px; }
+
+  /* ── POPULARITY BADGE ── */
+  .badge-popular { background: #f59e0b; color: #000; }
+
+  /* ── WISHLIST COUNTER ── */
+  .wishlist-count {
+    position: absolute; top: -4px; right: -4px;
+    background: #ff4444; color: #fff; border-radius: 50%;
+    width: 16px; height: 16px; font-size: 9px; font-weight: 700;
+    display: none; align-items: center; justify-content: center;
+  }
+  .wishlist-count.show { display: flex; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
     nav { padding: 0 1rem; }
@@ -557,15 +693,24 @@
 <body>
 <canvas id="bg-canvas"></canvas>
 
+<div id="announcement-banner" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;position:sticky;top:0;z-index:101;">
+  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New Supreme Spider-Man SS26 T-Shirt just dropped — <a href="#finds" style="color:#fff;text-decoration:underline;" onclick="document.getElementById('announcement-banner').style.display='none'">Check it out</a></p>
+  <button onclick="document.getElementById('announcement-banner').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
+</div>
+
 <nav>
   <a class="logo" href="#">TOMMY<span>'S FINDS</span></a>
   <div class="nav-links">
     <a href="#finds">Finds</a>
+    <a href="brands.html">Brands</a>
     <a href="how-it-works.html">How it works</a>
     <a href="videos.html">Videos</a>
     <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Superbuy</a>
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
+    <a href="https://discord.gg/fbDwNdvs" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;" title="Join Discord">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#5865F2'" onmouseout="this.style.fill='#aaa'"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+    </a>
     <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">🌙</button>
     <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#FF0000'" onmouseout="this.style.fill='#aaa'"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -599,7 +744,10 @@
     <button class="sub-btn active" data-sub="all">All</button>
   </div>
   <div class="search-bar">
-    <input type="text" id="search" placeholder="Search brand or name..." />
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="Search brand or name..." />
+      <div class="search-suggestions" id="search-suggestions"></div>
+    </div>
     <select id="brand-filter">
       <option value="">All brands</option>
     </select>
@@ -625,6 +773,21 @@
       <option value="AUD">🇦🇺 AUD $</option>
     </select>
   </div>
+</div>
+
+<div class="recent-section" id="recent-section">
+  <div class="recent-header">
+    <h2>Recently Added</h2>
+  </div>
+  <div class="recent-row" id="recent-row"></div>
+</div>
+
+<div class="price-filters" id="price-filters">
+  <button class="price-pill" onclick="setPriceFilter(0)" data-max="0">All prices</button>
+  <button class="price-pill" onclick="setPriceFilter(15)" data-max="15">Under $15</button>
+  <button class="price-pill" onclick="setPriceFilter(30)" data-max="30">Under $30</button>
+  <button class="price-pill" onclick="setPriceFilter(50)" data-max="50">Under $50</button>
+  <button class="price-pill" onclick="setPriceFilter(100)" data-max="100">Under $100</button>
 </div>
 
 <div class="grid-info">
@@ -654,6 +817,23 @@
   </div>
 </section>
 
+<div id="qv-overlay" class="qv-overlay">
+  <div class="qv-modal" id="qv-modal">
+    <button class="qv-close" onclick="closeQV()">×</button>
+    <div class="qv-img" id="qv-img"></div>
+    <div class="qv-info" id="qv-info"></div>
+  </div>
+</div>
+
+<div id="modal-wishlist" class="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-wishlist')">×</button>
+    <h2>My Wishlist</h2>
+    <div id="wishlist-items" style="display:flex;flex-direction:column;gap:10px;margin-top:8px;max-height:400px;overflow-y:auto;"></div>
+    <p id="wishlist-empty" style="font-size:13px;color:var(--muted);text-align:center;padding:2rem 0;">No saved items yet.</p>
+  </div>
+</div>
+
 <div id="modal-feedback" class="modal-overlay">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('modal-feedback')">×</button>
@@ -676,6 +856,29 @@
     <button class="modal-submit" onclick="submitForm('suggest')">Submit Suggestion</button>
   </div>
 </div>
+
+<nav class="mobile-nav">
+  <a href="#finds" class="mobile-nav-btn active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    Finds
+  </a>
+  <a href="brands.html" class="mobile-nav-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    Brands
+  </a>
+  <button class="mobile-nav-btn" onclick="openModal('modal-wishlist')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    Wishlist
+  </button>
+  <a href="videos.html" class="mobile-nav-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+    Videos
+  </button>
+  <a href="https://discord.gg/fbDwNdvs" target="_blank" class="mobile-nav-btn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+    Discord
+  </a>
+</nav>
 
 <footer>
   <p>© 2025 Tommy's Finds</p>
@@ -1019,13 +1222,220 @@ document.getElementById('cat-bar').addEventListener('click', e => {
   setMainCat(btn.dataset.main);
 });
 
+// ── PRICE FILTER ──
+let maxPriceFilter = 0;
+function setPriceFilter(max) {
+  maxPriceFilter = max;
+  document.querySelectorAll('.price-pill').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.price-pill[data-max="${max}"]`).classList.add('active');
+  render();
+}
+document.querySelector('.price-pill[data-max="0"]').classList.add('active');
+
+// ── WISHLIST ──
+let wishlist = JSON.parse(localStorage.getItem('tf_wishlist') || '[]');
+function toggleWishlist(id) {
+  const idx = wishlist.indexOf(id);
+  if (idx > -1) wishlist.splice(idx, 1); else wishlist.push(id);
+  localStorage.setItem('tf_wishlist', JSON.stringify(wishlist));
+  updateWishlistUI();
+  render();
+}
+function updateWishlistUI() {
+  document.querySelectorAll('.wishlist-btn').forEach(b => {
+    const id = parseInt(b.dataset.id);
+    b.classList.toggle('active', wishlist.includes(id));
+    b.textContent = wishlist.includes(id) ? '♥' : '♡';
+  });
+  const count = wishlist.length;
+  document.querySelectorAll('.wishlist-count').forEach(c => {
+    c.textContent = count;
+    c.classList.toggle('show', count > 0);
+  });
+  renderWishlistModal();
+}
+function renderWishlistModal() {
+  const items = products.filter(p => wishlist.includes(p.id));
+  const el = document.getElementById('wishlist-items');
+  const empty = document.getElementById('wishlist-empty');
+  if (!el) return;
+  empty.style.display = items.length ? 'none' : 'block';
+  el.innerHTML = items.map(p => `
+    <div style="display:flex;gap:12px;align-items:center;padding:10px;background:var(--surface2);border-radius:8px;">
+      <img src="${p.image}" style="width:50px;height:65px;object-fit:cover;border-radius:4px;background:#fff;mix-blend-mode:multiply;" />
+      <div style="flex:1;min-width:0;">
+        <p style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">${p.brand}</p>
+        <p style="font-size:13px;color:var(--text);font-weight:500;">${p.name}</p>
+        <p style="font-size:13px;color:var(--card-price);margin-top:2px;">${formatPrice(p.price)}</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <a href="${p.buyLink}" target="_blank" style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);text-decoration:none;padding:5px 10px;border:1px solid var(--border2);">Buy</a>
+        <button onclick="toggleWishlist(${p.id})" style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--border2);padding:5px 10px;cursor:pointer;">Remove</button>
+      </div>
+    </div>`).join('');
+}
+
+// ── QUICK VIEW ──
+function openQV(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const overlay = document.getElementById('qv-overlay');
+  document.getElementById('qv-img').innerHTML = `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;" />`;
+  // Related: prioritize same brand, fill with same category, exactly 3
+  const sameBrand = products.filter(x => x.id !== p.id && x.brand === p.brand);
+  const sameCat   = products.filter(x => x.id !== p.id && x.brand !== p.brand && x.mainCat === p.mainCat);
+  const sameSub   = products.filter(x => x.id !== p.id && x.brand !== p.brand && x.mainCat !== p.mainCat && x.category === p.category);
+  const related   = [...sameBrand, ...sameCat, ...sameSub].slice(0, 3);
+  document.getElementById('qv-info').innerHTML = `
+    <div class="qv-brand">${p.brand}</div>
+    <div class="qv-name">${p.name}</div>
+    <div class="qv-price">${formatPrice(p.price)}</div>
+    <div class="color-tags" style="margin-top:4px;">${(p.colors||[p.color]).map(c=>`<span class="color-tag">${c}</span>`).join('')}</div>
+    ${p.notes ? `<p style="font-size:12px;color:var(--muted);">${p.notes}</p>` : ''}
+    ${related.length ? `<div style="margin-top:12px;border-top:1px solid var(--border);padding-top:12px;"><p style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">You might also like</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">${related.map(r=>`<div onclick="openQV(${r.id})" style="cursor:pointer;"><img src="${r.image}" style="width:100%;aspect-ratio:3/4;object-fit:cover;background:#fff;border-radius:4px;mix-blend-mode:multiply;" /><p style="font-size:10px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${r.brand}</p><p style="font-size:11px;color:var(--text);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${r.name}</p></div>`).join('')}</div></div>` : ''}
+    ${p.buyLink ? `<a class="qv-buy" href="${p.buyLink}" target="_blank" rel="noopener">Buy on Superbuy →</a>` : ''}
+  `;
+  overlay.classList.add('open');
+}
+function closeQV() { document.getElementById('qv-overlay').classList.remove('open'); }
+document.getElementById('qv-overlay').addEventListener('click', e => { if (e.target === document.getElementById('qv-overlay')) closeQV(); });
+
+// ── SEARCH SUGGESTIONS ──
+const searchInput = document.getElementById('search');
+const suggestionsEl = document.getElementById('search-suggestions');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.toLowerCase().trim();
+  if (q.length < 2) { suggestionsEl.classList.remove('open'); return; }
+  const matches = products.filter(p => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q)).slice(0, 6);
+  if (!matches.length) { suggestionsEl.classList.remove('open'); return; }
+  suggestionsEl.innerHTML = matches.map(p => `
+    <div class="suggestion-item" onclick="searchInput.value='${p.name}';suggestionsEl.classList.remove('open');render();">
+      <span>${p.name}</span>
+      <span class="suggestion-brand">${p.brand}</span>
+    </div>`).join('');
+  suggestionsEl.classList.add('open');
+  render();
+});
+document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) suggestionsEl.classList.remove('open'); });
+
+// ── RECENTLY ADDED SECTION ──
+function renderRecent() {
+  const sorted = [...products].sort((a,b) => new Date(b.addedDate) - new Date(a.addedDate)).slice(0,8);
+  const row = document.getElementById('recent-row');
+  if (!row) return;
+  row.innerHTML = sorted.map(p => `
+    <div class="recent-card" onclick="openQV(${p.id})">
+      <div class="recent-card-img">
+        <img src="${p.image}" alt="${p.name}" loading="lazy" />
+      </div>
+      <strong>${p.name}</strong>
+      <p>${formatPrice(p.price)}</p>
+    </div>`).join('');
+}
+
+// ── SKELETON LOADING ──
+function showSkeletons() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = Array(6).fill(0).map(() => `
+    <div class="skeleton-card">
+      <div class="skeleton skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton skeleton-line" style="width:40%;"></div>
+        <div class="skeleton skeleton-line" style="width:75%;height:14px;"></div>
+        <div class="skeleton skeleton-line" style="width:55%;margin-top:8px;"></div>
+      </div>
+    </div>`).join('');
+}
+
 document.getElementById('search').addEventListener('input', render);
 document.getElementById('brand-filter').addEventListener('change', render);
-
 document.getElementById('sort').addEventListener('change', render);
 
-populateFilters();
-render();
+// ── UPDATE RENDER TO SUPPORT ALL NEW FEATURES ──
+const _origRender = render;
+render = function() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const brand = document.getElementById('brand-filter').value;
+  const color = selectedColor;
+  const sort = document.getElementById('sort').value;
+
+  let list = products.filter(p => {
+    const pColors = p.colors || [p.color];
+    const pMain = p.mainCat || p.category;
+    const pSub = p.category;
+    if (activeMain !== 'all' && pMain !== activeMain) return false;
+    if (activeSub !== 'all' && pSub !== activeSub) return false;
+    if (brand && p.brand !== brand) return false;
+    if (color && !pColors.includes(color)) return false;
+    if (q && !p.name.toLowerCase().includes(q) && !p.brand.toLowerCase().includes(q)) return false;
+    if (maxPriceFilter > 0 && p.price > maxPriceFilter) return false;
+    return true;
+  });
+
+  if (sort === 'newest') list.sort((a,b) => new Date(b.addedDate) - new Date(a.addedDate));
+  else if (sort === 'price_asc') list.sort((a,b) => a.price - b.price);
+  else if (sort === 'price_desc') list.sort((a,b) => b.price - a.price);
+
+  document.getElementById('result-count').textContent = list.length + ' finds';
+  document.getElementById('item-count').textContent = products.length;
+
+  const grid = document.getElementById('grid');
+  if (list.length === 0) { grid.innerHTML = '<div class="empty">No finds match your filters</div>'; return; }
+
+  // view count simulation (persisted in localStorage)
+  const views = JSON.parse(localStorage.getItem('tf_views') || '{}');
+
+  grid.innerHTML = list.map((p, i) => {
+    const showNew = p.badge === 'new' && isNewBadgeActive(p.addedDate);
+    const pViews = views[p.id] || 0;
+    const allViews = Object.values(views);
+    const top10threshold = allViews.length ? Math.max(50, allViews.sort((a,b)=>b-a)[Math.floor(allViews.length*0.1)] || 50) : 50;
+    const isPopular = pViews >= top10threshold;
+    const badgeType = isPopular ? 'popular' : (showNew ? 'new' : (p.badge === 'hot' ? 'hot' : ''));
+    const badgeHtml = badgeType ? `<div class="badge badge-${badgeType}">${badgeType === 'popular' ? '🔥 Popular' : badgeType}</div>` : '';
+    const isWished = wishlist.includes(p.id);
+    const imgStyle = `width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;mix-blend-mode:multiply;filter:contrast(1.05);`;
+    const imgContent = p.image
+      ? `<img src="${p.image}" alt="${p.name}" loading="lazy" style="${imgStyle}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div class="placeholder" style="display:none">${placeholderSvgs[p.category] || placeholderSvgs.tees}</div>`
+      : `<div class="placeholder">${placeholderSvgs[p.category] || placeholderSvgs.tees}</div>`;
+    const buyHtml = p.buyLink ? `<a class="card-buy" href="${p.buyLink}" target="_blank" rel="noopener">Buy on Superbuy →</a>` : `<span class="card-buy no-link">Link coming soon</span>`;
+    const imgWrapper = `<div class="card-img" style="background:#fff;cursor:pointer;" onclick="trackView(${p.id});openQV(${p.id})">${imgContent}${badgeHtml}<button class="wishlist-btn ${isWished?'active':''}" data-id="${p.id}" onclick="event.stopPropagation();toggleWishlist(${p.id})" title="Save">${isWished?'♥':'♡'}</button></div>`;
+    return `
+      <div class="card" style="animation-delay:${Math.min(i*0.03,0.3)}s" onclick="openQVFromCard(event,${p.id})">
+        ${imgWrapper}
+        <div class="card-body">
+          <div class="card-brand">${p.brand}</div>
+          <div class="card-name">${p.name}</div>
+          ${p.notes ? `<div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;">${p.notes}</div>` : ''}
+          <div class="card-footer">
+            <div class="card-price">${formatPrice(p.price)}</div>
+            <div class="color-tags">${(()=>{const cols=p.colors||[p.color];const shown=cols.slice(0,5).map(c=>`<span class="color-tag">${c}</span>`).join('');const more=cols.length>5?`<span class="color-tag" style="letter-spacing:0;">…</span>`:'';return shown+more;})()}</div>
+          </div>
+        </div>
+        ${buyHtml}
+      </div>`;
+  }).join('');
+  updateWishlistUI();
+};
+
+function openQVFromCard(e, id) {
+  if (e.target.closest('.card-buy') || e.target.closest('.wishlist-btn') || e.target.closest('.card-img a') || e.target.tagName === 'A') return;
+  openQV(id);
+}
+
+function trackView(id) {
+  const views = JSON.parse(localStorage.getItem('tf_views') || '{}');
+  views[id] = (views[id] || 0) + 1;
+  localStorage.setItem('tf_views', JSON.stringify(views));
+}
+
+showSkeletons();
+setTimeout(() => {
+  populateFilters();
+  render();
+  renderRecent();
+  updateWishlistUI();
+}, 600);
 
 // ── THEME TOGGLE ──
 const root = document.documentElement;
