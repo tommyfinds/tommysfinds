@@ -431,7 +431,7 @@
     color: var(--muted);
   }
   footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: #fff; }
+  footer a:hover { color: var(--text); }
 
   /* ── DARK/LIGHT TOGGLE ── */
   .theme-toggle {
@@ -705,6 +705,7 @@
     <a href="brands.html">Brands</a>
     <a href="how-it-works.html">How it works</a>
     <a href="videos.html">Videos</a>
+    <a href="qc-check.html">QC Check</a>
     <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Superbuy</a>
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
@@ -768,6 +769,7 @@
     </div>
     <select id="sort">
       <option value="newest">Newest</option>
+      <option value="oldest">Oldest</option>
       <option value="price_asc">Price: Low → High</option>
       <option value="price_desc">Price: High → Low</option>
     </select>
@@ -1396,6 +1398,8 @@ render = function() {
   });
 
   if (sort === 'newest') list.sort((a,b) => new Date(b.addedDate) - new Date(a.addedDate));
+  else if (sort === 'oldest') list.sort((a,b) => new Date(a.addedDate) - new Date(b.addedDate));
+  else if (sort === 'oldest') list.sort((a,b) => new Date(a.addedDate) - new Date(b.addedDate));
   else if (sort === 'price_asc') list.sort((a,b) => a.price - b.price);
   else if (sort === 'price_desc') list.sort((a,b) => b.price - a.price);
 
@@ -1463,11 +1467,13 @@ setTimeout(() => {
 // ── THEME TOGGLE ──
 const root = document.documentElement;
 const toggleBtn = document.getElementById('theme-toggle');
-let isLight = false;
+let isLight = localStorage.getItem('tf_theme') === 'light';
+if (isLight) { root.classList.add('light'); toggleBtn.textContent = '🌑'; }
 toggleBtn.addEventListener('click', () => {
   isLight = !isLight;
   root.classList.toggle('light', isLight);
   toggleBtn.textContent = isLight ? '🌑' : '🌙';
+  localStorage.setItem('tf_theme', isLight ? 'light' : 'dark');
 });
 
 // ── MODALS ──
