@@ -116,7 +116,7 @@
     font-size: clamp(48px, 8vw, 88px);
     letter-spacing: 0.04em;
     line-height: 0.9;
-    color: #fff;
+    color: var(--text);
   }
   .hero-title span {
     display: block;
@@ -303,6 +303,8 @@
     display: flex;
     flex-direction: column;
     animation: fadeUp 0.3s ease both;
+    border-radius: 12px;
+    overflow: hidden;
   }
   .card:hover { background: var(--surface2); }
 
@@ -382,6 +384,7 @@
   .card-buy {
     display: block;
     margin: 0 14px 14px;
+    border-radius: 6px;
     padding: 8px;
     text-align: center;
     font-size: 10px;
@@ -687,7 +690,7 @@
     z-index: -1;
     pointer-events: none;
   }
-  :root.light #bg-canvas { opacity: 0.18; }
+  :root.light #bg-canvas { opacity: 1; }
 </style>
 </head>
 <body>
@@ -1544,6 +1547,12 @@ function submitForm(type) {
     ctx.clearRect(0, 0, W, H);
 
     // Update + draw particles
+    const isLightMode = document.documentElement.classList.contains('light');
+    const dotColor = isLightMode ? '80,80,120' : '160,160,160';
+    const lineColor = isLightMode ? '80,80,120' : '140,140,140';
+    const dotAlphaScale = isLightMode ? 0.18 : 1;
+    const lineAlphaScale = isLightMode ? 0.18 : 1;
+
     for (let p of particles) {
       p.x += p.vx;
       p.y += p.vy;
@@ -1554,7 +1563,7 @@ function submitForm(type) {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(160,160,160,${p.alpha})`;
+      ctx.fillStyle = `rgba(${dotColor},${p.alpha * dotAlphaScale})`;
       ctx.fill();
     }
 
@@ -1566,11 +1575,11 @@ function submitForm(type) {
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * 0.12;
+          const alpha = (1 - dist / maxDist) * 0.12 * lineAlphaScale;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(140,140,140,${alpha})`;
+          ctx.strokeStyle = `rgba(${lineColor},${alpha})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
         }
