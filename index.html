@@ -697,7 +697,7 @@
 <canvas id="bg-canvas"></canvas>
 
 <div id="announcement-banner" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New Lululemon Yoga Woman just dropped — <a href="#finds" style="color:#fff;text-decoration:underline;cursor:pointer;" onclick="event.preventDefault();document.getElementById('announcement-banner').style.display='none';openQV(9);">Check it out</a></p>
+  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New MARVEL Daily Bugle just dropped — <a href="#finds" style="color:#fff;text-decoration:underline;cursor:pointer;" onclick="event.preventDefault();document.getElementById('announcement-banner').style.display='none';openQV(12);">Check it out</a></p>
   <button onclick="document.getElementById('announcement-banner').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
 </div>
 
@@ -900,6 +900,9 @@
     <a href="#" onclick="openModal('modal-suggest');return false;" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Suggest New Products</a>
   </div>
 </footer>
+<div style="border-top:1px solid var(--border);padding:1rem 2rem;text-align:center;">
+  <p style="font-size:10px;color:var(--muted2);letter-spacing:0.04em;line-height:1.7;max-width:800px;margin:0 auto;">TommysFinds and Superbuy do not sell physical products · Tommy does not support or encourage the sale of counterfeit goods · The information given is only to assist buyers and users making safe purchases and navigation.</p>
+</div>
 
 <script>
 // ─────────────────────────────────────────
@@ -920,7 +923,7 @@ const products = [
     colors: ["Black", "White"],
     price: 7.93,
     badge: "new",
-    image: "https://i.imgur.com/NVwXUaw.png",
+    images: ["https://i.imgur.com/NVwXUaw.png"],
     buyLink: "https://s.spblk.com/dae0",
     notes: "",
     videoLink: ""
@@ -935,7 +938,7 @@ const products = [
     colors: ["Black", "Blue", "Orange", "Purple", "Gold"],
     price: 37.24,
     badge: "new",
-    image: "https://i.imgur.com/TOTUWH4.png",
+    images: ["https://i.imgur.com/TOTUWH4.png"],
     buyLink: "https://s.spblk.com/dhtg",
     notes: "",
     videoLink: ""
@@ -950,7 +953,7 @@ const products = [
     colors: ["Brown", "Beige", "Red"],
     price: 11.09,
     badge: "new",
-    image: "https://i.imgur.com/amle350.png",
+    images: ["https://i.imgur.com/amle350.png"],
     buyLink: "https://s.spblk.com/deuo",
     notes: "",
     videoLink: ""
@@ -965,7 +968,7 @@ const products = [
     colors: ["Black", "Dark Grey", "Brown", "Light Grey", "Blue", "Green"],
     price: 13.47,
     badge: "new",
-    image: "https://i.imgur.com/LliFjbe.png",
+    images: ["https://i.imgur.com/LliFjbe.png"],
     buyLink: "https://s.spblk.com/digl",
     notes: "",
     videoLink: ""
@@ -980,7 +983,7 @@ const products = [
     colors: ["Black", "Green"],
     price: 56.25,
     badge: "new",
-    image: "https://i.imgur.com/nGasrgN.jpeg",
+    images: ["https://i.imgur.com/nGasrgN.jpeg"],
     buyLink: "https://s.spblk.com/ccr3",
     notes: "",
     videoLink: ""
@@ -995,7 +998,7 @@ const products = [
     colors: ["Black", "Brown"],
     price: 6.33,
     badge: "new",
-    image: "https://i.imgur.com/xOHpwIg.png",
+    images: ["https://i.imgur.com/xOHpwIg.png"],
     buyLink: "https://s.spblk.com/digo",
     notes: "",
     videoLink: ""
@@ -1010,7 +1013,7 @@ const products = [
     colors: ["Black", "Green", "White", "Yellow", "Blue", "Light Grey", "Dark Grey", "Wine Red"],
     price: 17.43,
     badge: "new",
-    image: "https://i.imgur.com/yVS3xoo.png",
+    images: ["https://i.imgur.com/yVS3xoo.png"],
     buyLink: "https://s.spblk.com/digv",
     notes: "",
     videoLink: ""
@@ -1025,7 +1028,7 @@ const products = [
     colors: ["Black", "White", "Pink", "Beige", "Light Grey"],
     price: 19.81,
     badge: "new",
-    image: "https://i.imgur.com/NtZfiNz.png",
+    images: ["https://i.imgur.com/NtZfiNz.png"],
     buyLink: "https://s.spblk.com/dh6v",
     notes: "",
     videoLink: ""
@@ -1040,8 +1043,53 @@ const products = [
     colors: ["Black", "White", "Pink", "Beige", "Light Grey", "Purple", "Yellow", "Green", "Wine Red", "Orange", "Blue"],
     price: 29.79,
     badge: "new",
-    image: "https://i.imgur.com/ECNjKqe.png",
+    images: ["https://i.imgur.com/ECNjKqe.png"],
     buyLink: "https://s.spblk.com/dih5",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 10,
+    addedDate: "2025-12-26T00:00:00.000Z",
+    name: "Bape X Hello Kitty Tees",
+    brand: "Bape",
+    category: "tees",
+    mainCat: "tops",
+    colors: ["Black", "White"],
+    price: 7.13,
+    badge: "new",
+    images: ["https://i.imgur.com/chzZTyw.png","https://i.imgur.com/J6lOQM5.png","https://i.imgur.com/x6tfLKw.jpeg","https://i.imgur.com/gpeOqI6.jpeg","https://i.imgur.com/orhlJW1.jpeg"],
+    buyLink: "https://s.spblk.com/djsm",
+    notes: "96%+ cotton, weight = 260g",
+    videoLink: ""
+  },
+  {
+    id: 11,
+    addedDate: "2025-12-27T00:00:00.000Z",
+    name: "Acne Studios Shorts",
+    brand: "Acne Studios",
+    category: "shorts",
+    mainCat: "bottoms",
+    colors: ["Black", "Blue"],
+    price: 15.52,
+    badge: "new",
+    images: ["https://i.imgur.com/W5onCiS.jpeg","https://i.imgur.com/LjmzEev.jpeg"],
+    buyLink: "https://s.spblk.com/dkj5",
+    notes: "weight = 620g",
+    videoLink: ""
+  },
+  {
+    id: 12,
+    addedDate: "2025-12-28T00:00:00.000Z",
+    name: "MARVEL Daily Bugle (Set 76178)",
+    brand: "Lego",
+    category: "lego",
+    mainCat: "others",
+    colors: ["Red", "Grey"],
+    price: 32.54,
+    badge: "new",
+    images: ["https://i.imgur.com/dRFTufK.jpeg","https://i.imgur.com/Ri04and.jpeg"],
+    buyLink: "https://s.spblk.com/dkj8",
     notes: "",
     videoLink: ""
   }
@@ -1208,8 +1256,9 @@ function render() {
 
     const imgStyle = `width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;mix-blend-mode:multiply;filter:contrast(1.05);`;
 
-    const imgContent = p.image
-      ? `<img src="${p.image}" alt="${p.name}" loading="lazy" style="${imgStyle}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div class="placeholder" style="display:none">${placeholderSvgs[p.category] || placeholderSvgs.tees}</div>`
+    const primaryImg = (p.images && p.images[0]) || p.image || '';
+    const imgContent = primaryImg
+      ? `<img src="${primaryImg}" alt="${p.name}" loading="lazy" style="${imgStyle}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div class="placeholder" style="display:none">${placeholderSvgs[p.category] || placeholderSvgs.tees}</div>`
       : `<div class="placeholder">${placeholderSvgs[p.category] || placeholderSvgs.tees}</div>`;
 
     const buyHtml = p.buyLink
@@ -1307,7 +1356,20 @@ function openQV(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
   const overlay = document.getElementById('qv-overlay');
-  document.getElementById('qv-img').innerHTML = `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;background:#fff;" />`;
+  const imgs = p.images || (p.image ? [p.image] : []);
+  let activeIdx = 0;
+  function renderQVImg() {
+    const el = document.getElementById('qv-img');
+    el.innerHTML = `
+      <div style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;">
+        <img src="${imgs[activeIdx]}" alt="${p.name}" style="flex:1;width:100%;object-fit:contain;background:#fff;" />
+        ${imgs.length > 1 ? `
+        <div style="display:flex;gap:6px;padding:8px;background:#fff;overflow-x:auto;justify-content:center;flex-shrink:0;">
+          ${imgs.map((src,i) => `<img src="${src}" onclick="(function(){activeIdx=${i};renderQVImg();})()" style="width:48px;height:48px;object-fit:contain;cursor:pointer;border:2px solid ${i===activeIdx?'#333':'#ddd'};border-radius:4px;flex-shrink:0;" />`).join('')}
+        </div>` : ''}
+      </div>`;
+  }
+  renderQVImg();
   // Related: prioritize same brand, fill with same category, exactly 3
   const sameBrand = products.filter(x => x.id !== p.id && x.brand === p.brand);
   const sameCat   = products.filter(x => x.id !== p.id && x.brand !== p.brand && x.mainCat === p.mainCat);
@@ -1425,8 +1487,9 @@ render = function() {
     const badgeHtml = badgeType ? `<div class="badge badge-${badgeType}">${badgeType === 'popular' ? '🔥 Popular' : badgeType}</div>` : '';
     const isWished = wishlist.includes(p.id);
     const imgStyle = `width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;mix-blend-mode:multiply;filter:contrast(1.05);`;
-    const imgContent = p.image
-      ? `<img src="${p.image}" alt="${p.name}" loading="lazy" style="${imgStyle}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div class="placeholder" style="display:none">${placeholderSvgs[p.category] || placeholderSvgs.tees}</div>`
+    const primaryImg = (p.images && p.images[0]) || p.image || '';
+    const imgContent = primaryImg
+      ? `<img src="${primaryImg}" alt="${p.name}" loading="lazy" style="${imgStyle}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div class="placeholder" style="display:none">${placeholderSvgs[p.category] || placeholderSvgs.tees}</div>`
       : `<div class="placeholder">${placeholderSvgs[p.category] || placeholderSvgs.tees}</div>`;
     const buyHtml = p.buyLink ? `<a class="card-buy" href="${p.buyLink}" target="_blank" rel="noopener">Buy on Superbuy →</a>` : `<span class="card-buy no-link">Link coming soon</span>`;
     const imgWrapper = `<div class="card-img" style="background:#fff;cursor:pointer;" onclick="trackView(${p.id});openQV(${p.id})">${imgContent}${badgeHtml}<button class="wishlist-btn ${isWished?'active':''}" data-id="${p.id}" onclick="event.stopPropagation();toggleWishlist(${p.id})" title="Save">${isWished?'♥':'♡'}</button></div>`;
