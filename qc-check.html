@@ -50,45 +50,44 @@ footer a:hover{color:var(--text);}
 .hero p{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,7vw,72px);letter-spacing:0.04em;line-height:0.9;color:var(--text);}
 .hero-sub{font-size:13px;color:var(--muted);margin-top:0.8rem;max-width:540px;line-height:1.6;}
-.qc-wrap{padding:2rem;max-width:800px;}
-.qc-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.qc-row{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap;}
-.qc-input{flex:1;min-width:220px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:'Archivo Narrow',sans-serif;font-size:14px;padding:11px 14px;outline:none;transition:border-color 0.15s;}
-.qc-input:focus{border-color:var(--muted);}
-.qc-input::placeholder{color:var(--muted);}
-.qc-btn{padding:11px 24px;background:var(--text);color:var(--bg);font-family:'Archivo Narrow',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity 0.15s;white-space:nowrap;}
-.qc-btn:hover{opacity:0.85;}
-.qc-btn:disabled{opacity:0.4;cursor:not-allowed;}
-.status{font-size:12px;color:var(--muted);margin-bottom:1rem;letter-spacing:0.06em;min-height:18px;}
-.buy-bar{display:none;align-items:center;gap:12px;padding:12px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;margin-bottom:1.5rem;flex-wrap:wrap;}
-.buy-bar.show{display:flex;}
-.buy-bar p{font-size:12px;color:var(--muted);flex:1;min-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.buy-link{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:#ff6b35;color:#fff;font-family:'Archivo Narrow',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:opacity 0.15s;white-space:nowrap;}
-.buy-link:hover{opacity:0.85;}
-.results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:2rem;}
-.qc-img-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,transform 0.15s;}
-.qc-img-card:hover{border-color:var(--muted);transform:translateY(-2px);}
-.qc-img-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--surface2);}
-.qc-img-src{font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);padding:6px 8px;}
-.no-results{padding:2rem;text-align:center;color:var(--muted);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:2rem;}
-.section-title{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
-.db-links{display:flex;flex-direction:column;gap:8px;margin-bottom:2rem;}
-.db-link{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);transition:border-color 0.15s;}
-.db-link:hover{border-color:var(--muted);}
-.db-name{font-size:13px;font-weight:500;}
-.db-sub{font-size:11px;color:var(--muted);margin-top:2px;}
-.db-arrow{font-size:14px;color:var(--muted);}
-.lightbox{display:none;position:fixed;inset:0;z-index:900;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;}
-.lightbox.open{display:flex;}
-.lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;border-radius:4px;}
-.lightbox-close{position:absolute;top:1rem;right:1.5rem;color:#fff;font-size:28px;cursor:pointer;background:none;border:none;line-height:1;}
+.qcw{padding:2rem;max-width:800px;}
+.qlabel{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.qrow{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap;}
+.qinput{flex:1;min-width:220px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:'Archivo Narrow',sans-serif;font-size:14px;padding:11px 14px;outline:none;transition:border-color 0.15s;}
+.qinput:focus{border-color:var(--muted);}
+.qinput::placeholder{color:var(--muted);}
+.qbtn{padding:11px 24px;background:var(--text);color:var(--bg);font-family:'Archivo Narrow',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity 0.15s;white-space:nowrap;}
+.qbtn:hover{opacity:0.85;}
+.qbtn:disabled{opacity:0.4;cursor:not-allowed;}
+.qstatus{font-size:12px;color:var(--muted);margin-bottom:1rem;letter-spacing:0.06em;min-height:18px;}
+.buybar{display:none;align-items:center;gap:12px;padding:12px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;margin-bottom:1.5rem;flex-wrap:wrap;}
+.buybar.show{display:flex;}
+.buybar p{font-size:12px;color:var(--muted);flex:1;min-width:180px;}
+.buylink{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:#ff6b35;color:#fff;font-family:'Archivo Narrow',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:opacity 0.15s;white-space:nowrap;}
+.buylink:hover{opacity:0.85;}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:2rem;}
+.ricard{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,transform 0.15s;}
+.ricard:hover{border-color:var(--muted);transform:translateY(-2px);}
+.ricard img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--surface2);}
+.risrc{font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);padding:6px 8px;}
+.nores{padding:2rem;text-align:center;color:var(--muted);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:2rem;}
+.stitle{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+.dblinks{display:flex;flex-direction:column;gap:8px;margin-bottom:2rem;}
+.dblink{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);transition:border-color 0.15s;}
+.dblink:hover{border-color:var(--muted);}
+.dbname{font-size:13px;font-weight:500;}
+.dbsub{font-size:11px;color:var(--muted);margin-top:2px;}
+.lbox{display:none;position:fixed;inset:0;z-index:900;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;}
+.lbox.open{display:flex;}
+.lbox img{max-width:92vw;max-height:92vh;object-fit:contain;border-radius:4px;}
+.lclose{position:absolute;top:1rem;right:1.5rem;color:#fff;font-size:28px;cursor:pointer;background:none;border:none;line-height:1;}
 </style>
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
 <script>(function(){const isL=localStorage.getItem('tf_theme')==='light';if(isL)document.documentElement.classList.add('light');})();</script>
 <div id="announcement-banner" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New Lululemon Yoga Woman just dropped — <a href="index.html#finds" style="color:#fff;text-decoration:underline;">Check it out</a></p>
+  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New MARVEL Daily Bugle just dropped — <a href="index.html#finds" style="color:#fff;text-decoration:underline;">Check it out on Finds</a></p>
   <button onclick="document.getElementById('announcement-banner').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
 </div>
 <nav>
@@ -108,45 +107,25 @@ footer a:hover{color:var(--text);}
     <a href="https://www.reddit.com/user/parisuserr/" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;"><img src="https://i.imgur.com/J1AZGv2.png" alt="Reddit" style="width:40px;height:40px;object-fit:contain;filter:grayscale(100%) brightness(0.7);transition:filter 0.2s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(100%) brightness(0.7)'" /></a>
   </div>
 </nav>
-<div class="hero">
-  <p>Tommy's Finds</p>
-  <h1>QC Check</h1>
-  <p class="hero-sub">Paste a Weidian, Taobao or 1688 product link to search for QC photos across multiple databases, and get a direct Superbuy buy link.</p>
-</div>
-<div class="qc-wrap">
-  <p class="qc-label">Product link</p>
-  <div class="qc-row">
-    <input class="qc-input" id="qc-url" type="text" placeholder="https://weidian.com/item.html?itemID=... or Taobao / 1688 link" />
-    <button class="qc-btn" id="qc-btn" onclick="doSearch()">Search QC</button>
+<div class="hero"><p>Tommy's Finds</p><h1>QC Check</h1><p class="hero-sub">Paste a Weidian, Taobao or 1688 product link to search for QC photos and get a direct Superbuy affiliate link.</p></div>
+<div class="qcw">
+  <p class="qlabel">Product link</p>
+  <div class="qrow">
+    <input class="qinput" id="qurl" type="text" placeholder="https://weidian.com/item.html?itemID=... or Taobao / 1688 link" />
+    <button class="qbtn" id="qbtn" onclick="doSearch()">Search QC</button>
   </div>
-  <div class="status" id="status"></div>
-
-  <div class="buy-bar" id="buy-bar">
-    <p id="buy-label">Ready to order this item?</p>
-    <a class="buy-link" id="buy-link" href="#" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      Buy on Superbuy
-    </a>
-  </div>
-
-  <div id="results-section" style="display:none;">
-    <p class="section-title" id="results-title">QC Photos found</p>
-    <div class="results-grid" id="results-grid"></div>
-  </div>
-
-  <p class="section-title">Search databases directly</p>
-  <div class="db-links" id="db-links">
-    <a href="https://www.uufinds.com/qcfinds" target="_blank" rel="noopener" class="db-link"><div><div class="db-name">UUFinds QC</div><div class="db-sub">Large community QC database with buyer photos</div></div><div class="db-arrow">→</div></a>
-    <a href="https://doppel.fit" target="_blank" rel="noopener" class="db-link"><div><div class="db-name">Doppel.fit</div><div class="db-sub">AI-powered QC tool for reps and Taobao finds</div></div><div class="db-arrow">→</div></a>
-    <a href="https://www.reddit.com/r/FashionReps/" target="_blank" rel="noopener" class="db-link"><div><div class="db-name">r/FashionReps</div><div class="db-sub">Community reviews, QC threads and batch reviews</div></div><div class="db-arrow">→</div></a>
-    <a href="https://www.reddit.com/r/DesignerReps/" target="_blank" rel="noopener" class="db-link"><div><div class="db-name">r/DesignerReps</div><div class="db-sub">Designer replica QC, reviews and finds</div></div><div class="db-arrow">→</div></a>
+  <div class="qstatus" id="qstatus"></div>
+  <div class="buybar" id="buybar"><p>Ready to order this item on Superbuy?</p><a class="buylink" id="buylink" href="#" target="_blank" rel="noopener">Buy on Superbuy →</a></div>
+  <div id="rsec" style="display:none;"><p class="stitle" id="rtitle">Results</p><div class="rgrid" id="rgrid"></div></div>
+  <p class="stitle">Search databases manually</p>
+  <div class="dblinks" id="dblinks">
+    <a href="https://www.uufinds.com/qcfinds" target="_blank" rel="noopener" class="dblink"><div><div class="dbname">UUFinds QC</div><div class="dbsub">Large community QC database with buyer photos</div></div><div>→</div></a>
+    <a href="https://doppel.fit" target="_blank" rel="noopener" class="dblink"><div><div class="dbname">Doppel.fit</div><div class="dbsub">AI-powered QC tool for reps and Taobao finds</div></div><div>→</div></a>
+    <a href="https://www.reddit.com/r/FashionReps/" target="_blank" rel="noopener" class="dblink"><div><div class="dbname">r/FashionReps</div><div class="dbsub">Community reviews, QC threads and batch reviews</div></div><div>→</div></a>
+    <a href="https://www.reddit.com/r/DesignerReps/" target="_blank" rel="noopener" class="dblink"><div><div class="dbname">r/DesignerReps</div><div class="dbsub">Designer replica QC, reviews and finds</div></div><div>→</div></a>
   </div>
 </div>
-
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">×</button>
-  <img id="lightbox-img" src="" alt="QC Photo" onclick="document.getElementById('lightbox').classList.remove('open')" />
-</div>
+<div class="lbox" id="lbox"><button class="lclose" onclick="document.getElementById('lbox').classList.remove('open')">×</button><img id="limg" src="" onclick="document.getElementById('lbox').classList.remove('open')" /></div>
 <div id="modal-feedback" class="modal-overlay">
   <div class="modal"><button class="modal-close" onclick="closeModal('modal-feedback')">×</button><h2>Send Feedback</h2><div class="modal-success" id="feedback-success"><div class="modal-success-icon">✓</div><span>Sent!</span></div><input type="text" id="feedback-name" placeholder="Your Name (Optional)" /><textarea id="feedback-msg" placeholder="Your feedback..."></textarea><button class="modal-submit" onclick="submitForm('feedback')">Send Feedback</button></div>
 </div>
@@ -161,6 +140,9 @@ footer a:hover{color:var(--text);}
     <a href="#" onclick="openModal('modal-suggest');return false;" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Suggest New Products</a>
   </div>
 </footer>
+<div style="border-top:1px solid var(--border);padding:1rem 2rem;text-align:center;">
+  <p style="font-size:10px;color:var(--muted2);letter-spacing:0.04em;line-height:1.7;max-width:800px;margin:0 auto;">TommysFinds and Superbuy do not sell physical products · Tommy does not support or encourage the sale of counterfeit goods · The information given is only to assist buyers and users making safe purchases and navigation.</p>
+</div>
 <nav class="mobile-nav">
   <a href="index.html" class="mob-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Finds</a>
   <a href="brands.html" class="mob-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Brands</a>
@@ -169,147 +151,47 @@ footer a:hover{color:var(--text);}
   <a href="https://discord.gg/fbDwNdvs" target="_blank" class="mob-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>Discord</a>
 </nav>
 <script>
-
-// ── SUPERBUY AFFILIATE LINK BUILDER ──
-const AFFILIATE = 'EVdZQu';
-function toSuperbuyLink(url) {
-  try {
-    const u = new URL(url.trim());
-    const host = u.hostname.replace('www.','');
-    let type = '';
-    let id = '';
-    if (host.includes('weidian.com')) {
-      type = 'weidian';
-      id = u.searchParams.get('itemID') || u.searchParams.get('id') || '';
-    } else if (host.includes('taobao.com') || host.includes('tmall.com')) {
-      type = 'taobao';
-      id = u.searchParams.get('id') || '';
-    } else if (host.includes('1688.com')) {
-      type = '1688';
-      id = (u.pathname.match(/\/offer\/(\d+)/) || [])[1] || '';
-    }
-    if (!type) return null;
-    let spbUrl = 'https://www.superbuy.com/en/page/';
-    if (type === 'weidian') spbUrl += 'buy/?url=' + encodeURIComponent(url) + '&partnercode=' + AFFILIATE;
-    else if (type === 'taobao') spbUrl += 'buy/?url=' + encodeURIComponent(url) + '&partnercode=' + AFFILIATE;
-    else spbUrl += 'buy/?url=' + encodeURIComponent(url) + '&partnercode=' + AFFILIATE;
-    return spbUrl;
-  } catch(e) { return null; }
-}
-
-// ── EXTRACT ITEM ID FOR SEARCH ──
-function extractId(url) {
-  try {
-    const u = new URL(url.trim());
-    return u.searchParams.get('itemID') || u.searchParams.get('id') || u.pathname.split('/').filter(Boolean).pop() || '';
-  } catch(e) { return ''; }
-}
-
-function setStatus(msg, loading=false) {
-  const el = document.getElementById('status');
-  el.textContent = loading ? '⏳ ' + msg : msg;
-}
-
-async function doSearch() {
-  const rawUrl = document.getElementById('qc-url').value.trim();
-  if (!rawUrl) { setStatus('Please paste a product link first.'); return; }
-
-  const btn = document.getElementById('qc-btn');
-  btn.disabled = true;
-  setStatus('Searching for QC photos...', true);
-
-  // Show buy bar
-  const spbLink = toSuperbuyLink(rawUrl);
-  const buyBar = document.getElementById('buy-bar');
-  const buyLink = document.getElementById('buy-link');
-  if (spbLink) {
-    buyLink.href = spbLink;
-    document.getElementById('buy-label').textContent = 'Ready to order this item?';
-    buyBar.classList.add('show');
-  } else {
-    buyBar.classList.remove('show');
-  }
-
-  // Update db search links
-  const enc = encodeURIComponent(rawUrl);
-  const id = extractId(rawUrl);
-  const encId = encodeURIComponent(id);
-  document.getElementById('db-links').innerHTML = [
-    {name:'UUFinds QC', sub:'Community QC photo database', href:'https://www.uufinds.com/qcfinds?q='+enc},
-    {name:'Doppel.fit', sub:'AI-powered QC tool', href:'https://doppel.fit/?q='+enc},
-    {name:'r/FashionReps', sub:'Search community QC posts', href:'https://www.reddit.com/r/FashionReps/search/?q='+encId+'&sort=new'},
-    {name:'r/DesignerReps', sub:'Designer replica community', href:'https://www.reddit.com/r/DesignerReps/search/?q='+encId+'&sort=new'},
-  ].map(d=>'<a href="'+d.href+'" target="_blank" rel="noopener" class="db-link"><div><div class="db-name">'+d.name+'</div><div class="db-sub">'+d.sub+'</div></div><div class="db-arrow">→</div></a>').join('');
-
-  // Use Anthropic API to search for QC images
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-        messages: [{
-          role: 'user',
-          content: 'Search for QC photos and reviews for this product link: ' + rawUrl + '. Search on sites like uufinds.com/qcfinds, reddit r/FashionReps, r/DesignerReps, and similar QC communities. Return a JSON array of objects with fields: title (string), imageUrl (direct image URL if available, else null), sourceUrl (link to the QC post/page), source (site name). Return ONLY the JSON array, no other text, no markdown.'
-        }]
-      })
-    });
-    const data = await response.json();
-    const text = data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
-    let results = [];
-    try {
-      const clean = text.replace(/```json|```/g,'').trim();
-      results = JSON.parse(clean);
-    } catch(e) { results = []; }
-
-    const grid = document.getElementById('results-grid');
-    const section = document.getElementById('results-section');
-
-    if (results && results.length > 0) {
-      const withImages = results.filter(r=>r.imageUrl);
-      const withoutImages = results.filter(r=>!r.imageUrl);
-      const all = [...withImages, ...withoutImages];
-
-      section.style.display = 'block';
-      document.getElementById('results-title').textContent = all.length + ' QC result' + (all.length!==1?'s':'') + ' found';
-
-      grid.innerHTML = all.map(r => {
-        if (r.imageUrl) {
-          return '<div class="qc-img-card" onclick="openLightbox(\''+r.imageUrl+'\')">'
-            +'<img src="'+r.imageUrl+'" loading="lazy" onerror="this.parentElement.style.display=\'none\'" />'
-            +'<div class="qc-img-src"><a href="'+r.sourceUrl+'" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:none;" onclick="event.stopPropagation()">'+r.source+'</a></div>'
-            +'</div>';
-        } else {
-          return '<a href="'+r.sourceUrl+'" target="_blank" rel="noopener" class="qc-img-card" style="text-decoration:none;padding:12px;display:flex;flex-direction:column;gap:6px;justify-content:space-between;">'
-            +'<p style="font-size:12px;font-weight:500;color:var(--text);line-height:1.4;">'+r.title+'</p>'
-            +'<span class="qc-img-src">'+r.source+' →</span>'
-            +'</a>';
-        }
+const AFF='EVdZQu';
+function toSPB(url){try{const u=new URL(url.trim());const h=u.hostname.replace('www.','');if(h.includes('weidian')||h.includes('taobao')||h.includes('tmall')||h.includes('1688')){return 'https://www.superbuy.com/en/page/buy/?url='+encodeURIComponent(url)+'&partnercode='+AFF;}return null;}catch(e){return null;}}
+function xid(url){try{const u=new URL(url.trim());return u.searchParams.get('itemID')||u.searchParams.get('id')||(u.pathname.match(/\/offer\/(\d+)/)||[])[1]||'';}catch(e){return '';}}
+function setSt(msg,load){document.getElementById('qstatus').textContent=(load?'⏳ ':'')+msg;}
+async function doSearch(){
+  const raw=document.getElementById('qurl').value.trim();
+  if(!raw){setSt('Please paste a product link first.');return;}
+  const btn=document.getElementById('qbtn');btn.disabled=true;
+  setSt('Searching for QC photos...',true);
+  const spb=toSPB(raw);
+  const buybar=document.getElementById('buybar');
+  if(spb){document.getElementById('buylink').href=spb;buybar.classList.add('show');}
+  else buybar.classList.remove('show');
+  const enc=encodeURIComponent(raw),id=xid(raw),encId=encodeURIComponent(id);
+  document.getElementById('dblinks').innerHTML=[
+    {n:'UUFinds QC',s:'Community QC photo database',h:'https://www.uufinds.com/qcfinds?q='+enc},
+    {n:'Doppel.fit',s:'AI-powered QC tool',h:'https://doppel.fit/?q='+enc},
+    {n:'r/FashionReps',s:'Search community QC posts',h:'https://www.reddit.com/r/FashionReps/search/?q='+encId+'&sort=new'},
+    {n:'r/DesignerReps',s:'Designer replica community',h:'https://www.reddit.com/r/DesignerReps/search/?q='+encId+'&sort=new'},
+  ].map(d=>'<a href="'+d.h+'" target="_blank" rel="noopener" class="dblink"><div><div class="dbname">'+d.n+'</div><div class="dbsub">'+d.s+'</div></div><div>→</div></a>').join('');
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:'Search for QC photos and reviews for this product: '+raw+'. Look on uufinds.com/qcfinds, reddit FashionReps, DesignerReps, and similar QC communities. Return ONLY a JSON array with objects: {title, imageUrl, sourceUrl, source}. No markdown, no explanation.'}]})});
+    const data=await res.json();
+    const text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
+    let results=[];try{results=JSON.parse(text.replace(/```json|```/g,'').trim());}catch(e){}
+    const grid=document.getElementById('rgrid'),sec=document.getElementById('rsec');
+    if(results&&results.length){
+      sec.style.display='block';
+      document.getElementById('rtitle').textContent=results.length+' QC result'+(results.length!==1?'s':'')+' found';
+      grid.innerHTML=results.map(r=>{
+        if(r.imageUrl)return '<div class="ricard" onclick="openL(\''+r.imageUrl+'\')">'+'<img src="'+r.imageUrl+'" loading="lazy" onerror="this.parentElement.style.display=\'none\'" />'+'<div class="risrc"><a href="'+r.sourceUrl+'" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:none;" onclick="event.stopPropagation()">'+r.source+'</a></div></div>';
+        return '<a href="'+r.sourceUrl+'" target="_blank" rel="noopener" class="ricard" style="text-decoration:none;padding:12px;display:flex;flex-direction:column;gap:6px;justify-content:space-between;"><p style="font-size:12px;font-weight:500;color:var(--text);line-height:1.4;">'+r.title+'</p><span class="risrc">'+r.source+' →</span></a>';
       }).join('');
-      setStatus(all.length + ' result' + (all.length!==1?'s':'') + ' found across QC databases.');
-    } else {
-      section.style.display = 'block';
-      grid.innerHTML = '<div class="no-results">No QC photos found automatically. Try the databases below to search manually.</div>';
-      setStatus('No results found automatically — try the manual links below.');
-    }
-  } catch(err) {
-    setStatus('Search failed. Please use the manual database links below.');
-    document.getElementById('results-section').style.display = 'none';
-  }
-
-  btn.disabled = false;
+      setSt(results.length+' result'+(results.length!==1?'s':'')+' found.');
+    }else{sec.style.display='block';grid.innerHTML='<div class="nores">No QC photos found automatically. Try the manual links below.</div>';setSt('No results found — try the manual database links below.');}
+  }catch(err){setSt('Search failed. Try the manual database links below.');document.getElementById('rsec').style.display='none';}
+  btn.disabled=false;
 }
-
-function openLightbox(src) {
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox').classList.add('open');
-}
-document.getElementById('lightbox').addEventListener('click', e => {
-  if (e.target === document.getElementById('lightbox')) document.getElementById('lightbox').classList.remove('open');
-});
-document.getElementById('qc-url').addEventListener('keydown', e => { if (e.key==='Enter') doSearch(); });
+function openL(src){document.getElementById('limg').src=src;document.getElementById('lbox').classList.add('open');}
+document.getElementById('lbox').addEventListener('click',e=>{if(e.target===document.getElementById('lbox'))document.getElementById('lbox').classList.remove('open');});
+document.getElementById('qurl').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
 (function(){
   const c=document.getElementById('bg-canvas');if(!c)return;
   const ctx=c.getContext('2d');let W,H,P;
