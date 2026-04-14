@@ -100,7 +100,7 @@ footer a:hover{color:var(--text);}
 <canvas id="bg-canvas"></canvas>
 <script>(function(){const isL=localStorage.getItem('tf_theme')==='light';if(isL)document.documentElement.classList.add('light');})();</script>
 <div id="announcement-banner" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New MARVEL Daily Bugle just dropped — <a href="index.html#finds" style="color:#fff;text-decoration:underline;">Check it out on Finds</a></p>
+  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New GX Batch Jordan 4 just dropped — <a href="index.html#finds" style="color:#fff;text-decoration:underline;">Check it out on Finds</a></p>
   <button onclick="document.getElementById('announcement-banner').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
 </div>
 <nav>
@@ -162,51 +162,35 @@ const products=[
   {id:9,brand:"Lululemon",name:"Lululemon Yoga Woman",price:29.79,colors:["Black","White","Pink","Beige","Light Grey","Purple","Yellow","Green","Wine Red","Orange","Blue"],images:["https://i.imgur.com/ECNjKqe.png"],buyLink:"https://s.spblk.com/dih5",notes:"",videoLink:""},
   {id:10,brand:"Bape",name:"Bape X Hello Kitty Tees",price:7.13,colors:["Black","White"],images:["https://i.imgur.com/chzZTyw.png","https://i.imgur.com/J6lOQM5.png","https://i.imgur.com/x6tfLKw.jpeg","https://i.imgur.com/gpeOqI6.jpeg","https://i.imgur.com/orhlJW1.jpeg"],buyLink:"https://s.spblk.com/djsm",notes:"96%+ cotton, weight = 260g",videoLink:""},
   {id:11,brand:"Acne Studios",name:"Acne Studios Shorts",price:15.52,colors:["Black","Blue"],images:["https://i.imgur.com/W5onCiS.jpeg","https://i.imgur.com/LjmzEev.jpeg"],buyLink:"https://s.spblk.com/dkj5",notes:"weight = 620g",videoLink:""},
-  {id:12,brand:"Lego",name:"MARVEL Daily Bugle (Set 76178)",price:32.54,colors:["Red","Grey"],images:["https://i.imgur.com/dRFTufK.jpeg","https://i.imgur.com/Ri04and.jpeg"],buyLink:"https://s.spblk.com/dkj8",notes:"",videoLink:""}
+  {id:12,brand:"Lego",name:"MARVEL Daily Bugle (Set 76178)",price:32.54,colors:["Red","Grey"],images:["https://i.imgur.com/dRFTufK.jpeg","https://i.imgur.com/Ri04and.jpeg"],buyLink:"https://s.spblk.com/dkj8",notes:"",videoLink:""},
+  {id:13,brand:"Bape",name:"Bape Skateboard",price:7.94,colors:["Blue","Pink","Green","Grey","Yellow"],images:["https://cbu01.alicdn.com/img/ibank/18721425855_1516493250.jpg","https://preview.redd.it/50-bape-skateboard-comes-in-5-colors-v0-uwuls78jmwrg1.png?width=1080&crop=smart&auto=webp&s=e708379d19fa32f56ba20413f4f91b0d31a1b730"],buyLink:"https://s.spblk.com/d9rq",notes:"",videoLink:""},
+  {id:14,brand:"Supreme",name:"Supreme Retro Handheld Console",price:3.94,colors:["Red","Black","Green","Blue","Grey"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01B0Fl6Q1YHckA02t6S_!!2220159773034-0-cib.jpg","https://preview.redd.it/24-supreme-400-retro-games-handheld-console-black-red-v0-nsdb11o59brg1.png?width=1080&crop=smart&auto=webp&s=dab071e5eb29cea52e9e7b2a4a8ea0a9451582b1"],buyLink:"https://s.spblk.com/d7v5",notes:"",videoLink:""},
+  {id:15,brand:"Artiemaster",name:"Artiemaster Quality Blank Joggings",price:13.65,colors:["Grey","Black"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01bpyF2M1rFlqepngmF_!!2631375602-0-cib.jpg","https://preview.redd.it/86-artiemaster-high-quality-blank-joggings-grey-black-v0-48rcljtk2cqg1.png?width=1080&crop=smart&auto=webp&s=895c12c0dd496b6838f0202c1fd0d825ce52b1c2"],buyLink:"https://s.spblk.com/cve2",notes:"",videoLink:""},
+  {id:16,brand:"Lego",name:"NASA Artemis Space Launch System (Set 10341)",price:29.36,colors:["Orange","Black","Grey"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01TQyoPV1NNc7yJjNbQ_!!2219657771558-0-cib.jpg","https://preview.redd.it/160-lego-nasa-artemis-space-launch-system-set-10341-v0-ocl0k4taviqg1.png?width=1080&crop=smart&auto=webp&s=a3c1afded936181040de2ec9797b264b3267fb23"],buyLink:"https://s.spblk.com/d016",notes:"",videoLink:""},
+  {id:17,brand:"Lego",name:"STAR WARS Millennium Falcon (Set 75105)",price:13.65,colors:["Black","Grey"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01UhlJXH20ToUx2mc3l_!!2218302066851-0-cib.jpg","https://preview.redd.it/86-lego-star-wars-millennium-falcon-set-75105-v0-h13nr0txl4qg1.png?width=1080&crop=smart&auto=webp&s=398de863a9a7299e986390d43763d45aaf212c42"],buyLink:"https://s.spblk.com/cuqf",notes:"",videoLink:""},
+  {id:18,brand:"Ralph Lauren",name:"Polo Bear Wool Sweater",price:28.57,colors:["Blue"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01vffxme24aSTwMYfzB_!!2215510567407-0-cib.jpg","https://preview.redd.it/183-polo-by-ralph-lauren-wool-sweater-95-wool-v0-b6hoacjwrymg1.png?width=1080&crop=smart&auto=webp&s=1effcea106507e4c9355607fe190c01821de9e72"],buyLink:"https://s.spblk.com/clk4",notes:"",videoLink:""},
+  {id:19,brand:"Playstation",name:"GTA San Andreas Carpet",price:2.54,colors:["Black","Yellow"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01lSzqCn2BCpREdsbVx_!!2215978018303-0-cib.jpg","https://preview.redd.it/6-gta-san-andreas-playstation-2-carpet-others-differents-v0-jzds8lv23dhg1.png?width=1080&crop=smart&auto=webp&s=b51bbf26254702505ac485058672cf21d9b2bca9"],buyLink:"https://s.spblk.com/dlc5",notes:"",videoLink:""},
+  {id:20,brand:"Asics",name:"ZC Batch GEL-NYC",price:36.35,colors:["Black","Grey","Blue","Pink","Beige"],images:["https://si.geilicdn.com/pcitem1845163825-774f000001988d52d82f0a81347d_1440_1440.jpg","https://si.geilicdn.com/wdseller1845163825-0cba000001985bad9f7f0a8133cc_1179_1179.jpg"],buyLink:"https://s.spblk.com/dlc7",notes:"Have it in hand, really perfect quality. Best batch on the market. Highly recommend.",videoLink:""},
+  {id:21,brand:"Nike",name:"GX Batch Jordan 4",price:65.07,colors:["Black","White","Grey","Purple","Blue","Yellow","Red","Pink","Brown","Beige","Orange"],images:["https://si.geilicdn.com/wdseller1845163825-1f740000019075e998800a210349_1080_1080.jpg"],buyLink:"https://s.spblk.com/dlc8",notes:"Have it in hand, really high quality. Best batch available. Highly recommend.",videoLink:""}
 ];
-const brandDomains={Supreme:'supremenewyork.com',Apple:'apple.com',Lego:'lego.com',Rimowa:'rimowa.com','Louis Vuitton':'louisvuitton.com',Stussy:'stussy.com',Nike:'nike.com',Lululemon:'lululemon.com',Bape:'bape.com','Acne Studios':'acnestudios.com'};
+const brandDomains={Supreme:'supremenewyork.com',Apple:'apple.com',Lego:'lego.com',Rimowa:'rimowa.com','Louis Vuitton':'louisvuitton.com',Stussy:'stussy.com',Nike:'nike.com',Lululemon:'lululemon.com',Bape:'bape.com','Acne Studios':'acnestudios.com','Ralph Lauren':'ralphlauren.com',Asics:'asics.com',Playstation:'playstation.com',Artiemaster:'artiemaster.com'};
 function logoUrl(brand){return brandDomains[brand]?'https://logo.clearbit.com/'+brandDomains[brand]:null;}
 function fmt(p){return '$'+p.toFixed(2);}
-function renderBrands(){
-  const q=document.getElementById('bsearch').value.toLowerCase();
-  const map={};products.forEach(p=>{map[p.brand]=(map[p.brand]||0)+1;});
-  const list=Object.entries(map).filter(([b])=>b.toLowerCase().includes(q)).sort((a,b)=>b[1]-a[1]);
-  const grid=document.getElementById('bgrid');
-  if(!list.length){grid.innerHTML='<div class="empty">No brands found</div>';return;}
-  grid.innerHTML=list.map(([brand,count],i)=>{
-    const url=logoUrl(brand);
-    const init=brand.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-    const logo=url?'<div class="blog"><img src="'+url+'" onerror="this.parentElement.className=\'binit\';this.parentElement.innerHTML=\''+init+'\';this.remove();" /></div>':'<div class="binit">'+init+'</div>';
-    return '<div class="bcard" style="animation-delay:'+i*0.04+'s" onclick="openBrand(\''+brand.replace(/'/g,"\\'")+'\')">'
-      +logo+'<div class="bname">'+brand+'</div><div class="bcnt">'+count+' find'+(count!==1?'s':'')+'</div></div>';
-  }).join('');
-}
-function openBrand(brand){
-  const items=products.filter(p=>p.brand===brand);
-  const url=logoUrl(brand);
-  const init=brand.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-  document.getElementById('bmlog').innerHTML=url?'<img src="'+url+'" style="width:36px;height:36px;object-fit:contain;" onerror="this.style.display=\'none\';" />':'<span style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--muted);">'+init+'</span>';
-  document.getElementById('bmtitle').textContent=brand;
-  document.getElementById('bmsub').textContent=items.length+' find'+(items.length!==1?'s':'');
-  document.getElementById('bitems').innerHTML=items.map(p=>{
-    const img=(p.images&&p.images[0])||p.image||'';
-    return '<div class="bitem" onclick="openQV('+p.id+')"><div class="bitem-img"><img src="'+img+'" alt="'+p.name+'" /></div><div class="bitem-info"><div class="bitem-name">'+p.name+'</div><div class="bitem-price">'+fmt(p.price)+'</div></div></div>';
-  }).join('');
-  document.getElementById('bov').classList.add('open');
-}
 function openQV(id){
   const p=products.find(x=>x.id===id);if(!p)return;
   document.getElementById('bov').classList.remove('open');
   const imgs=(p.images&&p.images.length)?p.images:(p.image?[p.image]:[]);
-  let ai=0;
-  function renderImg(){
-    document.getElementById('qvimg').innerHTML=
-      '<img src="'+imgs[ai]+'" alt="'+p.name+'" style="flex:1;width:100%;object-fit:contain;background:#fff;" />'
-      +(imgs.length>1?'<div style="display:flex;gap:6px;padding:8px;background:#fff;overflow-x:auto;justify-content:center;flex-shrink:0;">'
-        +imgs.map((s,i)=>'<img src="'+s+'" onclick="ai='+i+';renderImg();" style="width:44px;height:44px;object-fit:contain;cursor:pointer;border:2px solid '+(i===ai?'#333':'#ddd')+';border-radius:4px;flex-shrink:0;" />').join('')
-        +'</div>':'');
-  }
-  renderImg();
+  window._qvImgs=imgs; window._qvIdx=0;
+  window.qvSetImg=function(i){
+    window._qvIdx=i;
+    const m=document.getElementById('qv-main-img');
+    if(m)m.src=window._qvImgs[i];
+    document.querySelectorAll('.qv-thumb').forEach((t,ti)=>{t.style.border=ti===i?'2px solid #555':'2px solid #ddd';});
+  };
+  const thumbs=imgs.length>1?'<div style="display:flex;gap:6px;padding:8px;background:#fff;overflow-x:auto;justify-content:center;flex-shrink:0;">'
+    +imgs.map((s,i)=>'<img class="qv-thumb" src="'+s+'" onclick="qvSetImg('+i+')" style="width:44px;height:44px;object-fit:contain;cursor:pointer;border:2px solid '+(i===0?'#555':'#ddd')+';border-radius:4px;flex-shrink:0;" />').join('')
+    +'</div>':'';
+  document.getElementById('qvimg').innerHTML='<div style="width:100%;height:100%;display:flex;flex-direction:column;"><img id="qv-main-img" src="'+(imgs[0]||'')+'" alt="'+p.name+'" style="flex:1;width:100%;object-fit:contain;background:#fff;min-height:200px;" />'+thumbs+'</div>';
   const rel=products.filter(x=>x.id!==p.id&&x.brand===p.brand).slice(0,2);
   document.getElementById('qvinf').innerHTML=
     '<div class="qvbrand">'+p.brand+'</div>'
@@ -217,6 +201,38 @@ function openQV(id){
     +(rel.length?'<div style="border-top:1px solid var(--border);padding-top:12px;"><p style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">You might also like</p><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">'+rel.map(r=>{const ri=(r.images&&r.images[0])||r.image||'';return '<div onclick="openQV('+r.id+')" style="cursor:pointer;"><div style="height:100px;background:#fff;border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center;"><img src="'+ri+'" style="width:100%;height:100%;object-fit:contain;" /></div><p style="font-size:11px;color:var(--text);font-weight:500;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+r.name+'</p></div>';}).join('')+'</div></div>':'')
     +'<a class="qvbuy" href="'+p.buyLink+'" target="_blank" rel="noopener">Buy on Superbuy →</a>';
   document.getElementById('qvov').classList.add('open');
+}
+function renderBrands(){
+  const q=document.getElementById('bsearch').value.toLowerCase();
+  const map={};products.forEach(p=>{map[p.brand]=(map[p.brand]||0)+1;});
+  // Sort alphabetically
+  const list=Object.entries(map).filter(([b])=>b.toLowerCase().includes(q)).sort((a,b)=>a[0].localeCompare(b[0]));
+  const grid=document.getElementById('bgrid');
+  if(!list.length){grid.innerHTML='<div class="empty">No brands found</div>';return;}
+  grid.innerHTML=list.map(([brand,count],i)=>{
+    const url=logoUrl(brand);
+    const init=brand.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    const logo=url
+      ?'<div class="blog"><img src="'+url+'" onerror="this.parentElement.outerHTML=\'<div class=\\'binit\\'><span>'+init+'</span></div>\'" /></div>'
+      :'<div class="binit"><span>'+init+'</span></div>';
+    return '<div class="bcard" style="animation-delay:'+i*0.03+'s" onclick="openBrand(\''+brand.replace(/'/g,"\\'")+'\')">'
+      +logo+'<div class="bname">'+brand+'</div><div class="bcnt">'+count+' find'+(count!==1?'s':'')+'</div></div>';
+  }).join('');
+}
+function openBrand(brand){
+  const items=products.filter(p=>p.brand===brand);
+  const url=logoUrl(brand);
+  const init=brand.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  document.getElementById('bmlog').innerHTML=url
+    ?'<img src="'+url+'" style="width:36px;height:36px;object-fit:contain;" onerror="this.outerHTML='<span style=\"font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--muted);\">'+init+'</span>'" />'
+    :'<span style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--muted);">'+init+'</span>';
+  document.getElementById('bmtitle').textContent=brand;
+  document.getElementById('bmsub').textContent=items.length+' find'+(items.length!==1?'s':'');
+  document.getElementById('bitems').innerHTML=items.map(p=>{
+    const img=(p.images&&p.images[0])||p.image||'';
+    return '<div class="bitem" onclick="openQV('+p.id+')"><div class="bitem-img"><img src="'+img+'" alt="'+p.name+'" /></div><div class="bitem-info"><div class="bitem-name">'+p.name+'</div><div class="bitem-price">'+fmt(p.price)+'</div></div></div>';
+  }).join('');
+  document.getElementById('bov').classList.add('open');
 }
 document.getElementById('qvov').addEventListener('click',e=>{if(e.target===document.getElementById('qvov'))document.getElementById('qvov').classList.remove('open');});
 document.getElementById('bov').addEventListener('click',e=>{if(e.target===document.getElementById('bov'))document.getElementById('bov').classList.remove('open');});
