@@ -369,10 +369,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
-    margin-top: 10px;
+    gap: 0;
     padding-top: 10px;
     border-top: 1px solid var(--border);
+    margin-top: 8px;
   }
   .card-price { font-size: 15px; color: var(--card-price); font-weight: 600; }
   .card-color {
@@ -697,7 +697,7 @@
 <canvas id="bg-canvas"></canvas>
 
 <div id="announcement-banner" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New MARVEL Daily Bugle just dropped — <a href="#finds" style="color:#fff;text-decoration:underline;cursor:pointer;" onclick="event.preventDefault();document.getElementById('announcement-banner').style.display='none';openQV(12);">Check it out</a></p>
+  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New GX Batch Jordan 4 just dropped — <a href="#finds" style="color:#fff;text-decoration:underline;cursor:pointer;" onclick="event.preventDefault();document.getElementById('announcement-banner').style.display='none';openQV(21);">Check it out</a></p>
   <button onclick="document.getElementById('announcement-banner').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
 </div>
 
@@ -734,6 +734,13 @@
     <p>Filtered &amp; QC checked</p>
   </div>
 </section>
+
+<div class="recent-section" id="recent-section-top">
+  <div class="recent-header">
+    <h2>Recently Added</h2>
+  </div>
+  <div class="recent-row" id="recent-row"></div>
+</div>
 
 <div class="filters-wrap" id="finds">
   <div class="cat-bar" id="cat-bar" style="justify-content:space-between;">
@@ -787,12 +794,6 @@
   </div>
 </div>
 
-<div class="recent-section" id="recent-section">
-  <div class="recent-header">
-    <h2>Recently Added</h2>
-  </div>
-  <div class="recent-row" id="recent-row"></div>
-</div>
 
 <div class="price-filters" id="price-filters">
   <button class="price-pill" onclick="setPriceFilter(0)" data-max="0">All prices</button>
@@ -1092,6 +1093,141 @@ const products = [
     buyLink: "https://s.spblk.com/dkj8",
     notes: "",
     videoLink: ""
+  },
+  {
+    id: 13,
+    addedDate: "2025-12-29T00:00:00.000Z",
+    name: "Bape Skateboard",
+    brand: "Bape",
+    category: "room decor",
+    mainCat: "others",
+    colors: ["Blue","Pink","Green","Grey","Yellow"],
+    price: 7.94,
+    badge: "new",
+    images: ["https://cbu01.alicdn.com/img/ibank/18721425855_1516493250.jpg","https://preview.redd.it/50-bape-skateboard-comes-in-5-colors-v0-uwuls78jmwrg1.png?width=1080&crop=smart&auto=webp&s=e708379d19fa32f56ba20413f4f91b0d31a1b730"],
+    buyLink: "https://s.spblk.com/d9rq",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 14,
+    addedDate: "2025-12-30T00:00:00.000Z",
+    name: "Supreme Retro Handheld Console",
+    brand: "Supreme",
+    category: "electronics",
+    mainCat: "others",
+    colors: ["Red","Black","Green","Blue","Grey"],
+    price: 3.94,
+    badge: "new",
+    images: ["https://cbu01.alicdn.com/img/ibank/O1CN01B0Fl6Q1YHckA02t6S_!!2220159773034-0-cib.jpg","https://preview.redd.it/24-supreme-400-retro-games-handheld-console-black-red-v0-nsdb11o59brg1.png?width=1080&crop=smart&auto=webp&s=dab071e5eb29cea52e9e7b2a4a8ea0a9451582b1","https://preview.redd.it/24-supreme-400-retro-games-handheld-console-black-red-v0-h3dwrrg69brg1.png?width=1080&crop=smart&auto=webp&s=3073d375514b6c42e6b7301d81d59f198cf27466"],
+    buyLink: "https://s.spblk.com/d7v5",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 15,
+    addedDate: "2025-12-31T00:00:00.000Z",
+    name: "Artiemaster Quality Blank Joggings",
+    brand: "Artiemaster",
+    category: "sweatpants",
+    mainCat: "bottoms",
+    colors: ["Grey","Black"],
+    price: 13.65,
+    badge: "new",
+    images: ["https://cbu01.alicdn.com/img/ibank/O1CN01bpyF2M1rFlqepngmF_!!2631375602-0-cib.jpg","https://preview.redd.it/86-artiemaster-high-quality-blank-joggings-grey-black-v0-48rcljtk2cqg1.png?width=1080&crop=smart&auto=webp&s=895c12c0dd496b6838f0202c1fd0d825ce52b1c2","https://preview.redd.it/86-artiemaster-high-quality-blank-joggings-grey-black-v0-ygtpbzsm2cqg1.png?width=1080&crop=smart&auto=webp&s=37dbd98420c4ad2c1ea35a1b6b81cc1cbfeef903"],
+    buyLink: "https://s.spblk.com/cve2",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 16,
+    addedDate: "2026-01-01T00:00:00.000Z",
+    name: "NASA Artemis Space Launch System (Set 10341)",
+    brand: "Lego",
+    category: "lego",
+    mainCat: "others",
+    colors: ["Orange","Black","Grey"],
+    price: 29.36,
+    badge: "new",
+    images: ["https://cbu01.alicdn.com/img/ibank/O1CN01TQyoPV1NNc7yJjNbQ_!!2219657771558-0-cib.jpg","https://preview.redd.it/160-lego-nasa-artemis-space-launch-system-set-10341-v0-ocl0k4taviqg1.png?width=1080&crop=smart&auto=webp&s=a3c1afded936181040de2ec9797b264b3267fb23","https://preview.redd.it/160-lego-nasa-artemis-space-launch-system-set-10341-v0-l5oqg0r3viqg1.png?width=1080&crop=smart&auto=webp&s=fd039be52175e72f9087680cd66c0db3cfbea641"],
+    buyLink: "https://s.spblk.com/d016",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 17,
+    addedDate: "2026-01-02T00:00:00.000Z",
+    name: "STAR WARS Millennium Falcon (Set 75105)",
+    brand: "Lego",
+    category: "lego",
+    mainCat: "others",
+    colors: ["Black","Grey"],
+    price: 13.65,
+    badge: "new",
+    images: ["https://cbu01.alicdn.com/img/ibank/O1CN01UhlJXH20ToUx2mc3l_!!2218302066851-0-cib.jpg","https://preview.redd.it/86-lego-star-wars-millennium-falcon-set-75105-v0-h13nr0txl4qg1.png?width=1080&crop=smart&auto=webp&s=398de863a9a7299e986390d43763d45aaf212c42","https://preview.redd.it/86-lego-star-wars-millennium-falcon-set-75105-v0-9o0k6i3am4qg1.png?width=1080&crop=smart&auto=webp&s=bdbcaf3cf4f6c54c3fcde0f6c77a5c6f5ec7c536"],
+    buyLink: "https://s.spblk.com/cuqf",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 18,
+    addedDate: "2026-01-03T00:00:00.000Z",
+    name: "Polo Bear Wool Sweater",
+    brand: "Ralph Lauren",
+    category: "sweaters",
+    mainCat: "tops",
+    colors: ["Blue"],
+    price: 28.57,
+    badge: "new",
+    images: ["https://cbu01.alicdn.com/img/ibank/O1CN01vffxme24aSTwMYfzB_!!2215510567407-0-cib.jpg","https://preview.redd.it/183-polo-by-ralph-lauren-wool-sweater-95-wool-v0-b6hoacjwrymg1.png?width=1080&crop=smart&auto=webp&s=1effcea106507e4c9355607fe190c01821de9e72","https://preview.redd.it/183-polo-by-ralph-lauren-wool-sweater-95-wool-v0-48oguhoxrymg1.png?width=1080&crop=smart&auto=webp&s=ebb3b019579fd639f757bddf623fca7a9f2ad5fd"],
+    buyLink: "https://s.spblk.com/clk4",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 19,
+    addedDate: "2026-01-04T00:00:00.000Z",
+    name: "GTA San Andreas Carpet",
+    brand: "Playstation",
+    category: "room decor",
+    mainCat: "others",
+    colors: ["Black","Yellow"],
+    price: 2.54,
+    badge: "new",
+    images: ["https://cbu01.alicdn.com/img/ibank/O1CN01lSzqCn2BCpREdsbVx_!!2215978018303-0-cib.jpg","https://preview.redd.it/6-gta-san-andreas-playstation-2-carpet-others-differents-v0-jzds8lv23dhg1.png?width=1080&crop=smart&auto=webp&s=b51bbf26254702505ac485058672cf21d9b2bca9"],
+    buyLink: "https://s.spblk.com/dlc5",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 20,
+    addedDate: "2026-01-05T00:00:00.000Z",
+    name: "ZC Batch GEL-NYC",
+    brand: "Asics",
+    category: "sneakers",
+    mainCat: "footwear",
+    colors: ["Black","Grey","Blue","Pink","Beige"],
+    price: 36.35,
+    badge: "new",
+    images: ["https://si.geilicdn.com/pcitem1845163825-774f000001988d52d82f0a81347d_1440_1440.jpg","https://si.geilicdn.com/wdseller1845163825-0cba000001985bad9f7f0a8133cc_1179_1179.jpg"],
+    buyLink: "https://s.spblk.com/dlc7",
+    notes: "Have it in hand, really perfect quality. Best batch on the market. Highly recommend.",
+    videoLink: ""
+  },
+  {
+    id: 21,
+    addedDate: "2026-01-06T00:00:00.000Z",
+    name: "GX Batch Jordan 4",
+    brand: "Nike",
+    category: "sneakers",
+    mainCat: "footwear",
+    colors: ["Black","White","Grey","Purple","Blue","Yellow","Red","Pink","Brown","Beige","Orange"],
+    price: 65.07,
+    badge: "new",
+    images: ["https://si.geilicdn.com/wdseller1845163825-1f740000019075e998800a210349_1080_1080.jpg"],
+    buyLink: "https://s.spblk.com/dlc8",
+    notes: "Have it in hand, really high quality. Best batch available. Highly recommend.",
+    videoLink: ""
   }
 ];
 // ─────────────────────────────────────────
@@ -1356,20 +1492,28 @@ function openQV(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
   const overlay = document.getElementById('qv-overlay');
-  const imgs = p.images || (p.image ? [p.image] : []);
-  let activeIdx = 0;
-  function renderQVImg() {
-    const el = document.getElementById('qv-img');
-    el.innerHTML = `
-      <div style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;">
-        <img src="${imgs[activeIdx]}" alt="${p.name}" style="flex:1;width:100%;object-fit:contain;background:#fff;" />
-        ${imgs.length > 1 ? `
-        <div style="display:flex;gap:6px;padding:8px;background:#fff;overflow-x:auto;justify-content:center;flex-shrink:0;">
-          ${imgs.map((src,i) => `<img src="${src}" onclick="(function(){activeIdx=${i};renderQVImg();})()" style="width:48px;height:48px;object-fit:contain;cursor:pointer;border:2px solid ${i===activeIdx?'#333':'#ddd'};border-radius:4px;flex-shrink:0;" />`).join('')}
-        </div>` : ''}
-      </div>`;
-  }
-  renderQVImg();
+  const imgs = p.images && p.images.length ? p.images : (p.image ? [p.image] : []);
+  window._qvImgs = imgs;
+  window._qvIdx = 0;
+  window.qvSetImg = function(i) {
+    window._qvIdx = i;
+    const mainImg = document.getElementById('qv-main-img');
+    if (mainImg) mainImg.src = window._qvImgs[i];
+    document.querySelectorAll('.qv-thumb').forEach((t,ti) => {
+      t.style.border = ti === i ? '2px solid #555' : '2px solid #ddd';
+    });
+  };
+  const thumbsHtml = imgs.length > 1
+    ? '<div style="display:flex;gap:6px;padding:8px;background:#fff;overflow-x:auto;justify-content:center;flex-shrink:0;">'
+      + imgs.map((src,i) => `<img class="qv-thumb" src="${src}" onclick="qvSetImg(${i})" style="width:48px;height:48px;object-fit:contain;cursor:pointer;border:2px solid ${i===0?'#555':'#ddd'};border-radius:4px;flex-shrink:0;" />`)
+        .join('')
+      + '</div>'
+    : '';
+  document.getElementById('qv-img').innerHTML =
+    `<div style="width:100%;height:100%;display:flex;flex-direction:column;">
+      <img id="qv-main-img" src="${imgs[0]||''}" alt="${p.name}" style="flex:1;width:100%;object-fit:contain;background:#fff;min-height:200px;" />
+      ${thumbsHtml}
+    </div>`;
   // Related: prioritize same brand, fill with same category, exactly 3
   const sameBrand = products.filter(x => x.id !== p.id && x.brand === p.brand);
   const sameCat   = products.filter(x => x.id !== p.id && x.brand !== p.brand && x.mainCat === p.mainCat);
@@ -1382,7 +1526,7 @@ function openQV(id) {
     <div class="color-tags" style="margin-top:4px;">${(p.colors||[p.color]).map(c=>`<span class="color-tag">${c}</span>`).join('')}</div>
     ${p.notes ? `<div style="margin-top:10px;padding:10px 12px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;"><p style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Notes</p><p style="font-size:12px;color:var(--text);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${p.notes}</p></div>` : ''}
     ${p.videoLink ? `<a href="${p.videoLink}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;text-decoration:none;color:var(--text);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;margin-top:8px;transition:border-color 0.15s;" onmouseover="this.style.borderColor='var(--muted)'" onmouseout="this.style.borderColor='var(--border2)'"><svg viewBox="0 0 24 24" fill="#ff4444" width="16" height="16"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>Watch my review</a>` : ''}
-    ${related.length ? `<div style="margin-top:12px;border-top:1px solid var(--border);padding-top:12px;"><p style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">You might also like</p><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">${related.map(r=>`<div onclick="openQV(${r.id})" style="cursor:pointer;"><div style="width:100%;height:120px;background:#fff;border-radius:4px;overflow:hidden;"><img src="${r.image}" style="width:100%;height:100%;object-fit:contain;display:block;" /></div><p style="font-size:10px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${r.brand}</p><p style="font-size:11px;color:var(--text);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${r.name}</p></div>`).join('')}</div></div>` : ''}
+    ${related.length ? `<div style="margin-top:12px;border-top:1px solid var(--border);padding-top:12px;"><p style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">You might also like</p><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">${related.map(r=>`<div onclick="openQV(${r.id})" style="cursor:pointer;"><div style="width:100%;height:120px;background:#fff;border-radius:4px;overflow:hidden;"><img src="${(r.images&&r.images[0])||r.image||''}" style="width:100%;height:100%;object-fit:contain;display:block;" /></div><p style="font-size:10px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${r.brand}</p><p style="font-size:11px;color:var(--text);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${r.name}</p></div>`).join('')}</div></div>` : ''}
     ${p.buyLink ? `<a class="qv-buy" href="${p.buyLink}" target="_blank" rel="noopener" style="margin-top:auto;">Buy on Superbuy →</a>` : ''}
   `;
   overlay.classList.add('open');
@@ -1411,12 +1555,12 @@ document.addEventListener('click', e => { if (!e.target.closest('.search-wrap'))
 // ── RECENTLY ADDED SECTION ──
 function renderRecent() {
   const sorted = [...products].sort((a,b) => new Date(b.addedDate) - new Date(a.addedDate)).slice(0,8);
-  const row = document.getElementById('recent-row');
+  const row = document.getElementById('recent-row'); // used by recent-section-top
   if (!row) return;
   row.innerHTML = sorted.map(p => `
     <div class="recent-card" onclick="openQV(${p.id})">
       <div class="recent-card-img">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" />
+        <img src="${(p.images&&p.images[0])||p.image||''}" alt="${p.name}" loading="lazy" />
       </div>
       <strong>${p.name}</strong>
       <p>${formatPrice(p.price)}</p>
@@ -1500,9 +1644,10 @@ render = function() {
           <div class="card-brand">${p.brand}</div>
           <div class="card-name">${p.name}</div>
           ${p.notes ? `<div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;">${p.notes}</div>` : ''}
-          <div class="card-footer">
+          <div class="color-tags" style="margin-top:6px;">${(()=>{const cols=p.colors||[p.color];const shown=cols.slice(0,5).map(c=>`<span class="color-tag">${c}</span>`).join('');const more=cols.length>5?`<span class="color-tag" style="letter-spacing:0;">…</span>`:'';return shown+more;})()}</div>
+          ${p.notes?`<div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4;letter-spacing:0.02em;">${p.notes}</div>`:''}
+          <div class="card-footer" style="margin-top:auto;">
             <div class="card-price">${formatPrice(p.price)}</div>
-            <div class="color-tags">${(()=>{const cols=p.colors||[p.color];const shown=cols.slice(0,5).map(c=>`<span class="color-tag">${c}</span>`).join('');const more=cols.length>5?`<span class="color-tag" style="letter-spacing:0;">…</span>`:'';return shown+more;})()}</div>
           </div>
         </div>
         ${buyHtml}
