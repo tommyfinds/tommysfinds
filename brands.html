@@ -46,61 +46,14 @@ footer a:hover{color:var(--text);}
 .modal-success{display:none;align-items:center;gap:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--text);}
 .modal-success.show{display:flex;}
 .modal-success-icon{width:24px;height:24px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;flex-shrink:0;}
-.hero{padding:3rem 2rem 2rem;border-bottom:1px solid var(--border);}
-.hero p{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,7vw,72px);letter-spacing:0.04em;line-height:0.9;color:var(--text);}
-.sbar{padding:1rem 2rem;border-bottom:1px solid var(--border);}
-.sbar input{width:100%;max-width:400px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:'Archivo Narrow',sans-serif;font-size:13px;padding:8px 12px;outline:none;}
-.sbar input::placeholder{color:var(--muted);}
-.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;margin:1.5rem 2rem 2rem;}
-@media(max-width:600px){.bgrid{margin:1rem 1rem 2rem;}}
-.bcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 0.8rem 1.2rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;transition:background 0.15s,border-color 0.15s,transform 0.15s;animation:fadeUp 0.3s ease both;}
-.bcard:hover{background:var(--surface2);border-color:var(--border2);transform:translateY(-3px);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.blog{width:68px;height:68px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border2);}
-.blog img{width:48px;height:48px;object-fit:contain;}
-.binit{width:68px;height:68px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--muted);}
-.bname{font-size:13px;font-weight:500;color:var(--text);}
-.bcnt{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
-.ov{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.82);align-items:center;justify-content:center;backdrop-filter:blur(6px);}
-.ov.open{display:flex;}
-.bmod{background:var(--surface);border:1px solid var(--border2);border-radius:12px;width:90%;max-width:680px;max-height:85vh;overflow-y:auto;position:relative;padding:1.5rem;}
-.bmhd{display:flex;align-items:center;gap:14px;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
-.bmlog{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid var(--border2);overflow:hidden;flex-shrink:0;}
-.bmlog img{width:36px;height:36px;object-fit:contain;}
-.bmtitle{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.06em;color:var(--text);}
-.bmsub{font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:2px;}
-.bitems{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;}
-.bitem{background:var(--surface2);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color 0.15s;}
-.bitem:hover{border-color:var(--border2);}
-.bitem-img{width:100%;aspect-ratio:3/4;background:#fff;display:flex;align-items:center;justify-content:center;}
-.bitem-img img{width:100%;height:100%;object-fit:contain;}
-.bitem-info{padding:8px 10px;}
-.bitem-name{font-size:12px;font-weight:500;color:var(--text);line-height:1.3;margin-bottom:3px;}
-.bitem-price{font-size:11px;color:var(--muted);}
-.xbtn{position:absolute;top:12px;right:12px;background:var(--surface2);border:1px solid var(--border2);color:var(--muted);border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;line-height:1;}
-.xbtn:hover{color:var(--text);}
-.qvov{display:none;position:fixed;inset:0;z-index:600;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;backdrop-filter:blur(6px);}
-.qvov.open{display:flex;}
-.qvmod{background:var(--surface);border:1px solid var(--border2);border-radius:12px;width:90%;max-width:760px;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;position:relative;}
-@media(max-width:600px){.qvmod{grid-template-columns:1fr;}}
-.qvimg{background:#fff;border-radius:12px 0 0 12px;overflow:hidden;min-height:300px;display:flex;align-items:center;justify-content:center;flex-direction:column;}
-.qvinf{padding:1.5rem;display:flex;flex-direction:column;gap:10px;}
-.qvbrand{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);}
-.qvname{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.04em;color:var(--text);line-height:1.1;}
-.qvprice{font-size:20px;font-weight:600;color:var(--card-price);}
-.ctag{font-size:9px;letter-spacing:0.05em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--border2);color:var(--muted);background:var(--surface2);border-radius:3px;}
-.ctags{display:flex;gap:4px;flex-wrap:wrap;}
-.qvbuy{display:block;padding:12px;text-align:center;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;font-family:'Archivo Narrow',sans-serif;color:var(--bg);background:var(--card-price);text-decoration:none;border:none;cursor:pointer;transition:opacity 0.15s;margin-top:auto;}
-.qvbuy:hover{opacity:0.85;}
-.empty{grid-column:1/-1;padding:4rem;text-align:center;color:var(--muted);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;}
+.hero{padding:3rem 2rem 2rem;border-bottom:1px solid var(--border);}.hero p{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,7vw,72px);letter-spacing:0.04em;line-height:0.9;color:var(--text);}.sbar{padding:1rem 2rem;border-bottom:1px solid var(--border);}.sbar input{width:100%;max-width:400px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:'Archivo Narrow',sans-serif;font-size:13px;padding:8px 12px;outline:none;}.sbar input::placeholder{color:var(--muted);}.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;margin:1.5rem 2rem 2rem;}@media(max-width:600px){.bgrid{margin:1rem 1rem 2rem;}}.bcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 0.8rem 1.2rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;transition:background 0.15s,border-color 0.15s,transform 0.15s;animation:fadeUp 0.3s ease both;}.bcard:hover{background:var(--surface2);border-color:var(--border2);transform:translateY(-3px);}@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}.blog{width:68px;height:68px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border2);}.blog img{width:48px;height:48px;object-fit:contain;}.binit{width:68px;height:68px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--muted);}.bname{font-size:13px;font-weight:500;color:var(--text);}.bcnt{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}.ov{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.82);align-items:center;justify-content:center;backdrop-filter:blur(6px);}.ov.open{display:flex;}.bmod{background:var(--surface);border:1px solid var(--border2);border-radius:12px;width:90%;max-width:680px;max-height:85vh;overflow-y:auto;position:relative;padding:1.5rem;}.bmhd{display:flex;align-items:center;gap:14px;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}.bmlog{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid var(--border2);overflow:hidden;flex-shrink:0;}.bmlog img{width:36px;height:36px;object-fit:contain;}.bmtitle{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.06em;color:var(--text);}.bmsub{font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:2px;}.bitems{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;}.bitem{background:var(--surface2);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color 0.15s;}.bitem:hover{border-color:var(--border2);}.bitem-img{width:100%;aspect-ratio:3/4;background:#fff;display:flex;align-items:center;justify-content:center;}.bitem-img img{width:100%;height:100%;object-fit:contain;}.bitem-info{padding:8px 10px;}.bitem-name{font-size:12px;font-weight:500;color:var(--text);line-height:1.3;margin-bottom:3px;}.bitem-price{font-size:11px;color:var(--muted);}.xbtn{position:absolute;top:12px;right:12px;background:var(--surface2);border:1px solid var(--border2);color:var(--muted);border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;line-height:1;}.xbtn:hover{color:var(--text);}.qvov{display:none;position:fixed;inset:0;z-index:600;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;backdrop-filter:blur(6px);}.qvov.open{display:flex;}.qvmod{background:var(--surface);border:1px solid var(--border2);border-radius:12px;width:90%;max-width:760px;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;position:relative;}@media(max-width:600px){.qvmod{grid-template-columns:1fr;}}.qvimg{background:#fff;border-radius:12px 0 0 12px;overflow:hidden;min-height:300px;display:flex;align-items:center;justify-content:center;flex-direction:column;}.qvinf{padding:1.5rem;display:flex;flex-direction:column;gap:10px;}.qvbrand{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);}.qvname{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.04em;color:var(--text);line-height:1.1;}.qvprice{font-size:20px;font-weight:600;color:var(--card-price);}.ctag{font-size:9px;letter-spacing:0.05em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--border2);color:var(--muted);background:var(--surface2);border-radius:3px;}.ctags{display:flex;gap:4px;flex-wrap:wrap;}.qvbuy{display:block;padding:12px;text-align:center;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;font-family:'Archivo Narrow',sans-serif;color:var(--bg);background:var(--card-price);text-decoration:none;border:none;cursor:pointer;transition:opacity 0.15s;margin-top:auto;}.qvbuy:hover{opacity:0.85;}.empty{grid-column:1/-1;padding:4rem;text-align:center;color:var(--muted);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;}
 </style>
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
 <script>(function(){const isL=localStorage.getItem('tf_theme')==='light';if(isL)document.documentElement.classList.add('light');})();</script>
 <div id="announcement-banner" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New GX Batch Jordan 4 just dropped — <a href="index.html#finds" style="color:#fff;text-decoration:underline;">Check it out on Finds</a></p>
+  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New AKIMBO CLUB Zip-up just dropped — <a href="index.html#finds" style="color:#fff;text-decoration:underline;">Check it out on Finds</a></p>
   <button onclick="document.getElementById('announcement-banner').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
 </div>
 <nav>
@@ -110,7 +63,6 @@ footer a:hover{color:var(--text);}
     <a href="brands.html" class="active">Brands</a>
     <a href="how-it-works.html">How it works</a>
     <a href="videos.html">Videos</a>
-    <a href="qc-check.html">QC Check</a>
     <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Superbuy</a>
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
@@ -163,24 +115,30 @@ const products=[
   {id:10,brand:"Bape",name:"Bape X Hello Kitty Tees",price:7.13,colors:["Black","White"],images:["https://i.imgur.com/chzZTyw.png","https://i.imgur.com/J6lOQM5.png","https://i.imgur.com/x6tfLKw.jpeg","https://i.imgur.com/gpeOqI6.jpeg","https://i.imgur.com/orhlJW1.jpeg"],buyLink:"https://s.spblk.com/djsm",notes:"96%+ cotton, weight = 260g",videoLink:""},
   {id:11,brand:"Acne Studios",name:"Acne Studios Shorts",price:15.52,colors:["Black","Blue"],images:["https://i.imgur.com/W5onCiS.jpeg","https://i.imgur.com/LjmzEev.jpeg"],buyLink:"https://s.spblk.com/dkj5",notes:"weight = 620g",videoLink:""},
   {id:12,brand:"Lego",name:"MARVEL Daily Bugle (Set 76178)",price:32.54,colors:["Red","Grey"],images:["https://i.imgur.com/dRFTufK.jpeg","https://i.imgur.com/Ri04and.jpeg"],buyLink:"https://s.spblk.com/dkj8",notes:"",videoLink:""},
-  {id:13,brand:"Bape",name:"Bape Skateboard",price:7.94,colors:["Blue","Pink","Green","Grey","Yellow"],images:["https://cbu01.alicdn.com/img/ibank/18721425855_1516493250.jpg","https://preview.redd.it/50-bape-skateboard-comes-in-5-colors-v0-uwuls78jmwrg1.png?width=1080&crop=smart&auto=webp&s=e708379d19fa32f56ba20413f4f91b0d31a1b730"],buyLink:"https://s.spblk.com/d9rq",notes:"",videoLink:""},
-  {id:14,brand:"Supreme",name:"Supreme Retro Handheld Console",price:3.94,colors:["Red","Black","Green","Blue","Grey"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01B0Fl6Q1YHckA02t6S_!!2220159773034-0-cib.jpg","https://preview.redd.it/24-supreme-400-retro-games-handheld-console-black-red-v0-nsdb11o59brg1.png?width=1080&crop=smart&auto=webp&s=dab071e5eb29cea52e9e7b2a4a8ea0a9451582b1"],buyLink:"https://s.spblk.com/d7v5",notes:"",videoLink:""},
-  {id:15,brand:"Artiemaster",name:"Artiemaster Quality Blank Joggings",price:13.65,colors:["Grey","Black"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01bpyF2M1rFlqepngmF_!!2631375602-0-cib.jpg","https://preview.redd.it/86-artiemaster-high-quality-blank-joggings-grey-black-v0-48rcljtk2cqg1.png?width=1080&crop=smart&auto=webp&s=895c12c0dd496b6838f0202c1fd0d825ce52b1c2"],buyLink:"https://s.spblk.com/cve2",notes:"",videoLink:""},
-  {id:16,brand:"Lego",name:"NASA Artemis Space Launch System (Set 10341)",price:29.36,colors:["Orange","Black","Grey"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01TQyoPV1NNc7yJjNbQ_!!2219657771558-0-cib.jpg","https://preview.redd.it/160-lego-nasa-artemis-space-launch-system-set-10341-v0-ocl0k4taviqg1.png?width=1080&crop=smart&auto=webp&s=a3c1afded936181040de2ec9797b264b3267fb23"],buyLink:"https://s.spblk.com/d016",notes:"",videoLink:""},
-  {id:17,brand:"Lego",name:"STAR WARS Millennium Falcon (Set 75105)",price:13.65,colors:["Black","Grey"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01UhlJXH20ToUx2mc3l_!!2218302066851-0-cib.jpg","https://preview.redd.it/86-lego-star-wars-millennium-falcon-set-75105-v0-h13nr0txl4qg1.png?width=1080&crop=smart&auto=webp&s=398de863a9a7299e986390d43763d45aaf212c42"],buyLink:"https://s.spblk.com/cuqf",notes:"",videoLink:""},
-  {id:18,brand:"Ralph Lauren",name:"Polo Bear Wool Sweater",price:28.57,colors:["Blue"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01vffxme24aSTwMYfzB_!!2215510567407-0-cib.jpg","https://preview.redd.it/183-polo-by-ralph-lauren-wool-sweater-95-wool-v0-b6hoacjwrymg1.png?width=1080&crop=smart&auto=webp&s=1effcea106507e4c9355607fe190c01821de9e72"],buyLink:"https://s.spblk.com/clk4",notes:"",videoLink:""},
-  {id:19,brand:"Playstation",name:"GTA San Andreas Carpet",price:2.54,colors:["Black","Yellow"],images:["https://cbu01.alicdn.com/img/ibank/O1CN01lSzqCn2BCpREdsbVx_!!2215978018303-0-cib.jpg","https://preview.redd.it/6-gta-san-andreas-playstation-2-carpet-others-differents-v0-jzds8lv23dhg1.png?width=1080&crop=smart&auto=webp&s=b51bbf26254702505ac485058672cf21d9b2bca9"],buyLink:"https://s.spblk.com/dlc5",notes:"",videoLink:""},
+  {id:13,brand:"Bape",name:"Bape Skateboard",price:7.94,colors:["Blue","Pink","Green","Grey","Yellow"],images:["https://i.imgur.com/PQ8KAlt.png","https://preview.redd.it/50-bape-skateboard-comes-in-5-colors-v0-uwuls78jmwrg1.png?width=1080&crop=smart&auto=webp&s=e708379d19fa32f56ba20413f4f91b0d31a1b730"],buyLink:"https://s.spblk.com/d9rq",notes:"",videoLink:""},
+  {id:14,brand:"Supreme",name:"Supreme Retro Handheld Console",price:3.94,colors:["Red","Black","Green","Blue","Grey"],images:["https://i.imgur.com/dQxVUxW.png","https://preview.redd.it/24-supreme-400-retro-games-handheld-console-black-red-v0-nsdb11o59brg1.png?width=1080&crop=smart&auto=webp&s=dab071e5eb29cea52e9e7b2a4a8ea0a9451582b1"],buyLink:"https://s.spblk.com/d7v5",notes:"",videoLink:""},
+  {id:15,brand:"Artiemaster",name:"Artiemaster Quality Blank Joggings",price:13.65,colors:["Grey","Black"],images:["https://i.imgur.com/hVh5sUw.png","https://preview.redd.it/86-artiemaster-high-quality-blank-joggings-grey-black-v0-48rcljtk2cqg1.png?width=1080&crop=smart&auto=webp&s=895c12c0dd496b6838f0202c1fd0d825ce52b1c2"],buyLink:"https://s.spblk.com/cve2",notes:"",videoLink:""},
+  {id:16,brand:"Lego",name:"NASA Artemis Space Launch System (Set 10341)",price:29.36,colors:["Orange","Black","Grey"],images:["https://i.imgur.com/xOnkxZo.png","https://preview.redd.it/160-lego-nasa-artemis-space-launch-system-set-10341-v0-ocl0k4taviqg1.png?width=1080&crop=smart&auto=webp&s=a3c1afded936181040de2ec9797b264b3267fb23"],buyLink:"https://s.spblk.com/d016",notes:"",videoLink:""},
+  {id:17,brand:"Lego",name:"STAR WARS Millennium Falcon (Set 75105)",price:13.65,colors:["Black","Grey"],images:["https://i.imgur.com/CzcVQcs.png","https://preview.redd.it/86-lego-star-wars-millennium-falcon-set-75105-v0-h13nr0txl4qg1.png?width=1080&crop=smart&auto=webp&s=398de863a9a7299e986390d43763d45aaf212c42"],buyLink:"https://s.spblk.com/cuqf",notes:"",videoLink:""},
+  {id:18,brand:"Ralph Lauren",name:"Polo Bear Wool Sweater",price:28.57,colors:["Blue"],images:["https://i.imgur.com/lm7jdfO.png","https://preview.redd.it/183-polo-by-ralph-lauren-wool-sweater-95-wool-v0-b6hoacjwrymg1.png?width=1080&crop=smart&auto=webp&s=1effcea106507e4c9355607fe190c01821de9e72"],buyLink:"https://s.spblk.com/clk4",notes:"",videoLink:""},
+  {id:19,brand:"Playstation",name:"GTA San Andreas Carpet",price:2.54,colors:["Black","Yellow"],images:["https://i.imgur.com/oFzAKEm.png","https://preview.redd.it/6-gta-san-andreas-playstation-2-carpet-others-differents-v0-jzds8lv23dhg1.png?width=1080&crop=smart&auto=webp&s=b51bbf26254702505ac485058672cf21d9b2bca9"],buyLink:"https://s.spblk.com/dlc5",notes:"",videoLink:""},
   {id:20,brand:"Asics",name:"ZC Batch GEL-NYC",price:36.35,colors:["Black","Grey","Blue","Pink","Beige"],images:["https://si.geilicdn.com/pcitem1845163825-774f000001988d52d82f0a81347d_1440_1440.jpg","https://si.geilicdn.com/wdseller1845163825-0cba000001985bad9f7f0a8133cc_1179_1179.jpg"],buyLink:"https://s.spblk.com/dlc7",notes:"Have it in hand, really perfect quality. Best batch on the market. Highly recommend.",videoLink:""},
-  {id:21,brand:"Nike",name:"GX Batch Jordan 4",price:65.07,colors:["Black","White","Grey","Purple","Blue","Yellow","Red","Pink","Brown","Beige","Orange"],images:["https://si.geilicdn.com/wdseller1845163825-1f740000019075e998800a210349_1080_1080.jpg"],buyLink:"https://s.spblk.com/dlc8",notes:"Have it in hand, really high quality. Best batch available. Highly recommend.",videoLink:""}
+  {id:21,brand:"Nike",name:"GX Batch Jordan 4",price:65.07,colors:["Black","White","Grey","Purple","Blue","Yellow","Red","Pink","Brown","Beige","Orange"],images:["https://si.geilicdn.com/wdseller1845163825-1f740000019075e998800a210349_1080_1080.jpg"],buyLink:"https://s.spblk.com/dlc8",notes:"Have it in hand, really high quality. Best batch available. Highly recommend.",videoLink:""},
+  {id:22,brand:"Anime",name:"Death Note Misa Amane Short-Sleeve",price:7.48,colors:["Black","Red"],images:["https://i.imgur.com/0j7SUXF.png","https://i.imgur.com/0AmHhxQ.png"],buyLink:"https://s.spblk.com/dlfr",notes:"",videoLink:""},
+  {id:23,brand:"Numeris",name:"Numeris Shoes (28 designs)",price:30.16,colors:["Black","White","Green","Pink","Blue"],images:["https://i.imgur.com/dsnIGql.png","https://i.imgur.com/ZnlQaqd.png","https://i.imgur.com/jWOvupX.png"],buyLink:"https://s.spblk.com/dlft",notes:"",videoLink:""},
+  {id:24,brand:"Stussy / Nike",name:"Stussy X Nike AIR Bomber Jacket",price:23.81,colors:["Black","Green"],images:["https://i.imgur.com/nYsSIhc.jpeg","https://i.imgur.com/8RJ6im2.png"],buyLink:"https://s.spblk.com/dlg0",notes:"",videoLink:""},
+  {id:25,brand:"Nike",name:"NOCTA Short Sleeve Tee",price:7.78,colors:["Black","White","Grey","Beige","Red","Blue","Orange","Pink"],images:["https://i.imgur.com/8y88zth.jpeg","https://i.imgur.com/GKNpkbQ.png","https://i.imgur.com/boc2WNA.png"],buyLink:"https://s.spblk.com/akbo",notes:"",videoLink:""},
+  {id:26,brand:"No Brand",name:"Cursive Lettering Tee",price:8.11,colors:["Black","White"],images:["https://i.imgur.com/gSRmwGx.png","https://i.imgur.com/AZWrdZq.png","https://i.imgur.com/875yQhp.png"],buyLink:"https://s.spblk.com/dlg2",notes:"",videoLink:""},
+  {id:27,brand:"Akimbo",name:"AKIMBO CLUB Zip-up",price:17.46,colors:["Red","Black","Blue"],images:["https://i.imgur.com/yhxqlY9.png","https://i.imgur.com/Cfg99Ou.jpeg","https://i.imgur.com/heec1Yn.jpeg","https://i.imgur.com/5itG2He.png"],buyLink:"https://s.spblk.com/dlg3",notes:"",videoLink:""}
 ];
-const brandDomains={Supreme:'supremenewyork.com',Apple:'apple.com',Lego:'lego.com',Rimowa:'rimowa.com','Louis Vuitton':'louisvuitton.com',Stussy:'stussy.com',Nike:'nike.com',Lululemon:'lululemon.com',Bape:'bape.com','Acne Studios':'acnestudios.com','Ralph Lauren':'ralphlauren.com',Asics:'asics.com',Playstation:'playstation.com',Artiemaster:'artiemaster.com'};
+const brandDomains={Supreme:'supremenewyork.com',Apple:'apple.com',Lego:'lego.com',Rimowa:'rimowa.com','Louis Vuitton':'louisvuitton.com',Stussy:'stussy.com',Nike:'nike.com',Lululemon:'lululemon.com',Bape:'bape.com','Acne Studios':'acnestudios.com','Ralph Lauren':'ralphlauren.com',Asics:'asics.com',Playstation:'playstation.com',Artiemaster:'artiemaster.com','Stussy / Nike':'stussy.com',Numeris:'numeris.com',Akimbo:'akimboclub.com'};
 function logoUrl(brand){return brandDomains[brand]?'https://logo.clearbit.com/'+brandDomains[brand]:null;}
 function fmt(p){return '$'+p.toFixed(2);}
 function openQV(id){
   const p=products.find(x=>x.id===id);if(!p)return;
   document.getElementById('bov').classList.remove('open');
   const imgs=(p.images&&p.images.length)?p.images:(p.image?[p.image]:[]);
-  window._qvImgs=imgs; window._qvIdx=0;
+  window._qvImgs=imgs;window._qvIdx=0;
   window.qvSetImg=function(i){
     window._qvIdx=i;
     const m=document.getElementById('qv-main-img');
@@ -191,21 +149,25 @@ function openQV(id){
     +imgs.map((s,i)=>'<img class="qv-thumb" src="'+s+'" onclick="qvSetImg('+i+')" style="width:44px;height:44px;object-fit:contain;cursor:pointer;border:2px solid '+(i===0?'#555':'#ddd')+';border-radius:4px;flex-shrink:0;" />').join('')
     +'</div>':'';
   document.getElementById('qvimg').innerHTML='<div style="width:100%;height:100%;display:flex;flex-direction:column;"><img id="qv-main-img" src="'+(imgs[0]||'')+'" alt="'+p.name+'" style="flex:1;width:100%;object-fit:contain;background:#fff;min-height:200px;" />'+thumbs+'</div>';
+  // View counter
+  const vws=JSON.parse(localStorage.getItem('tf_views')||'{}');
+  vws[p.id]=(vws[p.id]||0)+1;
+  localStorage.setItem('tf_views',JSON.stringify(vws));
   const rel=products.filter(x=>x.id!==p.id&&x.brand===p.brand).slice(0,2);
   document.getElementById('qvinf').innerHTML=
     '<div class="qvbrand">'+p.brand+'</div>'
     +'<div class="qvname">'+p.name+'</div>'
     +'<div class="qvprice">'+fmt(p.price)+'</div>'
+    +'<div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted);margin-top:2px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="12" height="12"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'+vws[p.id]+' view'+(vws[p.id]!==1?'s':'')+'</div>'
     +'<div class="ctags">'+(p.colors||[]).map(c=>'<span class="ctag">'+c+'</span>').join('')+'</div>'
     +(p.notes?'<div style="padding:10px 12px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;"><p style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Notes</p><p style="font-size:12px;color:var(--text);line-height:1.5;">'+p.notes+'</p></div>':'')
-    +(rel.length?'<div style="border-top:1px solid var(--border);padding-top:12px;"><p style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">You might also like</p><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">'+rel.map(r=>{const ri=(r.images&&r.images[0])||r.image||'';return '<div onclick="openQV('+r.id+')" style="cursor:pointer;"><div style="height:100px;background:#fff;border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center;"><img src="'+ri+'" style="width:100%;height:100%;object-fit:contain;" /></div><p style="font-size:11px;color:var(--text);font-weight:500;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+r.name+'</p></div>';}).join('')+'</div></div>':'')
+    +(rel.length?'<div style="border-top:1px solid var(--border);padding-top:12px;"><p style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">You might also like</p><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">'+rel.map(r=>{const ri=(r.images&&r.images[0])||'';return '<div onclick="openQV('+r.id+')" style="cursor:pointer;"><div style="height:100px;background:#fff;border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center;"><img src="'+ri+'" style="width:100%;height:100%;object-fit:contain;" /></div><p style="font-size:11px;color:var(--text);font-weight:500;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+r.name+'</p></div>';}).join('')+'</div></div>':'')
     +'<a class="qvbuy" href="'+p.buyLink+'" target="_blank" rel="noopener">Buy on Superbuy →</a>';
   document.getElementById('qvov').classList.add('open');
 }
 function renderBrands(){
   const q=document.getElementById('bsearch').value.toLowerCase();
   const map={};products.forEach(p=>{map[p.brand]=(map[p.brand]||0)+1;});
-  // Sort alphabetically
   const list=Object.entries(map).filter(([b])=>b.toLowerCase().includes(q)).sort((a,b)=>a[0].localeCompare(b[0]));
   const grid=document.getElementById('bgrid');
   if(!list.length){grid.innerHTML='<div class="empty">No brands found</div>';return;}
@@ -224,12 +186,12 @@ function openBrand(brand){
   const url=logoUrl(brand);
   const init=brand.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
   document.getElementById('bmlog').innerHTML=url
-    ?'<img src="'+url+'" style="width:36px;height:36px;object-fit:contain;" onerror="this.outerHTML='<span style=\"font-family:\'Bebas Neue\',sans-serif;font-size:18px;color:var(--muted);\">'+init+'</span>'" />'
+    ?'<img src="'+url+'" style="width:36px;height:36px;object-fit:contain;" onerror="this.outerHTML=\'<span style=\"font-family:\\'Bebas Neue\\',sans-serif;font-size:18px;color:var(--muted);\">\''+init+\'</span>\'" />'
     :'<span style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--muted);">'+init+'</span>';
   document.getElementById('bmtitle').textContent=brand;
   document.getElementById('bmsub').textContent=items.length+' find'+(items.length!==1?'s':'');
   document.getElementById('bitems').innerHTML=items.map(p=>{
-    const img=(p.images&&p.images[0])||p.image||'';
+    const img=(p.images&&p.images[0])||'';
     return '<div class="bitem" onclick="openQV('+p.id+')"><div class="bitem-img"><img src="'+img+'" alt="'+p.name+'" /></div><div class="bitem-info"><div class="bitem-name">'+p.name+'</div><div class="bitem-price">'+fmt(p.price)+'</div></div></div>';
   }).join('');
   document.getElementById('bov').classList.add('open');
