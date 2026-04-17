@@ -699,9 +699,13 @@
 <body>
 <canvas id="bg-canvas"></canvas>
 
-<div id="announcement-banner" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New Thom Browne Crewneck & Bape Short Sleeve just dropped — <a href="#finds" style="color:#fff;text-decoration:underline;cursor:pointer;" onclick="event.preventDefault();document.getElementById('announcement-banner').style.display='none';openQV(30);">Check it out</a></p>
-  <button onclick="document.getElementById('announcement-banner').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
+<div id="ann1" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New Thom Browne &amp; Bape Short Sleeve just dropped — <a href="#finds" style="color:#fff;text-decoration:underline;cursor:pointer;" onclick="event.preventDefault();document.getElementById('ann1').style.display='none';openQV(30);">Check it out</a></p>
+  <button onclick="document.getElementById('ann1').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
+</div>
+<div id="ann2" style="background:#111;border-bottom:1px solid #222;padding:6px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+  <p style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#666;flex:1;text-align:center;">🚧 Site Under Construction — 100+ items added every month, bugs may happen. Thanks for using my website!</p>
+  <button onclick="document.getElementById('ann2').style.display='none'" style="background:none;border:none;color:#444;cursor:pointer;font-size:14px;flex-shrink:0;line-height:1;">×</button>
 </div>
 
 <nav>
@@ -961,7 +965,7 @@ const products = [
     brand: "Artiemaster",
     category: "zip-ups",
     mainCat: "tops",
-    colors: ["Black", "Dark Grey", "Brown", "Light Grey", "Blue", "Green"],
+    colors: ["Black", "Grey", "Brown", "Grey", "Blue", "Green"],
     price: 13.47,
     badge: "new",
     images: ["https://i.imgur.com/LliFjbe.png"],
@@ -1006,7 +1010,7 @@ const products = [
     brand: "Stussy",
     category: "long sleeves",
     mainCat: "tops",
-    colors: ["Black", "Green", "White", "Yellow", "Blue", "Light Grey", "Dark Grey", "Wine Red"],
+    colors: ["Black", "Green", "White", "Yellow", "Blue", "Grey", "Grey", "Wine Red"],
     price: 17.43,
     badge: "new",
     images: ["https://i.imgur.com/yVS3xoo.png"],
@@ -1021,7 +1025,7 @@ const products = [
     brand: "Nike",
     category: "slippers",
     mainCat: "footwear",
-    colors: ["Black", "White", "Pink", "Beige", "Light Grey"],
+    colors: ["Black", "White", "Pink", "Beige", "Grey"],
     price: 19.81,
     badge: "new",
     images: ["https://i.imgur.com/NtZfiNz.png"],
@@ -1036,7 +1040,7 @@ const products = [
     brand: "Lululemon",
     category: "tracksuits",
     mainCat: "bottoms",
-    colors: ["Black", "White", "Pink", "Beige", "Light Grey", "Purple", "Yellow", "Green", "Wine Red", "Orange", "Blue"],
+    colors: ["Black", "White", "Pink", "Beige", "Grey", "Purple", "Yellow", "Green", "Wine Red", "Orange", "Blue"],
     price: 29.79,
     badge: "new",
     images: ["https://i.imgur.com/ECNjKqe.png"],
@@ -1373,6 +1377,81 @@ const products = [
     buyLink: "https://s.spblk.com/dh4r",
     notes: "Have it in hands, tshirt quality is good, the print feels a little stiff. But overall good for the price and has many designs and colors.",
     videoLink: ""
+  },
+  {
+    id: 32,
+    addedDate: "2026-04-16T00:00:00.000Z",
+    name: "MARVEL Sanctum Sanctorum (Set 76218)",
+    brand: "Lego",
+    category: "lego",
+    mainCat: "others",
+    colors: ["Red","Grey","Beige"],
+    price: 15.23,
+    badge: "new",
+    images: ["https://i.imgur.com/U1U3HIi.png","https://i.imgur.com/UMFlWfR.png","https://i.imgur.com/15lrx6j.jpeg"],
+    buyLink: "https://s.spblk.com/dn4r",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 33,
+    addedDate: "2026-04-16T00:00:00.000Z",
+    name: "TRANSFORMERS Optimus Prime (Set 10302)",
+    brand: "Lego",
+    category: "lego",
+    mainCat: "others",
+    colors: ["Red","Blue","Grey"],
+    price: 13.96,
+    badge: "new",
+    images: ["https://i.imgur.com/IeZhGYM.png","https://i.imgur.com/X5ckfmA.png","https://i.imgur.com/6ZkHeTL.png"],
+    buyLink: "https://s.spblk.com/dn4t",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 34,
+    addedDate: "2026-04-16T00:00:00.000Z",
+    name: "JURASSIC WORLD Tyrannosaurus Rex (Set 76968)",
+    brand: "Lego",
+    category: "lego",
+    mainCat: "others",
+    colors: ["Beige"],
+    price: 32.99,
+    badge: "new",
+    images: ["https://i.imgur.com/hese5IY.jpeg","https://i.imgur.com/SJqem3U.png","https://i.imgur.com/yGR9ioR.jpeg"],
+    buyLink: "https://s.spblk.com/c9kn",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 35,
+    addedDate: "2026-04-16T00:00:00.000Z",
+    name: "STRANGER THINGS The Upside Down (Set 75810)",
+    brand: "Lego",
+    category: "lego",
+    mainCat: "others",
+    colors: ["Grey"],
+    price: 0,
+    badge: "new",
+    images: ["https://i.imgur.com/kWeN2Wm.jpeg","https://i.imgur.com/N2cmwyf.png","https://i.imgur.com/2OKQp3z.jpeg"],
+    buyLink: "https://s.spblk.com/dn50",
+    notes: "",
+    videoLink: ""
+  },
+  {
+    id: 36,
+    addedDate: "2026-04-16T00:00:00.000Z",
+    name: "Goyard Duffel Bag",
+    brand: "Goyard",
+    category: "bags",
+    mainCat: "accessories",
+    colors: ["Green","Blue","Black","Grey"],
+    price: 10.31,
+    badge: "new",
+    images: ["https://i.imgur.com/8eX6jPG.png","https://i.imgur.com/1vCdPj5.jpeg","https://i.imgur.com/Q1aoUtn.jpeg"],
+    buyLink: "https://s.spblk.com/cu6h",
+    notes: "",
+    videoLink: ""
   }
 ];
 // ─────────────────────────────────────────
@@ -1556,7 +1635,7 @@ function render() {
         <div class="card-body">
           <div class="card-brand">${p.brand}</div>
           <div class="card-name">${p.name}</div>
-          ${p.notes ? `<div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;">${p.notes}</div>` : ''}
+          <!-- notes hidden from card --> ${false ? `<div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;">${p.notes}</div>` : ''}
           <div class="card-footer">
             <div class="card-price">${formatPrice(p.price)}</div>
             <div class="color-tags">${(() => { const cols = p.colors || [p.color]; const shown = cols.slice(0,5).map(c => `<span class="color-tag">${c}</span>`).join(""); const more = cols.length > 5 ? `<span class="color-tag" style="letter-spacing:0;">…</span>` : ""; return shown + more; })()}</div>
@@ -1738,7 +1817,7 @@ function computeHotItems() {
   const sorted = Object.entries(globalViews).sort((a,b)=>b[1]-a[1]);
   const top10count = Math.max(1, Math.floor(sorted.length * 0.1));
   // Minimum 5 views to qualify as hot
-  hotItems = new Set(sorted.slice(0, top10count).filter(([,v])=>v>=5).map(([id]) => parseInt(id)));
+  hotItems = new Set(sorted.slice(0, top10count).filter(function(e){return e[1]>=3;}).map(([id]) => parseInt(id)));
 }
 
 // ── UPDATE RENDER TO SUPPORT ALL NEW FEATURES ──
@@ -1783,7 +1862,7 @@ render = function() {
     const pViews = views[p.id] || 0;
     const isHot = hotItems.has(p.id);
     const badgeType = isHot ? 'hot' : (showNew ? 'new' : '');
-    const badgeHtml = badgeType ? `<div class="badge badge-${badgeType === 'hot' ? 'hot' : badgeType}">${badgeType === 'hot' ? '🔥 Hot' : badgeType}</div>` : '';
+    const badgeHtml = badgeType ? `<div class="badge badge-${badgeType === 'hot' ? 'hot' : badgeType}">${badgeType === 'hot' ? '🔥 Hot' : (badgeType === 'new' ? 'new' : badgeType)}</div>` : '';
     const isWished = wishlist.includes(p.id);
     const imgStyle = `width:100%;height:100%;object-fit:contain;display:block;transition:transform 0.4s ease;background:#fff;`;
     const primaryImg = (p.images && p.images[0]) || p.image || '';
