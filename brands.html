@@ -99,7 +99,7 @@ footer a:hover{color:var(--text);}
 <canvas id="bg-canvas"></canvas>
 <script>(function(){if(localStorage.getItem('tf_theme')==='light')document.documentElement.classList.add('light');})();</script>
 <div id="ann1" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">&#x1F525; New Thom Browne &amp; Bape Short Sleeve just dropped &mdash; <a href="index.html" style="color:#fff;text-decoration:underline;">Check it out on Finds</a></p>
+  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">&#x1F525; New Nike Tracksuits &amp; LV Varsity Jacket just dropped &mdash; <a href="index.html" style="color:#fff;text-decoration:underline;">Check it out on Finds</a></p>
   <button onclick="document.getElementById('ann1').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;">&#x2715;</button>
 </div>
 <div id="ann2" style="background:#111;border-bottom:1px solid #222;padding:6px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
@@ -216,7 +216,14 @@ var products = [
   {id:33,brand:"Lego",name:"TRANSFORMERS Optimus Prime (Set 10302)",price:13.96,colors:["Red","Blue","Grey"],images:["https://i.imgur.com/IeZhGYM.png","https://i.imgur.com/X5ckfmA.png","https://i.imgur.com/6ZkHeTL.png"],buyLink:"https://s.spblk.com/dn4t",notes:""},
   {id:34,brand:"Lego",name:"JURASSIC WORLD Tyrannosaurus Rex (Set 76968)",price:32.99,colors:["Beige"],images:["https://i.imgur.com/hese5IY.jpeg","https://i.imgur.com/SJqem3U.png","https://i.imgur.com/yGR9ioR.jpeg"],buyLink:"https://s.spblk.com/c9kn",notes:""},
   {id:35,brand:"Lego",name:"STRANGER THINGS The Upside Down (Set 75810)",price:0,colors:["Grey"],images:["https://i.imgur.com/kWeN2Wm.jpeg","https://i.imgur.com/N2cmwyf.png","https://i.imgur.com/2OKQp3z.jpeg"],buyLink:"https://s.spblk.com/dn50",notes:""},
-  {id:36,brand:"Goyard",name:"Goyard Duffel Bag",price:10.31,colors:["Green","Blue","Black","Grey"],images:["https://i.imgur.com/8eX6jPG.png","https://i.imgur.com/1vCdPj5.jpeg","https://i.imgur.com/Q1aoUtn.jpeg"],buyLink:"https://s.spblk.com/cu6h",notes:""}
+  {id:36,brand:"Goyard",name:"Goyard Duffel Bag",price:10.31,colors:["Green","Blue","Black","Grey"],images:["https://i.imgur.com/8eX6jPG.png","https://i.imgur.com/1vCdPj5.jpeg","https://i.imgur.com/Q1aoUtn.jpeg"],buyLink:"https://s.spblk.com/cu6h",notes:""},
+  {id:37,brand:"No Brand",name:"Brooklyn Embroidery Grey Hoodie",price:15.55,colors:["Grey"],images:["https://i.imgur.com/xwOS8J6.jpeg","https://i.imgur.com/ee8C9xa.jpeg"],buyLink:"https://s.spblk.com/dnhs",notes:"Good quality and nice embroidery logo."},
+  {id:38,brand:"Balenciaga",name:"Balenciaga Snake Necklace",price:7.14,colors:["Grey"],images:["https://i.imgur.com/JUX8kN3.jpeg","https://i.imgur.com/2cQkELj.png","https://i.imgur.com/d7arUtD.jpeg"],buyLink:"https://s.spblk.com/dnht",notes:"Really good quality, will see if it holds up in time."},
+  {id:39,brand:"Thom Browne",name:"Thom Browne Cardigan (5 colors)",price:19.83,colors:["Grey","Black","Pink","White","Blue"],images:["https://i.imgur.com/kIsL9fJ.jpeg","https://i.imgur.com/FBGhf9n.jpeg","https://i.imgur.com/l0Lbvqt.jpeg"],buyLink:"https://s.spblk.com/dnhu",notes:"Amazing piece, really recommend, accurate tags and nice quality !"},
+  {id:40,brand:"Louis Vuitton",name:"Louis Vuitton Varsity Jacket (65 colors)",price:29.34,colors:["Beige","Green","Blue","Black","White"],images:["https://i.imgur.com/VUdEKK1.jpeg","https://i.imgur.com/h8kN3cX.png","https://i.imgur.com/G1DBKgh.png"],buyLink:"https://s.spblk.com/dni0",notes:"Ordered, on its way, will do a video when have it in hand."},
+  {id:41,brand:"Nike",name:"Nike Light Retro Tracksuit (Top)",price:12.37,colors:["Blue","Black","Beige"],images:["https://i.imgur.com/M1lC7oG.jpeg","https://i.imgur.com/ZviKH3l.png","https://i.imgur.com/DzRIjYM.png"],buyLink:"https://s.spblk.com/dnib",notes:"Ordered it along the bottoms, will do a review when in hand."},
+  {id:42,brand:"Nike",name:"Nike Light Retro Tracksuit (Bottom)",price:9.52,colors:["Blue","Black","Beige"],images:["https://i.imgur.com/mNeeVwE.jpeg","https://i.imgur.com/ggvp0aT.png"],buyLink:"https://s.spblk.com/dnib",notes:"Ordered it along the top, will do a review when in hand."},
+  {id:43,brand:"Nike",name:"Nike Pair of 5 Long Socks",price:2.95,colors:["White","Black","Grey"],images:["https://i.imgur.com/8vsz15D.jpeg","https://i.imgur.com/L5bnZiU.jpeg"],buyLink:"https://s.spblk.com/dnid",notes:"Ordered it and will do a review when in hand. Great filler item !"}
 ];
 
 var brandDomains = {
@@ -225,7 +232,8 @@ var brandDomains = {
   "Bape":"bape.com","Acne Studios":"acnestudios.com","Ralph Lauren":"ralphlauren.com",
   "Asics":"asics.com","Playstation":"playstation.com","Artiemaster":"artiemaster.com",
   "Stussy / Nike":"stussy.com","Numeris":"numeris.com","Akimbo":"akimboclub.com",
-  "Margiela":"maisonmargiela.com","Thom Browne":"thombrowne.com","Goyard":"goyard.com"
+  "Margiela":"maisonmargiela.com","Thom Browne":"thombrowne.com","Goyard":"goyard.com",
+  "Balenciaga":"balenciaga.com"
 };
 
 function logoUrl(b){ return brandDomains[b] ? "https://logo.clearbit.com/" + brandDomains[b] : null; }
@@ -352,11 +360,25 @@ function openQV(id){
   }
   buildImgPanel();
 
-  // Views
+  // Views - shared across all users via countapi.xyz + localStorage fallback
+  var COUNTAPI_NS = "tommysfinds-v1";
   var views = JSON.parse(localStorage.getItem("tf_views")||"{}");
   views[p.id] = (views[p.id]||0) + 1;
   localStorage.setItem("tf_views", JSON.stringify(views));
   var vc = views[p.id];
+  // Sync with shared counter in background
+  fetch("https://api.countapi.xyz/hit/" + COUNTAPI_NS + "/item-" + p.id)
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if(d && d.value){
+        var v2 = JSON.parse(localStorage.getItem("tf_views")||"{}");
+        v2[p.id] = d.value;
+        localStorage.setItem("tf_views", JSON.stringify(v2));
+        // Update displayed count if popup still open
+        var vcEl = document.getElementById("qv-vc-" + p.id);
+        if(vcEl) vcEl.textContent = d.value + " view" + (d.value!==1?"s":"");
+      }
+    }).catch(function(){});
 
   // Related
   var rel = products.filter(function(x){ return x.id!==p.id && x.brand===p.brand; }).slice(0,2);
@@ -377,7 +399,7 @@ function openQV(id){
 
   // View count
   var vEl = addEl("div",null,null,"display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted);margin-top:2px;");
-  vEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="12" height="12"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>' + vc + " view" + (vc!==1?"s":"");
+  vEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="12" height="12"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span id="qv-vc-' + p.id + '">' + vc + " view" + (vc!==1?"s":"") + '</span>';
 
   // Colors
   var ctags = addEl("div","ctags");
