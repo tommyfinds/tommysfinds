@@ -7,76 +7,177 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
 <style>
-:root{--bg:#080808;--surface:#0f0f0f;--surface2:#151515;--border:#1f1f1f;--border2:#2a2a2a;--text:#f0f0f0;--muted:#555;--muted2:#333;--card-price:#fff;--nav-bg:rgba(8,8,8,0.92);}
-:root.light{--bg:#f5f5f3;--surface:#fff;--surface2:#f0f0ee;--border:#e0e0de;--border2:#d0d0ce;--text:#111111;--muted:#888;--muted2:#bbb;--card-price:#000;--nav-bg:rgba(245,245,243,0.95);}
+
+:root{
+  --bg:#080808;--surface:#0f0f0f;--surface2:#151515;--border:#1f1f1f;
+  --border2:#2a2a2a;--text:#f0f0f0;--muted:#555;--muted2:#333;
+  --card-price:#fff;--nav-bg:rgba(8,8,8,0.92);--tag-bg:#1a1a1a;
+}
+:root.light{
+  --bg:#f5f5f3;--surface:#fff;--surface2:#f0f0ee;--border:#e0e0de;
+  --border2:#d0d0ce;--text:#111;--muted:#888;--muted2:#bbb;
+  --card-price:#000;--nav-bg:rgba(245,245,243,0.95);--tag-bg:#eee;
+}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{overflow-y:scroll;scrollbar-gutter:stable;}
 body{font-family:'Archivo Narrow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
-:root.light #bg-canvas{opacity:0.15;}
-nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;
+  background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.1em;color:var(--text);text-decoration:none;}
 .logo span{color:var(--muted);}
 .nav-links{display:flex;gap:2rem;}
-.nav-links a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);
+  text-decoration:none;transition:color 0.2s;}
 .nav-links a:hover,.nav-links a.active{color:var(--text);}
-.theme-toggle{background:none;border:1px solid var(--border2);color:var(--muted);cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;transition:border-color 0.2s,color 0.2s;}
+.theme-toggle{background:none;border:1px solid var(--border2);color:var(--muted);cursor:pointer;
+  width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:16px;transition:border-color 0.2s,color 0.2s;}
 .theme-toggle:hover{border-color:var(--muted);color:var(--text);}
-footer{border-top:1px solid var(--border);padding:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+footer{border-top:1px solid var(--border);padding:2rem;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 footer p{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
 footer a{color:var(--muted);text-decoration:none;}
 footer a:hover{color:var(--text);}
-.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(8,8,8,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--border2);padding:8px 0 max(8px,env(safe-area-inset-bottom));grid-template-columns:repeat(5,1fr);}
+.legal{border-top:1px solid var(--border);padding:1rem 2rem;text-align:center;}
+.legal p{font-size:10px;color:var(--muted2);letter-spacing:0.04em;line-height:1.7;max-width:800px;margin:0 auto;}
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:rgba(8,8,8,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--border2);
+  padding:8px 0 max(8px,env(safe-area-inset-bottom));grid-template-columns:repeat(4,1fr);}
 @media(max-width:768px){.mobile-nav{display:grid;}body{padding-bottom:64px;}.nav-links{display:none;}}
 @media(max-width:600px){nav{padding:0 1rem;}}
-.mob-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;color:var(--muted);cursor:pointer;font-family:'Archivo Narrow',sans-serif;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;padding:4px 0;transition:color 0.2s;}
+.mob-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;
+  color:var(--muted);cursor:pointer;font-family:'Archivo Narrow',sans-serif;font-size:9px;
+  letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;padding:4px 0;transition:color 0.2s;}
 .mob-btn:hover,.mob-btn.active{color:var(--text);}
 .mob-btn svg{width:20px;height:20px;}
-.modal-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.modal-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.7);
+  align-items:center;justify-content:center;backdrop-filter:blur(4px);}
 .modal-overlay.open{display:flex;}
-.modal{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:2rem;width:90%;max-width:480px;position:relative;}
-.modal h2{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);margin-bottom:1.2rem;letter-spacing:0.05em;}
-.modal input,.modal textarea{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:'Archivo Narrow',sans-serif;font-size:14px;padding:12px 14px;margin-bottom:12px;outline:none;transition:border-color 0.15s;display:block;}
-.modal input::placeholder,.modal textarea::placeholder{color:var(--muted);}
+.modal{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:2rem;
+  width:90%;max-width:480px;position:relative;}
+.modal h2{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);margin-bottom:1.2rem;}
+.modal input,.modal textarea{width:100%;background:var(--surface2);border:1px solid var(--border2);
+  border-radius:8px;color:var(--text);font-family:'Archivo Narrow',sans-serif;font-size:14px;
+  padding:12px 14px;margin-bottom:12px;outline:none;display:block;}
 .modal textarea{min-height:110px;resize:vertical;}
-.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;}
+.modal input::placeholder,.modal textarea::placeholder{color:var(--muted);}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);
+  font-size:20px;cursor:pointer;}
 .modal-close:hover{color:var(--text);}
-.modal-submit{width:100%;padding:12px;background:#7c6fcd;color:#fff;border:none;border-radius:999px;font-family:'Archivo Narrow',sans-serif;font-size:14px;font-weight:600;letter-spacing:0.06em;cursor:pointer;transition:background 0.2s;margin-top:4px;}
+.modal-submit{width:100%;padding:12px;background:#7c6fcd;color:#fff;border:none;border-radius:999px;
+  font-family:'Archivo Narrow',sans-serif;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;}
 .modal-submit:hover{background:#6a5eb8;}
-.modal-success{display:none;align-items:center;gap:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--text);}
-.modal-success.show{display:flex;}
-.modal-success-icon{width:24px;height:24px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;flex-shrink:0;}
-.hero{padding:3rem 2rem 2rem;border-bottom:1px solid var(--border);}.hero p{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,7vw,72px);letter-spacing:0.04em;line-height:0.9;color:var(--text);}.section{padding:2.5rem 2rem 0;}.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border2);}.sec-t{display:flex;align-items:center;gap:10px;}.sec-t h2{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.06em;color:var(--text);}.sbtn{font-family:'Archivo Narrow',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:6px 14px;text-decoration:none;border:1px solid var(--border2);color:var(--muted);transition:border-color 0.2s,color 0.2s;white-space:nowrap;}.sbtn.yt{border-color:rgba(255,0,0,0.4);color:#ff4444;}.sbtn.yt:hover{border-color:#ff0000;color:#ff0000;}.sbtn.tt{border-color:rgba(105,201,208,0.4);color:#69c9d0;}.sbtn.tt:hover{border-color:#69c9d0;color:#69c9d0;}.srow{display:flex;gap:14px;overflow-x:auto;padding-bottom:1.5rem;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;flex-direction:row-reverse;}.srow::-webkit-scrollbar{height:4px;}.srow::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}.vc{flex-shrink:0;width:240px;cursor:pointer;text-decoration:none;display:block;transition:opacity 0.2s;}.vc:hover{opacity:0.8;}.th{position:relative;width:100%;background:var(--surface2);border:1px solid var(--border);overflow:hidden;border-radius:4px;margin-bottom:10px;}.vc .th{aspect-ratio:16/9;}.th img{width:100%;height:100%;object-fit:cover;display:block;}.pl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);opacity:0;transition:opacity 0.2s;}.vc:hover .pl{opacity:1;}.pl svg{width:36px;height:36px;}.vd{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted2);margin-bottom:4px;}.vt{font-size:13px;font-weight:500;color:var(--text);line-height:1.35;}.ph{padding:2rem 0;color:var(--muted);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;}
+.hero{padding:3rem 2rem 2rem;border-bottom:1px solid var(--border);}
+.hero p{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,7vw,72px);letter-spacing:0.04em;line-height:0.9;color:var(--text);}
+.section{padding:2.5rem 2rem 0;}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border2);}
+.sec-t{display:flex;align-items:center;gap:10px;}
+.sec-t h2{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.06em;color:var(--text);}
+.sbtn{font-family:'Archivo Narrow',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:6px 14px;text-decoration:none;border:1px solid var(--border2);color:var(--muted);transition:border-color 0.2s,color 0.2s;white-space:nowrap;}
+.sbtn.yt{border-color:rgba(255,0,0,0.4);color:#ff4444;}
+.sbtn.yt:hover{border-color:#ff0000;color:#ff0000;}
+.sbtn.tt{border-color:rgba(105,201,208,0.4);color:#69c9d0;}
+.sbtn.tt:hover{border-color:#69c9d0;color:#69c9d0;}
+.srow{display:flex;gap:14px;overflow-x:auto;padding-bottom:1.5rem;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
+.srow::-webkit-scrollbar{height:4px;}
+.srow::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+.vc{flex-shrink:0;width:240px;cursor:pointer;text-decoration:none;display:block;transition:opacity 0.2s;}
+.vc:hover{opacity:0.8;}
+.th{position:relative;width:100%;background:var(--surface2);border:1px solid var(--border);overflow:hidden;border-radius:4px;margin-bottom:10px;}
+.vc .th{aspect-ratio:16/9;}
+.th img{width:100%;height:100%;object-fit:cover;display:block;}
+.pl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);opacity:0;transition:opacity 0.2s;}
+.vc:hover .pl{opacity:1;}
+.pl svg{width:36px;height:36px;}
+.vd{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted2);margin-bottom:4px;}
+.vt{font-size:13px;font-weight:500;color:var(--text);line-height:1.35;}
+.ph{padding:2rem 0;color:var(--muted);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;}
 </style>
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
-<script>(function(){const isL=localStorage.getItem('tf_theme')==='light';if(isL)document.documentElement.classList.add('light');})();</script>
-<div id="announcement-banner" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+<script>
+// Restore theme immediately to prevent flash
+(function(){
+  if(localStorage.getItem('tf_theme')==='light') document.documentElement.classList.add('light');
+})();
+</script>
+<div id="ann1" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
   <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New Thom Browne &amp; Bape Short Sleeve just dropped — <a href="index.html" style="color:#fff;text-decoration:underline;">Check it out on Finds</a></p>
-  <button onclick="document.getElementById('announcement-banner').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
+  <button onclick="document.getElementById('ann1').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;">×</button>
+</div>
+<div id="ann2" style="background:#111;border-bottom:1px solid #222;padding:6px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+  <p style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#666;flex:1;text-align:center;">🚧 Site Under Construction — 100+ items added every month, bugs may happen. Thanks for using my website!</p>
+  <button onclick="document.getElementById('ann2').style.display='none'" style="background:none;border:none;color:#444;cursor:pointer;font-size:14px;flex-shrink:0;">×</button>
 </div>
 <nav>
   <a class="logo" href="index.html">TOMMY<span>'S FINDS</span></a>
   <div class="nav-links">
-    <a href="index.html">Finds</a>
-    <a href="brands.html">Brands</a>
-    <a href="how-it-works.html">How it works</a>
+    <a href="index.html" >Finds</a>
+    <a href="brands.html" >Brands</a>
+    <a href="how-it-works.html" >How it works</a>
     <a href="videos.html" class="active">Videos</a>
-    <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Superbuy</a>  </div>
+    <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Superbuy</a>
+  </div>
   <div style="display:flex;align-items:center;gap:10px;">
     <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark">🌙</button>
-    <a href="https://discord.gg/fbDwNdvs" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#5865F2'" onmouseout="this.style.fill='#aaa'"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
-    <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#FF0000'" onmouseout="this.style.fill='#aaa'"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-    <a href="https://www.reddit.com/user/parisuserr/" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;"><img src="https://i.imgur.com/J1AZGv2.png" alt="Reddit" style="width:40px;height:40px;object-fit:contain;filter:grayscale(100%) brightness(0.7);transition:filter 0.2s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(100%) brightness(0.7)'" /></a>
+    <a href="https://discord.gg/fbDwNdvs" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;" title="Discord">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#5865F2'" onmouseout="this.style.fill='#aaa'"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#FF0000'" onmouseout="this.style.fill='#aaa'"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+    <a href="https://www.reddit.com/user/parisuserr/" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;">
+      <img src="https://i.imgur.com/J1AZGv2.png" alt="Reddit" style="width:40px;height:40px;object-fit:contain;filter:grayscale(100%) brightness(0.7);transition:filter 0.2s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(100%) brightness(0.7)'" />
+    </a>
   </div>
 </nav>
-<div class="hero"><p>Tommy's Finds</p><h1>Videos</h1></div><div class="section"><div class="sec-hd"><div class="sec-t"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><h2>YouTube</h2></div><a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" class="sbtn yt">Subscribe</a></div><div class="srow"><a href="https://www.youtube.com/watch?v=a2tKYnmaTIs&t" target="_blank" rel="noopener" class="vc"><div class="th"><img src="https://img.youtube.com/vi/a2tKYnmaTIs/hqdefault.jpg" loading="lazy" /><div class="pl"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div><div class="vd">Dec 6, 2025</div><div class="vt">Tommy's Finds — Latest Picks</div></a></div></div><div class="section"><div class="sec-hd"><div class="sec-t"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#69c9d0"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg><h2>TikTok</h2></div><a href="https://www.tiktok.com/@tommy_flnds" target="_blank" rel="noopener" class="sbtn tt">Follow</a></div><div class="srow"><div class="ph">No TikTok videos yet</div></div></div><div class="section"><div class="sec-hd"><div class="sec-t"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#FF0000"><path d="M23.498 6.016a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.016C0 7.9 0 12 0 12s0 4.1.502 5.984a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 16.1 24 12 24 12s0-4.1-.502-5.984zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><h2>YouTube Shorts</h2></div><a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" class="sbtn yt">Subscribe</a></div><div class="srow"><div class="ph">No Shorts yet</div></div></div><div style="height:2.5rem;"></div>
+<div class="hero"><p>Tommy's Finds</p><h1>Videos</h1></div>
+<div class="section">
+  <div class="sec-hd">
+    <div class="sec-t"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><h2>YouTube</h2></div>
+    <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" class="sbtn yt">Subscribe</a>
+  </div>
+  <div class="srow">
+    <a href="https://www.youtube.com/watch?v=a2tKYnmaTIs&t" target="_blank" rel="noopener" class="vc">
+      <div class="th"><img src="https://img.youtube.com/vi/a2tKYnmaTIs/hqdefault.jpg" loading="lazy" /><div class="pl"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div>
+      <div class="vd">Dec 6, 2025</div><div class="vt">Tommy's Finds — Latest Picks</div>
+    </a>
+  </div>
+</div>
+<div class="section">
+  <div class="sec-hd">
+    <div class="sec-t"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#69c9d0"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg><h2>TikTok</h2></div>
+    <a href="https://www.tiktok.com/@tommy_flnds" target="_blank" rel="noopener" class="sbtn tt">Follow</a>
+  </div>
+  <div class="srow"><div class="ph">No TikTok videos yet</div></div>
+</div>
+<div class="section">
+  <div class="sec-hd">
+    <div class="sec-t"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><h2>YouTube Shorts</h2></div>
+    <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" class="sbtn yt">Subscribe</a>
+  </div>
+  <div class="srow"><div class="ph">No Shorts yet</div></div>
+</div>
+<div style="height:2.5rem;"></div>
 <div id="modal-feedback" class="modal-overlay">
-  <div class="modal"><button class="modal-close" onclick="closeModal('modal-feedback')">×</button><h2>Send Feedback</h2><div class="modal-success" id="feedback-success"><div class="modal-success-icon">✓</div><span>Sent!</span></div><input type="text" id="feedback-name" placeholder="Your Name (Optional)" /><textarea id="feedback-msg" placeholder="Your feedback..."></textarea><button class="modal-submit" onclick="submitForm('feedback')">Send Feedback</button></div>
+  <div class="modal"><button class="modal-close" onclick="closeModal('modal-feedback')">×</button>
+  <h2>Send Feedback</h2>
+  <input type="text" id="feedback-name" placeholder="Your Name (Optional)" />
+  <textarea id="feedback-msg" placeholder="Your feedback..."></textarea>
+  <button class="modal-submit" onclick="submitForm('feedback')">Send Feedback</button></div>
 </div>
 <div id="modal-suggest" class="modal-overlay">
-  <div class="modal"><button class="modal-close" onclick="closeModal('modal-suggest')">×</button><h2>Suggest New Products</h2><div class="modal-success" id="suggest-success"><div class="modal-success-icon">✓</div><span>Sent!</span></div><input type="text" id="suggest-name" placeholder="Product Name" /><input type="text" id="suggest-link" placeholder="Reference Link" /><textarea id="suggest-msg" placeholder="Message (Optional)"></textarea><button class="modal-submit" onclick="submitForm('suggest')">Submit Suggestion</button></div>
+  <div class="modal"><button class="modal-close" onclick="closeModal('modal-suggest')">×</button>
+  <h2>Suggest New Products</h2>
+  <input type="text" id="suggest-name" placeholder="Product Name" />
+  <input type="text" id="suggest-link" placeholder="Reference Link" />
+  <textarea id="suggest-msg" placeholder="Message (Optional)"></textarea>
+  <button class="modal-submit" onclick="submitForm('suggest')">Submit Suggestion</button></div>
 </div>
 <footer>
   <p>© 2025 Tommy's Finds</p>
@@ -86,35 +187,91 @@ footer a:hover{color:var(--text);}
     <a href="#" onclick="openModal('modal-suggest');return false;" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Suggest New Products</a>
   </div>
 </footer>
-<div style="border-top:1px solid var(--border);padding:1rem 2rem;text-align:center;">
-  <p style="font-size:10px;color:var(--muted2);letter-spacing:0.04em;line-height:1.7;max-width:800px;margin:0 auto;">TommysFinds and Superbuy do not sell physical products · Tommy does not support or encourage the sale of counterfeit goods · The information given is only to assist buyers and users making safe purchases and navigation.</p>
-</div>
+<div class="legal"><p>TommysFinds and Superbuy do not sell physical products · Tommy does not support or encourage the sale of counterfeit goods · The information given is only to assist buyers and users making safe purchases and navigation.</p></div>
 <nav class="mobile-nav">
   <a href="index.html" class="mob-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Finds</a>
   <a href="brands.html" class="mob-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Brands</a>
   <a href="videos.html" class="mob-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Videos</a>
-  <a href="qc-check.html" class="mob-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>QC</a>
   <a href="https://discord.gg/fbDwNdvs" target="_blank" class="mob-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>Discord</a>
 </nav>
 <script>
 
+
+// ── CANVAS PARTICLE ANIMATION ──
 (function(){
-  const c=document.getElementById('bg-canvas');if(!c)return;
-  const ctx=c.getContext('2d');let W,H,P;
-  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
-  function rnd(a,b){return a+Math.random()*(b-a);}
-  function init(){P=Array.from({length:Math.floor((W*H)/22000)},()=>({x:rnd(0,W),y:rnd(0,H),vx:rnd(-0.12,0.12),vy:rnd(-0.12,0.12),r:rnd(1,2.2),a:rnd(0.15,0.45)}));}
-  function draw(){ctx.clearRect(0,0,W,H);for(let p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(160,160,160,'+p.a+')';ctx.fill();}
-  const d=130;for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const dx=P[i].x-P[j].x,dy=P[i].y-P[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<d){ctx.beginPath();ctx.moveTo(P[i].x,P[i].y);ctx.lineTo(P[j].x,P[j].y);ctx.strokeStyle='rgba(140,140,140,'+(1-dist/d)*0.12+')';ctx.lineWidth=0.6;ctx.stroke();}}
-  requestAnimationFrame(draw);}
-  window.addEventListener('resize',()=>{resize();init();});resize();init();draw();
+  var c = document.getElementById('bg-canvas');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  var W, H, P;
+  function resize(){ W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
+  function rnd(a,b){ return a + Math.random()*(b-a); }
+  function init(){
+    P = [];
+    var n = Math.floor((W*H)/22000);
+    for(var i=0;i<n;i++) P.push({x:rnd(0,W),y:rnd(0,H),vx:rnd(-0.12,0.12),vy:rnd(-0.12,0.12),r:rnd(1,2.2),a:rnd(0.15,0.45)});
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var isLight = document.documentElement.classList.contains('light');
+    var dc = isLight ? '80,80,120' : '160,160,160';
+    for(var i=0;i<P.length;i++){
+      var p=P[i];
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba('+dc+','+(isLight?p.a*0.4:p.a)+')'; ctx.fill();
+    }
+    var D=130;
+    for(var i=0;i<P.length-1;i++) for(var j=i+1;j<P.length;j++){
+      var dx=P[i].x-P[j].x, dy=P[i].y-P[j].y, dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<D){
+        ctx.beginPath(); ctx.moveTo(P[i].x,P[i].y); ctx.lineTo(P[j].x,P[j].y);
+        ctx.strokeStyle='rgba('+dc+','+(1-dist/D)*(isLight?0.05:0.12)+')';
+        ctx.lineWidth=0.6; ctx.stroke();
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', function(){ resize(); init(); });
+  resize(); init(); draw();
 })();
-const tb=document.getElementById('theme-toggle');
-if(tb){tb.textContent=document.documentElement.classList.contains('light')?'🌑':'🌙';tb.addEventListener('click',()=>{const l=document.documentElement.classList.toggle('light');tb.textContent=l?'🌑':'🌙';localStorage.setItem('tf_theme',l?'light':'dark');});}
-function openModal(id){document.getElementById(id).classList.add('open');}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
-document.querySelectorAll('.modal-overlay').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
-function submitForm(type){let subject,body;if(type==='feedback'){const name=document.getElementById('feedback-name').value.trim();const msg=document.getElementById('feedback-msg').value.trim();if(!msg)return;subject=encodeURIComponent("Tommy's Finds - Feedback");body=encodeURIComponent((name?'From: '+name+'\n\n':'')+msg);document.getElementById('feedback-name').value='';document.getElementById('feedback-msg').value='';const s=document.getElementById('feedback-success');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),3000);}else{const name=document.getElementById('suggest-name').value.trim();const link=document.getElementById('suggest-link').value.trim();const msg=document.getElementById('suggest-msg').value.trim();if(!name)return;subject=encodeURIComponent("Tommy's Finds - Product Suggestion");body=encodeURIComponent('Product: '+name+(link?'\nLink: '+link:'')+(msg?'\n\n'+msg:''));document.getElementById('suggest-name').value='';document.getElementById('suggest-link').value='';document.getElementById('suggest-msg').value='';const s=document.getElementById('suggest-success');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),3000);}window.open('mailto:isongsearch@gmail.com?subject='+subject+'&body='+body);}
+
+// ── THEME TOGGLE ──
+var tb = document.getElementById('theme-toggle');
+if(tb){
+  var isLight = document.documentElement.classList.contains('light');
+  tb.textContent = isLight ? '🌑' : '🌙';
+  tb.addEventListener('click', function(){
+    var l = document.documentElement.classList.toggle('light');
+    tb.textContent = l ? '🌑' : '🌙';
+    localStorage.setItem('tf_theme', l ? 'light' : 'dark');
+  });
+}
+
+// ── MODALS ──
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(function(m){
+  m.addEventListener('click', function(e){ if(e.target===m) m.classList.remove('open'); });
+});
+function submitForm(type){
+  var subject, body;
+  if(type==='feedback'){
+    var n=document.getElementById('feedback-name').value.trim();
+    var msg=document.getElementById('feedback-msg').value.trim();
+    if(!msg) return;
+    subject=encodeURIComponent("Tommy's Finds - Feedback");
+    body=encodeURIComponent((n?'From: '+n+'\n\n':'')+msg);
+  } else {
+    var n=document.getElementById('suggest-name').value.trim();
+    var lnk=document.getElementById('suggest-link').value.trim();
+    var msg=document.getElementById('suggest-msg').value.trim();
+    if(!n) return;
+    subject=encodeURIComponent("Tommy's Finds - Product Suggestion");
+    body=encodeURIComponent('Product: '+n+(lnk?'\nLink: '+lnk:'')+(msg?'\n\n'+msg:''));
+  }
+  window.open('mailto:isongsearch@gmail.com?subject='+subject+'&body='+body);
+}
 </script>
 </body>
 </html>
