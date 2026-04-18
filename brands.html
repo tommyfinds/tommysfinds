@@ -360,28 +360,25 @@ function openQV(id){
   }
   buildImgPanel();
 
-  // Views - shared across all users via JSONBin.io + localStorage fallback
+  // Views - atomic read-modify-write via JSONBin (remote is source of truth)
   var JSONBIN_ID  = '69e3add2856a6821894a048e';
   var JSONBIN_KEY = '$2a$10$o64oTtOiRlat1U95AyJ3d.0ZCCLlQ/rbr2BEHggH4GC1uDJTcvADK';
-  var USE_SHARED  = JSONBIN_ID !== 'YOUR_BIN_ID_HERE';
-  var views = JSON.parse(localStorage.getItem("tf_views")||"{}");
-  views[p.id] = (views[p.id]||0) + 1;
-  localStorage.setItem("tf_views", JSON.stringify(views));
-  var vc = views[p.id];
-  // Push to shared storage
-  if(USE_SHARED){
-    fetch("https://api.jsonbin.io/v3/b/" + JSONBIN_ID + "/latest", {headers:{"X-Master-Key":JSONBIN_KEY}})
-      .then(function(r){return r.ok?r.json():null;})
-      .then(function(d){
-        if(!d) return;
-        var rv=(d.record&&d.record.views)||{};
-        rv[p.id]=(rv[p.id]||0)+1;
-        var merged={}; 
-        Object.assign(merged, rv);
-        Object.keys(views).forEach(function(k){ merged[k]=Math.max(merged[k]||0,views[k]||0); });
-        return fetch("https://api.jsonbin.io/v3/b/"+JSONBIN_ID,{method:"PUT",headers:{"Content-Type":"application/json","X-Master-Key":JSONBIN_KEY},body:JSON.stringify({views:merged})});
-      }).catch(function(){});
-  }
+  var JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_ID;
+  var cache = JSON.parse(localStorage.getItem('tf_views_cache')||'{}');
+  var vc = (cache[p.id] || 0) + 1; // optimistic display
+  // Atomic increment: read → +1 → write
+  fetch(JSONBIN_URL + '/latest', {headers:{'X-Master-Key':JSONBIN_KEY}})
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(d){
+      var rv = (d && d.record && d.record.views) || {};
+      rv[p.id] = (rv[p.id]||0) + 1;
+      vc = rv[p.id];
+      // Update display
+      var vcEl = document.getElementById('qv-vc-' + p.id);
+      if(vcEl) vcEl.textContent = vc + ' view' + (vc!==1?'s':'');
+      localStorage.setItem('tf_views_cache', JSON.stringify(rv));
+      return fetch(JSONBIN_URL, {method:'PUT', headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY}, body:JSON.stringify({views:rv})});
+    }).catch(function(){});
   // Related
   var rel = products.filter(function(x){ return x.id!==p.id && x.brand===p.brand; }).slice(0,2);
   var inf = document.getElementById("qvinf");
