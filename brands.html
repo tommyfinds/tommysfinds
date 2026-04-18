@@ -215,7 +215,7 @@ var products = [
   {id:32,brand:"Lego",name:"MARVEL Sanctum Sanctorum (Set 76218)",price:15.23,colors:["Red","Grey","Beige"],images:["https://i.imgur.com/U1U3HIi.png","https://i.imgur.com/UMFlWfR.png","https://i.imgur.com/15lrx6j.jpeg"],buyLink:"https://s.spblk.com/dn4r",notes:""},
   {id:33,brand:"Lego",name:"TRANSFORMERS Optimus Prime (Set 10302)",price:13.96,colors:["Red","Blue","Grey"],images:["https://i.imgur.com/IeZhGYM.png","https://i.imgur.com/X5ckfmA.png","https://i.imgur.com/6ZkHeTL.png"],buyLink:"https://s.spblk.com/dn4t",notes:""},
   {id:34,brand:"Lego",name:"JURASSIC WORLD Tyrannosaurus Rex (Set 76968)",price:32.99,colors:["Beige"],images:["https://i.imgur.com/hese5IY.jpeg","https://i.imgur.com/SJqem3U.png","https://i.imgur.com/yGR9ioR.jpeg"],buyLink:"https://s.spblk.com/c9kn",notes:""},
-  {id:35,brand:"Lego",name:"STRANGER THINGS The Upside Down (Set 75810)",price:0,colors:["Grey"],images:["https://i.imgur.com/kWeN2Wm.jpeg","https://i.imgur.com/N2cmwyf.png","https://i.imgur.com/2OKQp3z.jpeg"],buyLink:"https://s.spblk.com/dn50",notes:""},
+  {id:35,brand:"Lego",name:"STRANGER THINGS The Upside Down (Set 75810)",price: 26.81,olors:["Grey"],images:["https://i.imgur.com/kWeN2Wm.jpeg","https://i.imgur.com/N2cmwyf.png","https://i.imgur.com/2OKQp3z.jpeg"],buyLink:"https://s.spblk.com/dn50",notes:""},
   {id:36,brand:"Goyard",name:"Goyard Duffel Bag",price:10.31,colors:["Green","Blue","Black","Grey"],images:["https://i.imgur.com/8eX6jPG.png","https://i.imgur.com/1vCdPj5.jpeg","https://i.imgur.com/Q1aoUtn.jpeg"],buyLink:"https://s.spblk.com/cu6h",notes:""},
   {id:37,brand:"No Brand",name:"Brooklyn Embroidery Grey Hoodie",price:15.55,colors:["Grey"],images:["https://i.imgur.com/xwOS8J6.jpeg","https://i.imgur.com/ee8C9xa.jpeg"],buyLink:"https://s.spblk.com/dnhs",notes:"Good quality and nice embroidery logo."},
   {id:38,brand:"Balenciaga",name:"Balenciaga Snake Necklace",price:7.14,colors:["Grey"],images:["https://i.imgur.com/JUX8kN3.jpeg","https://i.imgur.com/2cQkELj.png","https://i.imgur.com/d7arUtD.jpeg"],buyLink:"https://s.spblk.com/dnht",notes:"Really good quality, will see if it holds up in time."},
@@ -360,26 +360,28 @@ function openQV(id){
   }
   buildImgPanel();
 
-  // Views - shared across all users via countapi.xyz + localStorage fallback
-  var COUNTAPI_NS = "tommysfinds-v1";
+  // Views - shared across all users via JSONBin.io + localStorage fallback
+  var JSONBIN_ID  = 'YOUR_BIN_ID_HERE';
+  var JSONBIN_KEY = 'YOUR_API_KEY_HERE';
+  var USE_SHARED  = JSONBIN_ID !== 'YOUR_BIN_ID_HERE';
   var views = JSON.parse(localStorage.getItem("tf_views")||"{}");
   views[p.id] = (views[p.id]||0) + 1;
   localStorage.setItem("tf_views", JSON.stringify(views));
   var vc = views[p.id];
-  // Sync with shared counter in background
-  fetch("https://api.countapi.xyz/hit/" + COUNTAPI_NS + "/item-" + p.id)
-    .then(function(r){ return r.ok ? r.json() : null; })
-    .then(function(d){
-      if(d && d.value){
-        var v2 = JSON.parse(localStorage.getItem("tf_views")||"{}");
-        v2[p.id] = d.value;
-        localStorage.setItem("tf_views", JSON.stringify(v2));
-        // Update displayed count if popup still open
-        var vcEl = document.getElementById("qv-vc-" + p.id);
-        if(vcEl) vcEl.textContent = d.value + " view" + (d.value!==1?"s":"");
-      }
-    }).catch(function(){});
-
+  // Push to shared storage
+  if(USE_SHARED){
+    fetch("https://api.jsonbin.io/v3/b/" + JSONBIN_ID + "/latest", {headers:{"X-Master-Key":JSONBIN_KEY}})
+      .then(function(r){return r.ok?r.json():null;})
+      .then(function(d){
+        if(!d) return;
+        var rv=(d.record&&d.record.views)||{};
+        rv[p.id]=(rv[p.id]||0)+1;
+        var merged={}; 
+        Object.assign(merged, rv);
+        Object.keys(views).forEach(function(k){ merged[k]=Math.max(merged[k]||0,views[k]||0); });
+        return fetch("https://api.jsonbin.io/v3/b/"+JSONBIN_ID,{method:"PUT",headers:{"Content-Type":"application/json","X-Master-Key":JSONBIN_KEY},body:JSON.stringify({views:merged})});
+      }).catch(function(){});
+  }
   // Related
   var rel = products.filter(function(x){ return x.id!==p.id && x.brand===p.brand; }).slice(0,2);
   var inf = document.getElementById("qvinf");
