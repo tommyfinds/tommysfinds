@@ -361,8 +361,8 @@ function openQV(id){
   buildImgPanel();
 
   // Views - shared across all users via JSONBin.io + localStorage fallback
-  var JSONBIN_ID  = 'YOUR_BIN_ID_HERE';
-  var JSONBIN_KEY = 'YOUR_API_KEY_HERE';
+  var JSONBIN_ID  = '69e3add2856a6821894a048e';
+  var JSONBIN_KEY = '$2a$10$o64oTtOiRlat1U95AyJ3d.0ZCCLlQ/rbr2BEHggH4GC1uDJTcvADK';
   var USE_SHARED  = JSONBIN_ID !== 'YOUR_BIN_ID_HERE';
   var views = JSON.parse(localStorage.getItem("tf_views")||"{}");
   views[p.id] = (views[p.id]||0) + 1;
