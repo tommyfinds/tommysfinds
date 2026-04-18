@@ -226,16 +226,28 @@
   }
 
   .search-bar input,
-  .search-bar select {
+  .search-bar   select {
     background: var(--surface2);
     border: 1px solid var(--border2);
-    color: #ccc;
+    color: var(--text);
     font-family: 'Archivo Narrow', sans-serif;
     font-size: 13px;
     padding: 8px 12px;
     outline: none;
+    cursor: pointer;
     transition: border-color 0.15s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23666'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
   }
+  select:hover { border-color: #444; }
+  :root.light select { color: #111; }
+  :root.light select option { color: #111; background: #fff; }
+  select option { background: #111; color: #f0f0f0; }
   .search-bar input { flex: 1; min-width: 180px; }
   .search-bar input::placeholder { color: var(--muted); }
   .search-bar input:focus,
@@ -1431,7 +1443,7 @@ const products = [
     category: "lego",
     mainCat: "others",
     colors: ["Grey"],
-    price: 0,
+    price: 26.81,
     badge: "new",
     images: ["https://i.imgur.com/kWeN2Wm.jpeg","https://i.imgur.com/N2cmwyf.png","https://i.imgur.com/2OKQp3z.jpeg"],
     buyLink: "https://s.spblk.com/dn50",
@@ -1817,6 +1829,16 @@ function renderWishlistModal() {
 }
 
 // ── QUICK VIEW ──
+function fetchViewCount(id) {
+  // Returns a promise with the view count (from local cache, syncing in background)
+  loadViews();
+  const localCount = globalViews[id] || 0;
+  if (!USE_SHARED) return Promise.resolve(localCount);
+  // Refresh from remote in background
+  return fetchRemoteViews().then(() => globalViews[id] || localCount).catch(() => localCount);
+}
+
+
 function openQV(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
@@ -2013,63 +2035,81 @@ function openQVFromCard(e, id) {
   openQV(id);
 }
 
-// Views counter - per-user localStorage (shared storage requires server)
-// ── SHARED VIEW COUNTER via countapi.xyz ──
-// Views are shared across ALL users - no server needed, no signup required
-const COUNTAPI_NS = 'tommysfinds-v1';  // namespace for your site
-let globalViews = {};  // local cache loaded on startup
+// ── SHARED VIEW COUNTER via JSONBin.io ──
+// Free shared storage - views seen by ALL users across the world.
+// SETUP (one time): 
+//   1. Go to jsonbin.io → Sign up free
+//   2. Click "+ Create Bin", paste: {"views":{}}  → Save
+//   3. Copy the Bin ID (looks like: 65f3a2b1...) and paste it below
+//   4. Go to Account → API Keys → create a key, paste below
+const JSONBIN_ID  = 'YOUR_BIN_ID_HERE';   // ← paste your bin ID
+const JSONBIN_KEY = 'YOUR_API_KEY_HERE';  // ← paste your API key (starts with $2b$)
+const USE_SHARED  = JSONBIN_ID !== 'YOUR_BIN_ID_HERE';
 
-// Load all cached views from localStorage on startup
+let globalViews = {};
+let viewsSyncing = false;
+let pendingSync  = false;
+
 function loadViews() {
   try { globalViews = JSON.parse(localStorage.getItem('tf_views') || '{}'); } catch(e) { globalViews = {}; }
 }
 
-// Hit the shared counter for an item, update local cache, return new count
-async function trackView(id) {
-  loadViews();
-  // Optimistic update locally first
-  globalViews[id] = (globalViews[id] || 0) + 1;
-  localStorage.setItem('tf_views', JSON.stringify(globalViews));
-  // Then sync with shared counter
+async function fetchRemoteViews() {
+  if (!USE_SHARED) return;
   try {
-    const res = await fetch('https://api.countapi.xyz/hit/' + COUNTAPI_NS + '/item-' + id);
+    const res = await fetch('https://api.jsonbin.io/v3/b/' + JSONBIN_ID + '/latest', {
+      headers: { 'X-Master-Key': JSONBIN_KEY }
+    });
     if (res.ok) {
       const data = await res.json();
-      if (data && data.value) {
-        globalViews[id] = data.value;
-        localStorage.setItem('tf_views', JSON.stringify(globalViews));
-      }
+      const remote = (data.record && data.record.views) || {};
+      // Merge: take max of local and remote for each item
+      Object.keys(remote).forEach(k => {
+        globalViews[k] = Math.max(globalViews[k] || 0, remote[k] || 0);
+      });
+      localStorage.setItem('tf_views', JSON.stringify(globalViews));
     }
-  } catch(e) { /* offline or API down - use local count */ }
-  return globalViews[id] || 0;
+  } catch(e) {}
 }
 
-// Get count for display (from local cache, refreshed when popup opens)
-async function fetchViewCount(id) {
-  // Return local cache immediately, then refresh from API
-  loadViews();
+async function pushRemoteViews() {
+  if (!USE_SHARED || viewsSyncing) { pendingSync = true; return; }
+  viewsSyncing = true;
   try {
-    const res = await fetch('https://api.countapi.xyz/get/' + COUNTAPI_NS + '/item-' + id);
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.value !== null && data.value !== undefined) {
-        globalViews[id] = data.value;
-        localStorage.setItem('tf_views', JSON.stringify(globalViews));
-        return data.value;
-      }
-    }
-  } catch(e) { /* use local */ }
+    await fetch('https://api.jsonbin.io/v3/b/' + JSONBIN_ID, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
+      body: JSON.stringify({ views: globalViews })
+    });
+  } catch(e) {}
+  viewsSyncing = false;
+  if (pendingSync) { pendingSync = false; pushRemoteViews(); }
+}
+
+function trackView(id) {
+  loadViews();
+  globalViews[id] = (globalViews[id] || 0) + 1;
+  localStorage.setItem('tf_views', JSON.stringify(globalViews));
+  // Push update to shared storage in background
+  pushRemoteViews();
+  return globalViews[id];
+}
+
+function getViewCount(id) {
   return globalViews[id] || 0;
 }
 
 showSkeletons();
 loadViews();
-computeHotItems();
-setTimeout(() => {
-  populateFilters();
-  render();
-  updateWishlistUI();
-}, 400);
+// Fetch shared views from remote, then render with real counts
+fetchRemoteViews().finally(() => {
+  computeHotItems();
+  setTimeout(() => {
+    populateFilters();
+    render();
+    updateWishlistUI();
+  }, 400);
+});
 // Refresh hot items every hour
 setInterval(() => { computeHotItems(); render(); }, 3600000);
 
