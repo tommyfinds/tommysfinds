@@ -1893,9 +1893,10 @@ function openQV(id) {
 }
 async function openQVAndTrack(id) {
   openQV(id);
-  const count = await trackView(id);
-  const el = document.getElementById('qv-view-num');
-  if(el) el.textContent = count + ' view' + (count!==1?'s':'');
+  trackView(id).then(function(count) {
+    const el = document.getElementById('qv-view-num');
+    if(el) el.textContent = count + ' view' + (count !== 1 ? 's' : '');
+  });
 }
 function closeQV() { document.getElementById('qv-overlay').classList.remove('open'); }
 document.getElementById('qv-overlay').addEventListener('click', e => { if (e.target === document.getElementById('qv-overlay')) closeQV(); });
@@ -2036,72 +2037,75 @@ function openQVFromCard(e, id) {
 }
 
 // ── SHARED VIEW COUNTER via JSONBin.io ──
-// Free shared storage - views seen by ALL users across the world.
-// SETUP (one time): 
-//   1. Go to jsonbin.io → Sign up free
-//   2. Click "+ Create Bin", paste: {"views":{}}  → Save
-//   3. Copy the Bin ID (looks like: 65f3a2b1...) and paste it below
-//   4. Go to Account → API Keys → create a key, paste below
+// Remote is the single source of truth. localStorage is display cache only.
 const JSONBIN_ID  = '69e3add2856a6821894a048e';
 const JSONBIN_KEY = '$2a$10$o64oTtOiRlat1U95AyJ3d.0ZCCLlQ/rbr2BEHggH4GC1uDJTcvADK';
-const USE_SHARED  = JSONBIN_ID !== 'YOUR_BIN_ID_HERE';
+const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_ID;
+const JSONBIN_HDR = { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY };
 
-let globalViews = {};
-let viewsSyncing = false;
-let pendingSync  = false;
+// displayCache: what we show in the UI (loaded from remote on startup)
+// NEVER used as input to a PUT — remote is always fetched fresh before writing
+let displayCache = {};
 
-function loadViews() {
-  try { globalViews = JSON.parse(localStorage.getItem('tf_views') || '{}'); } catch(e) { globalViews = {}; }
-}
-
+// On startup: fetch real counts from remote and store in displayCache
 async function fetchRemoteViews() {
-  if (!USE_SHARED) return;
   try {
-    const res = await fetch('https://api.jsonbin.io/v3/b/' + JSONBIN_ID + '/latest', {
-      headers: { 'X-Master-Key': JSONBIN_KEY }
-    });
+    const res = await fetch(JSONBIN_URL + '/latest', { headers: { 'X-Master-Key': JSONBIN_KEY } });
     if (res.ok) {
       const data = await res.json();
-      const remote = (data.record && data.record.views) || {};
-      // Merge: take max of local and remote for each item
-      Object.keys(remote).forEach(k => {
-        globalViews[k] = Math.max(globalViews[k] || 0, remote[k] || 0);
-      });
-      localStorage.setItem('tf_views', JSON.stringify(globalViews));
+      displayCache = (data.record && data.record.views) || {};
+      // Replace localStorage with real remote data (clear stale local counts)
+      localStorage.setItem('tf_views_cache', JSON.stringify(displayCache));
     }
-  } catch(e) {}
+  } catch(e) {
+    // Offline: use cached display values but don't treat as authoritative
+    try { displayCache = JSON.parse(localStorage.getItem('tf_views_cache') || '{}'); } catch(e2) {}
+  }
 }
 
-async function pushRemoteViews() {
-  if (!USE_SHARED || viewsSyncing) { pendingSync = true; return; }
-  viewsSyncing = true;
+// Increment counter: fetch current remote value → add 1 → push back
+// This is an atomic read-modify-write so no device can overwrite another
+async function trackView(id) {
+  // Show optimistic +1 immediately in the UI
+  displayCache[id] = (displayCache[id] || 0) + 1;
+  const optimistic = displayCache[id];
+
   try {
-    await fetch('https://api.jsonbin.io/v3/b/' + JSONBIN_ID, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
-      body: JSON.stringify({ views: globalViews })
-    });
-  } catch(e) {}
-  viewsSyncing = false;
-  if (pendingSync) { pendingSync = false; pushRemoteViews(); }
-}
+    // 1. Read current remote value
+    const getRes = await fetch(JSONBIN_URL + '/latest', { headers: { 'X-Master-Key': JSONBIN_KEY } });
+    if (!getRes.ok) return optimistic;
+    const getData = await getRes.json();
+    const remoteViews = (getData.record && getData.record.views) || {};
 
-function trackView(id) {
-  loadViews();
-  globalViews[id] = (globalViews[id] || 0) + 1;
-  localStorage.setItem('tf_views', JSON.stringify(globalViews));
-  // Push update to shared storage in background
-  pushRemoteViews();
-  return globalViews[id];
+    // 2. Increment only this item on top of the real remote value
+    remoteViews[id] = (remoteViews[id] || 0) + 1;
+    const realCount = remoteViews[id];
+
+    // 3. Push the updated object back
+    const putRes = await fetch(JSONBIN_URL, {
+      method: 'PUT',
+      headers: JSONBIN_HDR,
+      body: JSON.stringify({ views: remoteViews })
+    });
+    if (putRes.ok) {
+      // Update display cache with real remote values
+      displayCache = remoteViews;
+      localStorage.setItem('tf_views_cache', JSON.stringify(displayCache));
+      return realCount;
+    }
+  } catch(e) { /* offline – show optimistic count */ }
+  return optimistic;
 }
 
 function getViewCount(id) {
-  return globalViews[id] || 0;
+  return displayCache[id] || 0;
 }
 
+// Legacy alias (called in some places)
+function loadViews() {}
+
 showSkeletons();
-loadViews();
-// Fetch shared views from remote, then render with real counts
+// Fetch real view counts from shared remote storage, then render
 fetchRemoteViews().finally(() => {
   computeHotItems();
   setTimeout(() => {
