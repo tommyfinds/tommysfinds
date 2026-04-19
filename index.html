@@ -2049,16 +2049,23 @@ let displayCache = {};
 
 // On startup: fetch real counts from remote and store in displayCache
 async function fetchRemoteViews() {
+  // 4-second timeout — if JSONBin doesn't respond, fail gracefully
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 4000);
   try {
-    const res = await fetch(JSONBIN_URL + '/latest', { headers: { 'X-Master-Key': JSONBIN_KEY } });
+    const res = await fetch(JSONBIN_URL + '/latest', {
+      headers: { 'X-Master-Key': JSONBIN_KEY },
+      signal: controller.signal
+    });
+    clearTimeout(timer);
     if (res.ok) {
       const data = await res.json();
       displayCache = (data.record && data.record.views) || {};
-      // Replace localStorage with real remote data (clear stale local counts)
       localStorage.setItem('tf_views_cache', JSON.stringify(displayCache));
     }
   } catch(e) {
-    // Offline: use cached display values but don't treat as authoritative
+    clearTimeout(timer);
+    // Offline or timeout — use local cache, don't block anything
     try { displayCache = JSON.parse(localStorage.getItem('tf_views_cache') || '{}'); } catch(e2) {}
   }
 }
@@ -2070,10 +2077,15 @@ async function trackView(id) {
   displayCache[id] = (displayCache[id] || 0) + 1;
   const optimistic = displayCache[id];
 
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 5000);
   try {
     // 1. Read current remote value
-    const getRes = await fetch(JSONBIN_URL + '/latest', { headers: { 'X-Master-Key': JSONBIN_KEY } });
-    if (!getRes.ok) return optimistic;
+    const getRes = await fetch(JSONBIN_URL + '/latest', {
+      headers: { 'X-Master-Key': JSONBIN_KEY },
+      signal: ctrl.signal
+    });
+    if (!getRes.ok) { clearTimeout(t); return optimistic; }
     const getData = await getRes.json();
     const remoteViews = (getData.record && getData.record.views) || {};
 
@@ -2085,15 +2097,16 @@ async function trackView(id) {
     const putRes = await fetch(JSONBIN_URL, {
       method: 'PUT',
       headers: JSONBIN_HDR,
-      body: JSON.stringify({ views: remoteViews })
+      body: JSON.stringify({ views: remoteViews }),
+      signal: ctrl.signal
     });
+    clearTimeout(t);
     if (putRes.ok) {
-      // Update display cache with real remote values
       displayCache = remoteViews;
       localStorage.setItem('tf_views_cache', JSON.stringify(displayCache));
       return realCount;
     }
-  } catch(e) { /* offline – show optimistic count */ }
+  } catch(e) { clearTimeout(t); /* timeout or offline */ }
   return optimistic;
 }
 
@@ -2105,15 +2118,18 @@ function getViewCount(id) {
 function loadViews() {}
 
 showSkeletons();
-// Fetch real view counts from shared remote storage, then render
-fetchRemoteViews().finally(() => {
+// Render immediately — don't wait for remote views
+computeHotItems();
+setTimeout(() => {
+  populateFilters();
+  render();
+  updateWishlistUI();
+}, 200);
+// Fetch remote views in background, refresh display when done
+fetchRemoteViews().then(() => {
   computeHotItems();
-  setTimeout(() => {
-    populateFilters();
-    render();
-    updateWishlistUI();
-  }, 400);
-});
+  render();
+}).catch(() => {}); // silent fail — site still works offline
 // Refresh hot items every hour
 setInterval(() => { computeHotItems(); render(); }, 3600000);
 
