@@ -360,25 +360,26 @@ function openQV(id){
   }
   buildImgPanel();
 
-  // Views - atomic read-modify-write via JSONBin (remote is source of truth)
-  var JSONBIN_ID  = '69e3add2856a6821894a048e';
-  var JSONBIN_KEY = '$2a$10$o64oTtOiRlat1U95AyJ3d.0ZCCLlQ/rbr2BEHggH4GC1uDJTcvADK';
-  var JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_ID;
+  // Views - Firebase Realtime Database (per-item atomic write)
+  var FIREBASE_URL = 'https://tommys-finds-default-rtdb.firebaseio.com'; // ← same URL as in index.html
   var cache = JSON.parse(localStorage.getItem('tf_views_cache')||'{}');
-  var vc = (cache[p.id] || 0) + 1; // optimistic display
-  // Atomic increment: read → +1 → write
-  fetch(JSONBIN_URL + '/latest', {headers:{'X-Master-Key':JSONBIN_KEY}})
-    .then(function(r){return r.ok?r.json():null;})
-    .then(function(d){
-      var rv = (d && d.record && d.record.views) || {};
-      rv[p.id] = (rv[p.id]||0) + 1;
-      vc = rv[p.id];
-      // Update display
-      var vcEl = document.getElementById('qv-vc-' + p.id);
-      if(vcEl) vcEl.textContent = vc + ' view' + (vc!==1?'s':'');
-      localStorage.setItem('tf_views_cache', JSON.stringify(rv));
-      return fetch(JSONBIN_URL, {method:'PUT', headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY}, body:JSON.stringify({views:rv})});
-    }).catch(function(){});
+  var vc = (cache[p.id] || 0) + 1;
+  if(true){
+    fetch(FIREBASE_URL + '/views/' + p.id + '.json')
+      .then(function(r){return r.ok?r.json():null;})
+      .then(function(cur){
+        var newCount = (cur||0) + 1;
+        vc = newCount;
+        cache[p.id] = newCount;
+        localStorage.setItem('tf_views_cache', JSON.stringify(cache));
+        var vcEl = document.getElementById('qv-vc-' + p.id);
+        if(vcEl) vcEl.textContent = newCount + ' view' + (newCount!==1?'s':'');
+        return fetch(FIREBASE_URL + '/views/' + p.id + '.json', {
+          method:'PUT', headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(newCount)
+        });
+      }).catch(function(){});
+  }
   // Related
   var rel = products.filter(function(x){ return x.id!==p.id && x.brand===p.brand; }).slice(0,2);
   var inf = document.getElementById("qvinf");
