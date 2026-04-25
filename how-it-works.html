@@ -73,7 +73,7 @@ footer a:hover{color:var(--text);}
 .hero{padding:4rem 2rem 3rem;border-bottom:1px solid var(--border);}
 .hero p{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;}
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,80px);letter-spacing:0.04em;line-height:0.9;color:var(--text);}
-.steps{padding:3rem 2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;max-width:900px;}
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:900px;}
 .step{border-top:1px solid var(--border2);padding-top:1.5rem;}
 .step-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--border2);line-height:1;margin-bottom:0.8rem;}
 .step h2{font-size:15px;font-weight:500;color:var(--text);margin-bottom:8px;}
@@ -122,9 +122,9 @@ footer a:hover{color:var(--text);}
   </div>
 </nav>
 <div class="hero"><p>Tommy's Finds</p><h1>How It<br>Works</h1></div>
-<div style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;padding:0 2rem 4rem;">
-  <div style="flex:1;min-width:280px;">
-    <div class="steps" style="padding:3rem 0 1.5rem;">
+<div style="display:flex;align-items:flex-start;gap:3rem;flex-wrap:wrap;padding:0 2rem 4rem;">
+  <div style="flex:1;min-width:340px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;padding:3rem 0 1.5rem;" class="steps">
       <div class="step"><div class="step-num">01</div><h2>Browse the finds</h2><p>Use category tabs and filters to browse by brand, color, or type. Every item is hand-picked and QC checked before listing.</p></div>
       <div class="step"><div class="step-num">02</div><h2>Open on Superbuy</h2><p>Click the buy button on any item to open it directly on Superbuy. Use the referral link to get a coupon pack on sign-up.</p></div>
       <div class="step"><div class="step-num">03</div><h2>Place your order</h2><p>Superbuy purchases the item, receives it in their warehouse, provides QC photos, then ships internationally to your door.</p></div>
@@ -132,20 +132,20 @@ footer a:hover{color:var(--text);}
     </div>
     <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener" style="display:inline-block;padding:12px 28px;background:var(--text);color:var(--bg);font-family:'Archivo Narrow',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Sign up to Superbuy →</a>
   </div>
-  <div style="flex-shrink:0;width:300px;padding-top:3rem;">
-    <a href="https://www.youtube.com/watch?v=dtRRpuYoAvM&t" target="_blank" rel="noopener" style="display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--text);transition:border-color .2s,transform .15s;" onmouseover="this.style.borderColor='#FF0000';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+  <div style="flex-shrink:0;width:380px;display:flex;align-items:center;justify-content:center;padding-top:3rem;">
+    <a href="https://www.youtube.com/watch?v=dtRRpuYoAvM&t" target="_blank" rel="noopener" style="display:flex;flex-direction:column;width:100%;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--text);transition:border-color .2s,transform .15s;" onmouseover="this.style.borderColor='#FF0000';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
       <div style="position:relative;">
-        <img src="https://img.youtube.com/vi/dtRRpuYoAvM/hqdefault.jpg" alt="Tutorial thumbnail" style="width:100%;display:block;" />
+        <img src="https://img.youtube.com/vi/dtRRpuYoAvM/maxresdefault.jpg" alt="Tutorial thumbnail" style="width:100%;display:block;" />
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.35);">
-          <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M8 5v14l11-7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="white" width="64" height="64"><path d="M8 5v14l11-7z"/></svg>
         </div>
       </div>
-      <div style="padding:.9rem 1rem;display:flex;flex-direction:column;gap:5px;">
+      <div style="padding:1rem 1.2rem;display:flex;flex-direction:column;gap:6px;">
         <div style="display:flex;align-items:center;gap:6px;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           <span style="font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;">Apr 23, 2025</span>
         </div>
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.06em;line-height:1.3;">How to buy Cheap Clothes in 2026 ( Superbuy Tutorial + Free 460¥ )</span>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.06em;line-height:1.3;">How to buy Cheap Clothes in 2026 ( Superbuy Tutorial + Free 460¥ )</span>
       </div>
     </a>
   </div>
