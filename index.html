@@ -706,6 +706,52 @@
     pointer-events: none;
   }
   :root.light #bg-canvas { opacity: 1; }
+
+  /* ── GENDER TOGGLE ── */
+  .gender-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .gender-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+  .gender-btn {
+    padding: 5px 14px;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .gender-btn:hover { border-color: var(--muted); color: var(--text); }
+  .gender-btn.active {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+  .gender-btn.active.women {
+    background: #c084fc;
+    border-color: #c084fc;
+    color: #fff;
+  }
+  .gender-btn.active.men {
+    background: #60a5fa;
+    border-color: #60a5fa;
+    color: #fff;
+  }
 </style>
 </head>
 <body>
@@ -731,7 +777,7 @@
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
     <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">🌙</button>
-    <a href="https://discord.com/invite/yJHHqZzrXt" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;" title="Join Discord">
+    <a href="https://discord.gg/fbDwNdvs" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;" title="Join Discord">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#aaa" style="transition:fill 0.2s;" onmouseover="this.style.fill='#5865F2'" onmouseout="this.style.fill='#aaa'"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
     </a>
     <a href="https://www.youtube.com/@Tommy-finds" target="_blank" rel="noopener" style="display:flex;align-items:center;width:36px;height:36px;justify-content:center;">
@@ -754,6 +800,12 @@
 </section>
 
 <div class="filters-wrap" id="finds">
+  <div class="gender-bar" id="gender-bar">
+    <span class="gender-label">Gender</span>
+    <button class="gender-btn active" data-gender="all">All</button>
+    <button class="gender-btn men" data-gender="men">&#9794; Men</button>
+    <button class="gender-btn women" data-gender="women">&#9792; Women</button>
+  </div>
   <div class="cat-bar" id="cat-bar" style="justify-content:space-between;">
     <div style="display:flex;">
       <button class="cat-btn active" data-main="all">All</button>
@@ -898,7 +950,7 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
     Videos
   </button>
-  <a href="https://discord.com/invite/yJHHqZzrXt" target="_blank" class="mobile-nav-btn">
+  <a href="https://discord.gg/fbDwNdvs" target="_blank" class="mobile-nav-btn">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.102 18.079.115 18.1.132 18.11a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
     Discord
   </a>
@@ -927,6 +979,7 @@
 const products = [
   {
     id: 1,
+    gender: "unisex",
     addedDate: "2025-12-06T00:00:00.000Z",
     name: "Supreme Spider-Man SS26 T-Shirt",
     brand: "Supreme",
@@ -942,6 +995,7 @@ const products = [
   },
   {
     id: 2,
+    gender: "unisex",
     addedDate: "2025-12-10T00:00:00.000Z",
     name: "AirPods Max 2",
     brand: "Apple",
@@ -957,6 +1011,7 @@ const products = [
   },
   {
     id: 3,
+    gender: "unisex",
     addedDate: "2025-12-12T00:00:00.000Z",
     name: "One Piece Going Merry (Set 75639)",
     brand: "Lego",
@@ -972,6 +1027,7 @@ const products = [
   },
   {
     id: 4,
+    gender: "unisex",
     addedDate: "2025-12-14T00:00:00.000Z",
     name: "Artiemaster 370gsm Boxy Blank",
     brand: "Artiemaster",
@@ -987,6 +1043,7 @@ const products = [
   },
   {
     id: 5,
+    gender: "unisex",
     addedDate: "2025-12-16T00:00:00.000Z",
     name: "Rimowa Backpack",
     brand: "Rimowa",
@@ -1002,6 +1059,7 @@ const products = [
   },
   {
     id: 6,
+    gender: "unisex",
     addedDate: "2025-12-18T00:00:00.000Z",
     name: "Louis Vuitton Wallets",
     brand: "Louis Vuitton",
@@ -1017,6 +1075,7 @@ const products = [
   },
   {
     id: 7,
+    gender: "unisex",
     addedDate: "2025-12-20T00:00:00.000Z",
     name: "Stussy Thermal",
     brand: "Stussy",
@@ -1032,6 +1091,7 @@ const products = [
   },
   {
     id: 8,
+    gender: "unisex",
     addedDate: "2025-12-22T00:00:00.000Z",
     name: "Nike Mind 002",
     brand: "Nike",
@@ -1047,6 +1107,7 @@ const products = [
   },
   {
     id: 9,
+    gender: "unisex",
     addedDate: "2025-12-24T00:00:00.000Z",
     name: "Lululemon Yoga Woman",
     brand: "Lululemon",
@@ -1062,6 +1123,7 @@ const products = [
   },
   {
     id: 10,
+    gender: "unisex",
     addedDate: "2025-12-26T00:00:00.000Z",
     name: "Bape X Hello Kitty Tees",
     brand: "Bape",
@@ -1077,6 +1139,7 @@ const products = [
   },
   {
     id: 11,
+    gender: "unisex",
     addedDate: "2025-12-27T00:00:00.000Z",
     name: "Acne Studios Shorts",
     brand: "Acne Studios",
@@ -1092,6 +1155,7 @@ const products = [
   },
   {
     id: 12,
+    gender: "unisex",
     addedDate: "2025-12-28T00:00:00.000Z",
     name: "MARVEL Daily Bugle (Set 76178)",
     brand: "Lego",
@@ -1107,6 +1171,7 @@ const products = [
   },
   {
     id: 13,
+    gender: "unisex",
     addedDate: "2025-12-29T00:00:00.000Z",
     name: "Bape Skateboard",
     brand: "Bape",
@@ -1122,6 +1187,7 @@ const products = [
   },
   {
     id: 14,
+    gender: "unisex",
     addedDate: "2025-12-30T00:00:00.000Z",
     name: "Supreme Retro Handheld Console",
     brand: "Supreme",
@@ -1137,6 +1203,7 @@ const products = [
   },
   {
     id: 15,
+    gender: "unisex",
     addedDate: "2025-12-31T00:00:00.000Z",
     name: "Artiemaster Quality Blank Joggings",
     brand: "Artiemaster",
@@ -1152,6 +1219,7 @@ const products = [
   },
   {
     id: 16,
+    gender: "unisex",
     addedDate: "2026-01-01T00:00:00.000Z",
     name: "NASA Artemis Space Launch System (Set 10341)",
     brand: "Lego",
@@ -1167,6 +1235,7 @@ const products = [
   },
   {
     id: 17,
+    gender: "unisex",
     addedDate: "2026-01-02T00:00:00.000Z",
     name: "STAR WARS Millennium Falcon (Set 75105)",
     brand: "Lego",
@@ -1182,6 +1251,7 @@ const products = [
   },
   {
     id: 18,
+    gender: "unisex",
     addedDate: "2026-01-03T00:00:00.000Z",
     name: "Polo Bear Wool Sweater",
     brand: "Ralph Lauren",
@@ -1197,6 +1267,7 @@ const products = [
   },
   {
     id: 19,
+    gender: "unisex",
     addedDate: "2026-01-04T00:00:00.000Z",
     name: "GTA San Andreas Carpet",
     brand: "Playstation",
@@ -1212,6 +1283,7 @@ const products = [
   },
   {
     id: 20,
+    gender: "unisex",
     addedDate: "2026-01-05T00:00:00.000Z",
     name: "ZC Batch GEL-NYC",
     brand: "Asics",
@@ -1227,6 +1299,7 @@ const products = [
   },
   {
     id: 21,
+    gender: "unisex",
     addedDate: "2026-01-06T00:00:00.000Z",
     name: "GX Batch Jordan 4",
     brand: "Nike",
@@ -1242,6 +1315,7 @@ const products = [
   },
   {
     id: 22,
+    gender: "unisex",
     addedDate: "2026-04-10T00:00:00.000Z",
     name: "Death Note Misa Amane Short-Sleeve",
     brand: "Anime",
@@ -1257,6 +1331,7 @@ const products = [
   },
   {
     id: 23,
+    gender: "unisex",
     addedDate: "2026-04-11T00:00:00.000Z",
     name: "Numeris Shoes (28 designs)",
     brand: "Numeris",
@@ -1272,6 +1347,7 @@ const products = [
   },
   {
     id: 24,
+    gender: "unisex",
     addedDate: "2026-04-11T00:00:00.000Z",
     name: "Stussy X Nike AIR Bomber Jacket",
     brand: "Stussy / Nike",
@@ -1287,6 +1363,7 @@ const products = [
   },
   {
     id: 25,
+    gender: "unisex",
     addedDate: "2026-04-12T00:00:00.000Z",
     name: "NOCTA Short Sleeve Tee",
     brand: "Nike",
@@ -1302,6 +1379,7 @@ const products = [
   },
   {
     id: 26,
+    gender: "unisex",
     addedDate: "2026-04-12T00:00:00.000Z",
     name: "Cursive Lettering Tee",
     brand: "No Brand",
@@ -1317,6 +1395,7 @@ const products = [
   },
   {
     id: 27,
+    gender: "unisex",
     addedDate: "2026-04-13T00:00:00.000Z",
     name: "AKIMBO CLUB Zip-up",
     brand: "Akimbo",
@@ -1332,6 +1411,7 @@ const products = [
   },
   {
     id: 28,
+    gender: "unisex",
     addedDate: "2026-04-14T00:00:00.000Z",
     name: "Stussy X Nike Parachute Pants",
     brand: "Stussy / Nike",
@@ -1347,6 +1427,7 @@ const products = [
   },
   {
     id: 29,
+    gender: "unisex",
     addedDate: "2026-04-14T00:00:00.000Z",
     name: "Margiela Wine Red Knit",
     brand: "Margiela",
@@ -1362,6 +1443,7 @@ const products = [
   },
   {
     id: 30,
+    gender: "unisex",
     addedDate: "2026-04-15T00:00:00.000Z",
     name: "Thom Browne Crewneck (3 colors)",
     brand: "Thom Browne",
@@ -1377,6 +1459,7 @@ const products = [
   },
   {
     id: 31,
+    gender: "unisex",
     addedDate: "2026-04-15T00:00:00.000Z",
     name: "Bape Short Sleeve (78 designs)",
     brand: "Bape",
@@ -1392,6 +1475,7 @@ const products = [
   },
   {
     id: 32,
+    gender: "unisex",
     addedDate: "2026-04-16T00:00:00.000Z",
     name: "MARVEL Sanctum Sanctorum (Set 76218)",
     brand: "Lego",
@@ -1407,6 +1491,7 @@ const products = [
   },
   {
     id: 33,
+    gender: "unisex",
     addedDate: "2026-04-16T00:00:00.000Z",
     name: "TRANSFORMERS Optimus Prime (Set 10302)",
     brand: "Lego",
@@ -1422,6 +1507,7 @@ const products = [
   },
   {
     id: 34,
+    gender: "unisex",
     addedDate: "2026-04-16T00:00:00.000Z",
     name: "JURASSIC WORLD Tyrannosaurus Rex (Set 76968)",
     brand: "Lego",
@@ -1437,6 +1523,7 @@ const products = [
   },
   {
     id: 35,
+    gender: "unisex",
     addedDate: "2026-04-16T00:00:00.000Z",
     name: "STRANGER THINGS The Upside Down (Set 75810)",
     brand: "Lego",
@@ -1452,6 +1539,7 @@ const products = [
   },
   {
     id: 36,
+    gender: "unisex",
     addedDate: "2026-04-16T00:00:00.000Z",
     name: "Goyard Duffel Bag",
     brand: "Goyard",
@@ -1467,6 +1555,7 @@ const products = [
   },
   {
     id: 37,
+    gender: "unisex",
     addedDate: "2026-04-17T00:00:00.000Z",
     name: "Brooklyn Embroidery Grey Hoodie",
     brand: "No Brand",
@@ -1482,6 +1571,7 @@ const products = [
   },
   {
     id: 38,
+    gender: "unisex",
     addedDate: "2026-04-17T00:00:00.000Z",
     name: "Balenciaga Snake Necklace",
     brand: "Balenciaga",
@@ -1497,6 +1587,7 @@ const products = [
   },
   {
     id: 39,
+    gender: "unisex",
     addedDate: "2026-04-17T00:00:00.000Z",
     name: "Thom Browne Cardigan (5 colors)",
     brand: "Thom Browne",
@@ -1512,6 +1603,7 @@ const products = [
   },
   {
     id: 40,
+    gender: "unisex",
     addedDate: "2026-04-17T00:00:00.000Z",
     name: "Louis Vuitton Varsity Jacket (65 colors)",
     brand: "Louis Vuitton",
@@ -1527,6 +1619,7 @@ const products = [
   },
   {
     id: 41,
+    gender: "unisex",
     addedDate: "2026-04-17T00:00:00.000Z",
     name: "Nike Light Retro Tracksuit (Top)",
     brand: "Nike",
@@ -1542,6 +1635,7 @@ const products = [
   },
   {
     id: 42,
+    gender: "unisex",
     addedDate: "2026-04-17T00:00:00.000Z",
     name: "Nike Light Retro Tracksuit (Bottom)",
     brand: "Nike",
@@ -1557,6 +1651,7 @@ const products = [
   },
   {
     id: 43,
+    gender: "unisex",
     addedDate: "2026-04-17T00:00:00.000Z",
     name: "Nike Pair of 5 Long Socks",
     brand: "Nike",
@@ -1568,81 +1663,6 @@ const products = [
     images: ["https://i.imgur.com/8vsz15D.jpeg","https://i.imgur.com/L5bnZiU.jpeg"],
     buyLink: "https://s.spblk.com/dnid",
     notes: "Ordered it and will do a review when in hand. Great filler item !",
-    videoLink: ""
-  },
-  {
-    id: 44,
-    addedDate: "2026-04-22T00:00:00.000Z",
-    name: "Chrome Hearts Glasses",
-    brand: "Chrome Hearts",
-    category: "glasses",
-    mainCat: "accessories",
-    colors: ["Black","Silver","Gold","Transparent"],
-    price: 0.75,
-    badge: "new",
-    images: ["https://i.imgur.com/603KcKV.png","https://i.imgur.com/UzIwYMT.png","https://i.imgur.com/fhRqNiB.jpeg"],
-    buyLink: "https://s.spblk.com/dqp4",
-    notes: "Ordered some, coming soon, will do an update on my tiktok and youtube",
-    videoLink: ""
-  },
-  {
-    id: 45,
-    addedDate: "2026-04-22T00:00:00.000Z",
-    name: "Eastpak Backpack",
-    brand: "Eastpak",
-    category: "bags",
-    mainCat: "accessories",
-    colors: ["Black","Grey","Red","Blue","Green"],
-    price: 8.41,
-    badge: "new",
-    images: ["https://i.imgur.com/l0IdO6Y.jpeg","https://i.imgur.com/w3Gmg0Z.png","https://i.imgur.com/1pRNpp2.png"],
-    buyLink: "https://s.spblk.com/dqp7",
-    notes: "Ordered it, will do an update when I can",
-    videoLink: ""
-  },
-  {
-    id: 46,
-    addedDate: "2026-04-22T00:00:00.000Z",
-    name: "Stussy Short-Sleeves (100 designs)",
-    brand: "Stussy",
-    category: "tees",
-    mainCat: "tops",
-    colors: ["Black","White","Green","Red","Blue","Orange","Yellow","Pink","Purple","Beige"],
-    price: 6.19,
-    badge: "new",
-    images: ["https://i.imgur.com/gtnMuTW.jpeg","https://i.imgur.com/ljqc8Rb.png","https://i.imgur.com/U60JuSc.png"],
-    buyLink: "https://s.spblk.com/dqp8",
-    notes: "Ordered it, waiting for it comes and will do a review",
-    videoLink: ""
-  },
-  {
-    id: 47,
-    addedDate: "2026-04-22T00:00:00.000Z",
-    name: "Acne Studios Straight Fit Jeans",
-    brand: "Acne Studios",
-    category: "jeans",
-    mainCat: "bottoms",
-    colors: ["Blue","White","Black","Pink"],
-    price: 18.72,
-    badge: "new",
-    images: ["https://i.imgur.com/rTHsgl6.jpeg","https://i.imgur.com/r3Q3nhu.jpeg","https://i.imgur.com/voUitbN.jpeg","https://i.imgur.com/rJf5692.jpeg","https://i.imgur.com/S1EnSwC.jpeg","https://i.imgur.com/I8fOl0a.jpeg","https://i.imgur.com/SYhKawu.jpeg","https://i.imgur.com/PbtUMn2.jpeg"],
-    buyLink: "https://s.spblk.com/cqrh",
-    notes: "Ordered the 002 color blue, will do a review",
-    videoLink: ""
-  },
-  {
-    id: 48,
-    addedDate: "2026-04-22T00:00:00.000Z",
-    name: "Chrome Hearts Wood Ashtray",
-    brand: "Chrome Hearts",
-    category: "room decor",
-    mainCat: "others",
-    colors: ["Brown","Black","White"],
-    price: 1.99,
-    badge: "new",
-    images: ["https://i.imgur.com/XilFWn9.jpeg","https://i.imgur.com/OZT2JK4.png","https://i.imgur.com/IFD2ISo.png"],
-    buyLink: "https://s.spblk.com/dqpt",
-    notes: "Ordered it, will do a review",
     videoLink: ""
   }
 ];
@@ -1666,8 +1686,9 @@ const subCategories = {
   others:      ['Lego','Room Decor','Electronics','Miscellaneous']
 };
 
-let activeMain = 'all';
-let activeSub  = 'all';
+let activeMain   = 'all';
+let activeSub    = 'all';
+let activeGender = 'all';  // 'all' | 'men' | 'women'
 let selectedColor = '';
 
 function populateFilters() {
@@ -1727,6 +1748,16 @@ function populateFilters() {
   document.addEventListener('click', () => dropdown.classList.remove('open'));
 }
 
+// Gender toggle click handlers
+document.querySelectorAll('.gender-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activeGender = btn.dataset.gender;
+    document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+  });
+});
+
 function setMainCat(cat) {
   activeMain = cat;
   activeSub = 'all';
@@ -1785,13 +1816,16 @@ function render() {
     if (brand && p.brand !== brand) return false;
     if (color && !pColors.includes(color)) return false;
     if (q && !p.name.toLowerCase().includes(q) && !p.brand.toLowerCase().includes(q)) return false;
+    // Gender filter: men shows men+unisex, women shows women+unisex, all shows everything
+    if (activeGender === 'men'   && p.gender === 'women') return false;
+    if (activeGender === 'women' && p.gender === 'men')   return false;
     return true;
   });
 
   if (sort === 'price_asc') list.sort((a,b) => a.price - b.price);
   else if (sort === 'price_desc') list.sort((a,b) => b.price - a.price);
 
-  document.getElementById('result-count').textContent = list.length + ' finds';
+  document.getElementById('result-count').textContent = list.length + ' finds' + (activeGender === 'men' ? '  ·  Men' : activeGender === 'women' ? '  ·  Women' : '');
   document.getElementById('item-count').textContent = products.length;
 
   const grid = document.getElementById('grid');
@@ -2062,7 +2096,7 @@ render = function() {
   else if (sort === 'price_asc') list.sort((a,b) => a.price - b.price);
   else if (sort === 'price_desc') list.sort((a,b) => b.price - a.price);
 
-  document.getElementById('result-count').textContent = list.length + ' finds';
+  document.getElementById('result-count').textContent = list.length + ' finds' + (activeGender === 'men' ? '  ·  Men' : activeGender === 'women' ? '  ·  Women' : '');
   document.getElementById('item-count').textContent = products.length;
 
   const grid = document.getElementById('grid');
