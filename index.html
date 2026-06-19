@@ -752,28 +752,42 @@
     border-color: #60a5fa;
     color: #fff;
   }
+
+
+
+/* ── LANGUAGE SWITCHER ── */
+.lang-switcher{position:relative;display:flex;align-items:center;}
+.lang-btn{background:none;border:1px solid var(--border2);color:var(--muted);cursor:pointer;height:34px;padding:0 10px;border-radius:6px;font-family:'Archivo Narrow',sans-serif;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;display:flex;align-items:center;gap:5px;transition:border-color 0.2s,color 0.2s;white-space:nowrap;}
+.lang-btn:hover{border-color:var(--muted);color:var(--text);}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 6px);right:0;background:var(--surface);border:1px solid var(--border2);border-radius:8px;overflow:hidden;z-index:9999;min-width:130px;box-shadow:0 8px 24px rgba(0,0,0,0.5);}
+.lang-switcher.open .lang-dropdown{display:block;}
+.lang-option{display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:12px;color:var(--muted);cursor:pointer;transition:background 0.12s,color 0.12s;white-space:nowrap;}
+.lang-option:hover{background:var(--surface2);color:var(--text);}
+.lang-option.active{color:var(--text);background:var(--surface2);}
+.lang-option .lf{font-size:15px;}
+
 </style>
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
 
 <div id="ann1" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🔥 New Nike Tracksuits &amp; LV Varsity Jacket just dropped — <a href="#finds" style="color:#fff;text-decoration:underline;cursor:pointer;" onclick="event.preventDefault();document.getElementById('ann1').style.display='none';openQV(40);">Check it out</a></p>
+  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;"><span id="ann1-text">🔥 New Nike Tracksuits &amp; LV Varsity Jacket just dropped — </span><a href="#finds" style="color:#fff;text-decoration:underline;cursor:pointer;" onclick="event.preventDefault();document.getElementById('ann1').style.display='none';openQV(40);"><span id="ann1-link">Check it out</span></a></p>
   <button onclick="document.getElementById('ann1').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
 </div>
 <div id="ann2" style="background:#111;border-bottom:1px solid #222;padding:6px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#666;flex:1;text-align:center;">🚧 Site Under Construction — 100+ items added every month, bugs may happen. Thanks for using my website!</p>
+  <p style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#666;flex:1;text-align:center;"><span id="ann2-text">🚧 Site Under Construction — 100+ items added every month, bugs may happen. Thanks for using my website!</span></p>
   <button onclick="document.getElementById('ann2').style.display='none'" style="background:none;border:none;color:#444;cursor:pointer;font-size:14px;flex-shrink:0;line-height:1;">×</button>
 </div>
 
 <nav>
   <a class="logo" href="#">TOMMY<span>'S FINDS</span></a>
   <div class="nav-links">
-    <a href="#finds">Finds</a>
-    <a href="brands.html">Brands</a>
-    <a href="how-it-works.html">How it works</a>
-    <a href="videos.html">Videos</a>
-    <a href="sellers.html">Sellers</a>
+    <a href="#finds"><span data-i18n="finds">Finds</span></a>
+    <a href="brands.html"><span data-i18n="brands">Brands</span></a>
+    <a href="how-it-works.html"><span data-i18n="how_it_works">How it works</span></a>
+    <a href="videos.html"><span data-i18n="videos">Videos</span></a>
+    <a href="sellers.html"><span data-i18n="sellers">Sellers</span></a>
     <a href="https://www.superbuy.com/en/page/login?partnercode=EVdZQu&type=register" target="_blank" rel="noopener">Superbuy</a>
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
@@ -875,7 +889,7 @@
 <div class="grid" id="grid"></div>
 
 <section id="how" style="padding:3rem 2rem; border-top:1px solid var(--border); max-width:720px;">
-  <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;">How it works</p>
+  <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;"><span data-i18n="how_it_works">How it works</span></p>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;">
     <div>
       <p style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;margin-bottom:6px;">01</p>
@@ -2442,6 +2456,45 @@ requestAnimationFrame(function initCanvas() {
   draw();
 })();
 }); // end requestAnimationFrame
+</script>
+
+
+
+
+<script>
+var LANG_DATA = {"en": {"flag": "🇬🇧", "label": "EN", "finds": "Finds", "brands": "Brands", "how_it_works": "How it works", "videos": "Videos", "sellers": "Sellers", "ann1": "🔥 New Nike Tracksuits &amp; LV Varsity Jacket just dropped", "ann1_link": "Check it out on Finds", "ann2": "🚧 Site Under Construction — 100+ items added every month, bugs may happen. Thanks for using my website!"}, "fr": {"flag": "🇫🇷", "label": "FR", "finds": "Trouvailles", "brands": "Marques", "how_it_works": "Comment ça marche", "videos": "Vidéos", "sellers": "Vendeurs", "ann1": "🔥 Nouveaux survêtements Nike &amp; veste varsity LV viennent de sortir", "ann1_link": "Voir sur Trouvailles", "ann2": "🚧 Site en construction — 100+ articles ajoutés chaque mois. Merci d'utiliser mon site !"}, "es": {"flag": "🇪🇸", "label": "ES", "finds": "Hallazgos", "brands": "Marcas", "how_it_works": "Cómo funciona", "videos": "Videos", "sellers": "Vendedores", "ann1": "🔥 Nuevos chándales Nike &amp; chaqueta varsity LV acaban de salir", "ann1_link": "Ver en Hallazgos", "ann2": "🚧 Sitio en construcción — más de 100 artículos añadidos cada mes. ¡Gracias por usar mi web!"}, "pt": {"flag": "🇧🇷", "label": "PT", "finds": "Achados", "brands": "Marcas", "how_it_works": "Como funciona", "videos": "Vídeos", "sellers": "Vendedores", "ann1": "🔥 Novos agasalhos Nike &amp; jaqueta varsity LV acabaram de sair", "ann1_link": "Ver nos Achados", "ann2": "🚧 Site em construção — mais de 100 itens adicionados todo mês. Obrigado por usar meu site!"}, "zh": {"flag": "🇨🇳", "label": "中文", "finds": "发现", "brands": "品牌", "how_it_works": "使用指南", "videos": "视频", "sellers": "卖家", "ann1": "🔥 全新 Nike 运动套装 &amp; LV 棒球夹克已上线", "ann1_link": "在发现页查看", "ann2": "🚧 网站建设中 — 每月新增 100+ 商品，感谢使用本站！"}, "ja": {"flag": "🇯🇵", "label": "日本語", "finds": "発見", "brands": "ブランド", "how_it_works": "使い方", "videos": "動画", "sellers": "販売者", "ann1": "🔥 新作 Nike トラックスーツ &amp; LV バーシティジャケット登場", "ann1_link": "発見ページを見る", "ann2": "🚧 サイト工事中 — 毎月100点以上追加中。ご利用ありがとうございます！"}, "de": {"flag": "🇩🇪", "label": "DE", "finds": "Funde", "brands": "Marken", "how_it_works": "So funktioniert's", "videos": "Videos", "sellers": "Verkäufer", "ann1": "🔥 Neue Nike Trainingsanzüge &amp; LV Varsity-Jacke sind da", "ann1_link": "Auf Funde ansehen", "ann2": "🚧 Seite im Aufbau — 100+ Artikel werden monatlich hinzugefügt. Danke, dass du meine Website nutzt!"}};
+var currentLang = localStorage.getItem('tf_lang') || 'en';
+function applyLang(lang) {
+  if (!LANG_DATA[lang]) lang = 'en';
+  currentLang = lang;
+  localStorage.setItem('tf_lang', lang);
+  var d = LANG_DATA[lang];
+  document.querySelectorAll('[data-i18n="finds"]').forEach(function(el){el.textContent=d.finds;});
+  document.querySelectorAll('[data-i18n="brands"]').forEach(function(el){el.textContent=d.brands;});
+  document.querySelectorAll('[data-i18n="how_it_works"]').forEach(function(el){el.textContent=d.how_it_works;});
+  document.querySelectorAll('[data-i18n="videos"]').forEach(function(el){el.textContent=d.videos;});
+  document.querySelectorAll('[data-i18n="sellers"]').forEach(function(el){el.textContent=d.sellers;});
+  var a1=document.getElementById('ann1-text'); if(a1) a1.innerHTML=d.ann1+' — ';
+  var a1l=document.getElementById('ann1-link'); if(a1l) a1l.textContent=d.ann1_link;
+  var a2=document.getElementById('ann2-text'); if(a2) a2.innerHTML=d.ann2;
+  var btn=document.getElementById('lang-btn-label'); if(btn) btn.textContent=d.flag+' '+d.label;
+  document.querySelectorAll('.lang-option').forEach(function(el){el.classList.toggle('active',el.dataset.lang===lang);});
+}
+function toggleLangDropdown(e) {
+  e.stopPropagation();
+  var sw=document.getElementById('lang-switcher');
+  if(sw) sw.classList.toggle('open');
+}
+function selectLang(lang) {
+  applyLang(lang);
+  var sw=document.getElementById('lang-switcher');
+  if(sw) sw.classList.remove('open');
+}
+document.addEventListener('click',function(){
+  var sw=document.getElementById('lang-switcher');
+  if(sw) sw.classList.remove('open');
+});
+applyLang(currentLang);
 </script>
 </body>
 </html>
