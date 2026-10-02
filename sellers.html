@@ -231,6 +231,7 @@ function renderGrid(platform){
     if(s.specialties)det+='<div class="detail-row"><span class="detail-icon">&#x1F3AF;</span><div class="detail-text"><strong>Specialties:</strong> '+s.specialties+'</div></div>';
     if(s.notes)det+='<div class="detail-row"><span class="detail-icon">&#x1F4AC;</span><div class="detail-text"><strong>Tommy note:</strong> '+s.notes+'</div></div>';
     if(s.priceRange)det+='<div class="detail-row"><span class="detail-icon">&#x1F4B0;</span><div class="detail-text"><strong>Price range:</strong> '+s.priceRange+'</div></div>';
+    if(s.discord)det+='<div class="detail-row"><span class="detail-icon">&#x1F4AC;</span><div class="detail-text"><strong>Discord:</strong> <a href="'+s.discord+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'+s.discord+'</a></div></div>';
     det+='<a class="visit-btn" href="'+s.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">Visit Store &#x2197;</a></div></div>';
     return '<div class="seller-card" style="animation-delay:'+(i*0.05)+'s" onclick="toggleCard(this)"><div class="card-top"><div class="seller-avatar">'+av+'</div><div class="seller-info"><div class="seller-name">'+s.name+'</div><div class="seller-handle">'+s.handle+'</div>'+(tags?'<div class="seller-tags">'+tags+'</div>':'')+'</div><div class="seller-rating">'+tier+'</div><button class="card-expand-btn">&#x25BE;</button></div>'+det+'</div>';
   }).join('');
