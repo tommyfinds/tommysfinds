@@ -608,8 +608,8 @@
   @media (max-width: 1100px) { .grid { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 700px) { .grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 600px) { .qv-modal { grid-template-columns: 1fr; } }
-  .qv-img { background: #fff; border-radius: 12px 0 0 12px; overflow: hidden; }
-  .qv-img img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
+  .qv-img { background: radial-gradient(ellipse at 50% 40%, #161616 0%, #0a0a0a 80%); border-radius: 12px 0 0 12px; overflow: hidden; }
+  .qv-img img { width: 100%; height: 100%; object-fit: contain; background: transparent; filter: drop-shadow(0 14px 18px rgba(0,0,0,0.5)); }
   .qv-info { padding: 1.5rem; display: flex; flex-direction: column; gap: 12px; }
   .qv-close {
     position: absolute; top: 12px; right: 12px;
@@ -798,14 +798,6 @@
 <body>
 <canvas id="bg-canvas"></canvas>
 
-<div id="ann1" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;"><span id="ann1-text">🎁 Use code "tommy" for 15$ off &amp; "tommy20" for 20$ off shipping</span></p>
-  <button onclick="document.getElementById('ann1').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1;">×</button>
-</div>
-<div id="ann2" style="background:#111;border-bottom:1px solid #222;padding:6px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#666;flex:1;text-align:center;"><span id="ann2-text">🚧 Site Under Construction — 100+ items added every month, bugs may happen. Thanks for using my website!</span></p>
-  <button onclick="document.getElementById('ann2').style.display='none'" style="background:none;border:none;color:#444;cursor:pointer;font-size:14px;flex-shrink:0;line-height:1;">×</button>
-</div>
 
 <nav>
   <a class="logo" href="#">TOMMY<span>'S FINDS</span></a>
@@ -2132,18 +2124,18 @@ function openQV(id) {
     const mainImg = document.getElementById('qv-main-img');
     if (mainImg) mainImg.src = window._qvImgs[i];
     document.querySelectorAll('.qv-thumb').forEach((t,ti) => {
-      t.style.border = ti === i ? '2px solid #555' : '2px solid #ddd';
+      t.style.border = ti === i ? '2px solid #555' : '2px solid #333';
     });
   };
   const thumbsHtml = imgs.length > 1
-    ? '<div style="display:flex;gap:6px;padding:8px;background:#fff;overflow-x:auto;justify-content:center;flex-shrink:0;">'
-      + imgs.map((src,i) => `<img class="qv-thumb" src="${src}" onclick="qvSetImg(${i})" style="width:48px;height:48px;object-fit:contain;cursor:pointer;border:2px solid ${i===0?'#555':'#ddd'};border-radius:4px;flex-shrink:0;" />`)
+    ? '<div style="display:flex;gap:6px;padding:8px;background:rgba(255,255,255,0.04);overflow-x:auto;justify-content:center;flex-shrink:0;">'
+      + imgs.map((src,i) => `<img class="qv-thumb" src="${src}" onclick="qvSetImg(${i})" style="width:48px;height:48px;object-fit:contain;cursor:pointer;background:radial-gradient(ellipse at 50% 40%, #161616 0%, #0a0a0a 80%);border:2px solid ${i===0?'#555':'#333'};border-radius:4px;flex-shrink:0;" />`)
         .join('')
       + '</div>'
     : '';
   document.getElementById('qv-img').innerHTML =
     `<div style="width:100%;height:100%;display:flex;flex-direction:column;">
-      <img id="qv-main-img" src="${imgs[0]||''}" alt="${p.name}" style="flex:1;width:100%;object-fit:contain;background:#fff;min-height:200px;" />
+      <img id="qv-main-img" src="${imgs[0]||''}" alt="${p.name}" style="flex:1;width:100%;object-fit:contain;background:transparent;min-height:200px;filter:drop-shadow(0 14px 18px rgba(0,0,0,0.5));" />
       ${thumbsHtml}
     </div>`;
   // Related: prioritize same brand, fill with same category, exactly 3
@@ -2555,8 +2547,6 @@ function applyLang(lang) {
   document.querySelectorAll('[data-i18n="how_it_works"]').forEach(function(el){el.textContent=d.how_it_works;});
   document.querySelectorAll('[data-i18n="videos"]').forEach(function(el){el.textContent=d.videos;});
   document.querySelectorAll('[data-i18n="sellers"]').forEach(function(el){el.textContent=d.sellers;});
-  var a1=document.getElementById('ann1-text'); if(a1) a1.innerHTML=d.ann1;
-  var a2=document.getElementById('ann2-text'); if(a2) a2.innerHTML=d.ann2;
   var btn=document.getElementById('lang-btn-label'); if(btn) btn.textContent=d.flag+' '+d.label;
   document.querySelectorAll('.lang-option').forEach(function(el){el.classList.toggle('active',el.dataset.lang===lang);});
 }
