@@ -33,6 +33,21 @@ nav.topnav{display:flex;align-items:center;justify-content:space-between;padding
 .stat-item:last-child{border-right:none;}
 .stat-num{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:0.04em;color:var(--text);line-height:1;}
 .stat-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+/* CATEGORY TABS */
+.cat-tabs{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;padding:0 2rem;gap:.5rem;}
+.cat-tab{padding:1rem .2rem;margin-right:1.5rem;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;}
+.cat-tab:hover{color:var(--text);}
+.cat-tab.active{color:var(--text);border-bottom-color:var(--accent);}
+.cat-panel{display:none;}
+.cat-panel.active{display:block;}
+.empty-cat{padding:3rem 2rem;text-align:center;color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
+/* BANNED */
+.banned-card{display:flex;align-items:center;gap:14px;padding:1rem 1.2rem;margin:0 2rem 10px;border:1px solid #4a1f1f;background:rgba(220,60,60,0.06);border-radius:10px;}
+:root.light .banned-card{background:rgba(220,60,60,0.05);}
+.banned-icon{font-size:20px;flex-shrink:0;}
+.banned-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;color:var(--text);}
+.banned-platform{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#d66;margin-left:8px;}
+.banned-reason{font-size:12px;color:var(--muted);margin-top:2px;}
 /* PLATFORM */
 .platform-section{border-bottom:1px solid var(--border);}
 .platform-header{display:flex;align-items:center;gap:16px;padding:1.8rem 2rem 1.4rem;cursor:pointer;user-select:none;transition:background 0.15s;}
@@ -48,6 +63,11 @@ nav.topnav{display:flex;align-items:center;justify-content:space-between;padding
 /* GRID */
 .sellers-grid{display:none;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;padding:0 2rem 1.8rem;}
 .platform-section.open .sellers-grid{display:grid;}
+.sellers-row{display:none;gap:12px;padding:0 2rem 1.8rem;overflow-x:auto;scroll-snap-type:x proximity;}
+.platform-section.open .sellers-row{display:flex;}
+.sellers-row .seller-card{flex:0 0 280px;scroll-snap-align:start;}
+.sellers-row .empty-row-msg{flex:0 0 auto;display:flex;align-items:center;color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:1rem 0;}
+.cat-brand-logo{width:100%;height:100%;object-fit:contain;border-radius:8px;background:#fff;padding:4px;}
 /* CARD */
 .seller-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:background 0.15s,border-color 0.2s,transform 0.15s,box-shadow 0.2s;animation:fadeUp 0.25s ease both;overflow:hidden;}
 .seller-card:hover{background:var(--surface2);border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.4);}
@@ -120,14 +140,6 @@ footer a:hover{color:var(--text);}
 <body>
 <canvas id="bg-canvas"></canvas>
 <script>(function(){if(localStorage.getItem('tf_theme')==='light')document.documentElement.classList.add('light');})();</script>
-<div id="ann1" style="background:#1a1a1a;border-bottom:1px solid #2a2a2a;padding:8px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;flex:1;text-align:center;">🎁 Use code "tommy" for 15$ off &amp; "tommy20" for 20$ off shipping</p>
-  <button onclick="document.getElementById('ann1').style.display='none'" style="background:none;border:none;color:#555;cursor:pointer;font-size:16px;flex-shrink:0;">&#x2715;</button>
-</div>
-<div id="ann2" style="background:#111;border-bottom:1px solid #222;padding:6px 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-  <p style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#666;flex:1;text-align:center;">&#x1F6A7; Site Under Construction &mdash; More sellers added regularly.</p>
-  <button onclick="document.getElementById('ann2').style.display='none'" style="background:none;border:none;color:#444;cursor:pointer;font-size:14px;flex-shrink:0;">&#x2715;</button>
-</div>
 <nav class="topnav">
   <a class="logo" href="index.html">TOMMY<span>'S FINDS</span></a>
   <div class="nav-links">
@@ -149,6 +161,14 @@ footer a:hover{color:var(--text);}
   <h1>Trusted Sellers</h1>
   <p class="hero-sub">Hand-picked sellers verified by the community. Click a card to expand details &mdash; then visit their store.</p>
 </div>
+<div class="cat-tabs">
+  <button class="cat-tab active" id="cat-tab-platforms" onclick="switchCat('platforms')">Platforms</button>
+  <button class="cat-tab" id="cat-tab-brands" onclick="switchCat('brands')">Brands</button>
+  <button class="cat-tab" id="cat-tab-items" onclick="switchCat('items')">Items</button>
+  <button class="cat-tab" id="cat-tab-banned" onclick="switchCat('banned')">Banned Sellers</button>
+</div>
+
+<div class="cat-panel active" id="cat-platforms">
 <div class="stats-bar">
   <div class="stat-item"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total Sellers</div></div>
   <div class="stat-item"><div class="stat-num" id="stat-1688">0</div><div class="stat-label">1688 Sellers</div></div>
@@ -179,6 +199,20 @@ footer a:hover{color:var(--text);}
   </div>
   <div class="sellers-grid" id="grid-weidian"></div>
 </div>
+</div>
+
+<div class="cat-panel" id="cat-brands">
+  <div id="brands-sections"></div>
+</div>
+
+<div class="cat-panel" id="cat-items">
+  <div id="items-sections"></div>
+</div>
+
+<div class="cat-panel" id="cat-banned">
+  <div id="banned-sections" style="padding-top:1.5rem;"></div>
+</div>
+
 <div id="modal-feedback" class="modal-overlay">
   <div class="modal"><button class="modal-close" onclick="closeModal('modal-feedback')">&#x2715;</button>
   <h2>Send Feedback</h2><input type="text" id="feedback-name" placeholder="Your Name (Optional)"/>
@@ -215,6 +249,24 @@ var sellers={
   "taobao":[],
   "weidian":[]
 };
+var bannedSellers=[
+];
+var itemCategories=["Clothing","Shoes","Watches","Decor","Jewelry","Legos","Miscellaneous"];
+var brandDomains = {
+  "Supreme":"supremenewyork.com","Apple":"apple.com","Lego":"lego.com","Rimowa":"rimowa.com",
+  "Louis Vuitton":"louisvuitton.com","Stussy":"stussy.com","Nike":"nike.com","Lululemon":"lululemon.com",
+  "Bape":"bape.com","Acne Studios":"acnestudios.com","Ralph Lauren":"ralphlauren.com",
+  "Asics":"asics.com","Playstation":"playstation.com","Artiemaster":"artiemaster.com",
+  "Stussy / Nike":"stussy.com","Numeris":"numeris.com","Akimbo":"akimboclub.com",
+  "Margiela":"maisonmargiela.com","Thom Browne":"thombrowne.com","Goyard":"goyard.com",
+  "Balenciaga":"balenciaga.com","Chrome Hearts":"chromehearts.com","Eastpak":"eastpak.com","Anime":"crunchyroll.com","No Brand":null
+};
+var brandLogoOverrides={};
+function brandLogoUrl(b){
+  if(brandLogoOverrides[b])return brandLogoOverrides[b];
+  if(!brandDomains[b])return null;
+  return "https://img.logo.dev/"+brandDomains[b]+"?token=pk_X-1ZO13GSgeOoUrIuJ9GMQ&size=60&format=png";
+}
 function initials(n){return n.split(' ').map(function(w){return w[0]||''}).join('').slice(0,2).toUpperCase();}
 function tagClass(t){var m={sneakers:'tag-sneakers',clothing:'tag-clothing',bags:'tag-bags',accessories:'tag-accessories',watches:'tag-watches',trusted:'tag-trusted',yupoo:'tag-yupoo'};return m[t]||'';}
 function renderGrid(platform){
@@ -238,6 +290,71 @@ function renderGrid(platform){
 }
 function toggleCard(c){c.classList.toggle('expanded');}
 function toggleSection(id){document.getElementById(id).classList.toggle('open');}
+function allSellersFlat(){return sellers['1688'].concat(sellers.taobao,sellers.weidian);}
+function renderSellerCard(s,i){
+  var av=s.avatar?'<img src="'+s.avatar+'" alt="'+s.name+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>':initials(s.name);
+  var tags=(s.tags||[]).map(function(t){return '<span class="seller-tag '+tagClass(t)+'">'+t+'</span>';}).join('');
+  var ti=TIER_ICONS[s.tier]||'';
+  var tier=s.tier?'<span class="tier-badge tier-'+s.tier+'"><span class="tier-icon">'+ti+'</span>'+s.tier+'</span>':'';
+  var det='<div class="card-detail"><div class="card-detail-inner">';
+  if(s.specialties)det+='<div class="detail-row"><span class="detail-icon">&#x1F3AF;</span><div class="detail-text"><strong>Specialties:</strong> '+s.specialties+'</div></div>';
+  if(s.brands&&s.brands.length)det+='<div class="detail-row"><span class="detail-icon">&#x1F3F7;</span><div class="detail-text"><strong>Brands:</strong> '+s.brands.join(', ')+'</div></div>';
+  if(s.notes)det+='<div class="detail-row"><span class="detail-icon">&#x1F4AC;</span><div class="detail-text"><strong>Tommy note:</strong> '+s.notes+'</div></div>';
+  if(s.priceRange)det+='<div class="detail-row"><span class="detail-icon">&#x1F4B0;</span><div class="detail-text"><strong>Price range:</strong> '+s.priceRange+'</div></div>';
+  if(s.discord)det+='<div class="detail-row"><span class="detail-icon">&#x1F4AC;</span><div class="detail-text"><strong>Discord:</strong> <a href="'+s.discord+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'+s.discord+'</a></div></div>';
+  det+='<a class="visit-btn" href="'+s.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">Visit Store &#x2197;</a></div></div>';
+  return '<div class="seller-card" style="animation-delay:'+(i*0.05)+'s" onclick="toggleCard(this)"><div class="card-top"><div class="seller-avatar">'+av+'</div><div class="seller-info"><div class="seller-name">'+s.name+'</div><div class="seller-handle">'+s.handle+'</div>'+(tags?'<div class="seller-tags">'+tags+'</div>':'')+'</div><div class="seller-rating">'+tier+'</div><button class="card-expand-btn">&#x25BE;</button></div>'+det+'</div>';
+}
+function groupedSectionRow(id,title,iconHtml,list){
+  var inner=list.length
+    ? list.map(renderSellerCard).join('')
+    : '<div class="empty-row-msg">More sellers coming soon</div>';
+  return '<div class="platform-section open" id="'+id+'">'
+    +'<div class="platform-header" onclick="toggleSection(\''+id+'\')">'
+    +'<div class="platform-logo">'+iconHtml+'</div>'
+    +'<div class="platform-info"><div class="platform-name">'+title+'</div><div class="platform-desc">'+list.length+' seller'+(list.length!==1?'s':'')+'</div></div>'
+    +'<span class="chevron">&#x25BE;</span></div>'
+    +'<div class="sellers-row">'+inner+'</div></div>';
+}
+function renderBrandsTab(){
+  var byBrand={};
+  allSellersFlat().forEach(function(s){(s.brands||[]).forEach(function(b){(byBrand[b]=byBrand[b]||[]).push(s);});});
+  var brandNames=Object.keys(byBrand).sort();
+  var el=document.getElementById('brands-sections');
+  if(!brandNames.length){el.innerHTML='<div class="empty-cat">No brand specialists added yet &mdash; coming soon</div>';return;}
+  el.innerHTML=brandNames.map(function(b){
+    var logo=brandLogoUrl(b);
+    var icon=logo?'<img class="cat-brand-logo" src="'+logo+'" alt="'+b+'" onerror="this.style.display=\'none\';this.parentNode.innerHTML=\''+initials(b)+'\';"/>':initials(b);
+    return groupedSectionRow('brandsec-'+b.replace(/\s+/g,'_'),b,icon,byBrand[b]);
+  }).join('');
+}
+function renderItemsTab(){
+  var ITEM_ICONS={Clothing:'&#x1F455;',Shoes:'&#x1F45F;',Watches:'&#x231A;',Decor:'&#x1F3E0;',Jewelry:'&#x1F48D;',Legos:'&#x1F9F1;',Miscellaneous:'&#x2728;'};
+  var byItem={};
+  allSellersFlat().forEach(function(s){(s.items||[]).forEach(function(it){(byItem[it]=byItem[it]||[]).push(s);});});
+  var el=document.getElementById('items-sections');
+  el.innerHTML=itemCategories.map(function(cat){
+    var icon=ITEM_ICONS[cat]||'&#x1F4E6;';
+    return groupedSectionRow('itemsec-'+cat.replace(/\s+/g,'_'),cat,'<span style="font-size:26px;">'+icon+'</span>',byItem[cat]||[]);
+  }).join('');
+}
+function renderBannedTab(){
+  var el=document.getElementById('banned-sections');
+  if(!bannedSellers.length){el.innerHTML='<div class="empty-cat">No banned sellers reported &mdash; stay safe out there</div>';return;}
+  el.innerHTML=bannedSellers.map(function(b){
+    return '<div class="banned-card"><div class="banned-icon">&#x26D4;</div><div><div class="banned-name">'+b.name+(b.platform?'<span class="banned-platform">'+b.platform+'</span>':'')+'</div>'+(b.reason?'<div class="banned-reason">'+b.reason+'</div>':'')+'</div></div>';
+  }).join('');
+}
+var catsRendered={brands:false,items:false,banned:false};
+function switchCat(cat){
+  ['platforms','brands','items','banned'].forEach(function(c){
+    document.getElementById('cat-'+c).classList.toggle('active',c===cat);
+    document.getElementById('cat-tab-'+c).classList.toggle('active',c===cat);
+  });
+  if(cat==='brands'&&!catsRendered.brands){renderBrandsTab();catsRendered.brands=true;}
+  if(cat==='items'&&!catsRendered.items){renderItemsTab();catsRendered.items=true;}
+  if(cat==='banned'&&!catsRendered.banned){renderBannedTab();catsRendered.banned=true;}
+}
 function animateCount(el,target,dur){if(!target){el.textContent=0;return;}var step=target/(dur/16);var cur=0;(function tick(){cur+=step;if(cur>=target){el.textContent=target;return;}el.textContent=Math.floor(cur);requestAnimationFrame(tick);})();}
 renderGrid('1688');renderGrid('taobao');renderGrid('weidian');
 var tot=sellers['1688'].length+sellers.taobao.length+sellers.weidian.length;
